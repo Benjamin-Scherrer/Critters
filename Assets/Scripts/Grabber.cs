@@ -10,7 +10,7 @@ public class Grabber : MonoBehaviour {
                 RaycastHit hit = CastRay();
 
                 if(hit.collider != null) {
-                    if (!hit.collider.CompareTag("Dragable")) {
+                    if (!hit.collider.CompareTag("Geobody")) {
                         return;
                     }
 
