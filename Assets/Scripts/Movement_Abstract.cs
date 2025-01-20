@@ -8,6 +8,8 @@ public class Movement_Abstract : MonoBehaviour
     [Header("Base Variables")]
     [SerializeField] protected float force = 5f;
     [SerializeField] protected Vector3 direction = Vector3.up;
+    [SerializeField] protected float maxLinearVelocity = 1;
+    [SerializeField] protected float maxAngularVelocity = 1;
 
     [Header("Advanced Variables")]
     [SerializeField] protected float forceOscilationTime = 1;
@@ -49,8 +51,13 @@ public class Movement_Abstract : MonoBehaviour
         }
     }
 
+
+    //Private
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        rb.maxLinearVelocity = maxLinearVelocity;
+        rb.maxAngularVelocity = maxAngularVelocity;
     }
 }

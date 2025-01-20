@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Movement_Torgue : Movement_Abstract
+public class Movement_Torque : Movement_Abstract
 {
     private void FixedUpdate()
     {
