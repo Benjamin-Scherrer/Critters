@@ -175,6 +175,7 @@ MonoBehaviour:
   forceMultiplier: 0.25
   maxLinearVelocity: 4
   maxAngularVelocity: 4
+  localDirection: 1
   directionX:
     serializedVersion: 2
     m_Curve:

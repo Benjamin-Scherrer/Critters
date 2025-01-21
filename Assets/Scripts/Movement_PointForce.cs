@@ -14,7 +14,7 @@ public class Movement_PointForce : Movement_Abstract
     {
         get
         {
-            return target.TransformDirection(DirectionOscilating);
+            return localDirection ? target.TransformDirection(DirectionOscilating): DirectionOscilating;
         }
     }
 

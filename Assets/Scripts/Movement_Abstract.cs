@@ -16,6 +16,7 @@ public class Movement_Abstract : MonoBehaviour
 
 
     [Header("Direction")]
+    [SerializeField] protected bool localDirection = false;
     [SerializeField] protected AnimationCurve directionX = AnimationCurve.Constant(0, 1, 1);
     [SerializeField] protected AnimationCurve directionY = AnimationCurve.Constant(0, 1, 1);
     [SerializeField] protected AnimationCurve directionZ = AnimationCurve.Constant(0, 1, 1);
@@ -64,7 +65,7 @@ public class Movement_Abstract : MonoBehaviour
     {
         get
         {
-            return transform.TransformDirection(DirectionOscilating);
+            return localDirection ? transform.TransformDirection(DirectionOscilating): DirectionOscilating;
         }
     }
 

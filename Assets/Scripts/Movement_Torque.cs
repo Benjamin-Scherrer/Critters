@@ -12,7 +12,7 @@ public class Movement_Torque : Movement_Abstract
 
     private void OnDrawGizmos()
     {
-        Vector3 offset = LocalDirectionOscilating.normalized * GizmoSize * 0.5f;
+        Vector3 offset = 0.5f * GizmoSize * LocalDirectionOscilating.normalized;
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position - offset, transform.position + offset);
