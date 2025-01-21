@@ -10,11 +10,11 @@ public class Movement_PointForce : Movement_Abstract
     [Header("Features")]
     [SerializeField] private bool snapToSurfave;
 
-    protected override Vector3 LocalDirection
+    protected override Vector3 LocalDirectionOscilating
     {
         get
         {
-            return target.TransformDirection(direction);
+            return target.TransformDirection(DirectionOscilating);
         }
     }
 
@@ -32,7 +32,7 @@ public class Movement_PointForce : Movement_Abstract
 
     private void FixedUpdate()
     {
-        rb.AddForceAtPosition(LocalDirectionOscilating.normalized * ForceOscilating, target.position, ForceMode.Force);
+        rb.AddForceAtPosition(LocalDirectionOscilating.normalized * ForceOscilating, target.position, ForceMode.Impulse);
     }
 
     private void OnDrawGizmos()

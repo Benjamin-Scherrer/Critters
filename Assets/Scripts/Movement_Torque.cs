@@ -7,7 +7,7 @@ public class Movement_Torque : Movement_Abstract
 {
     private void FixedUpdate()
     {
-        rb.AddTorque(LocalDirectionOscilating.normalized * ForceOscilating, ForceMode.Force);
+        rb.AddTorque(LocalDirectionOscilating.normalized * ForceOscilating, ForceMode.Impulse);
     }
 
     private void OnDrawGizmos()

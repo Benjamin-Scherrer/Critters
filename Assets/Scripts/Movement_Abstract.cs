@@ -5,41 +5,66 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement_Abstract : MonoBehaviour
 {
-    [Header("Base Variables")]
-    [SerializeField] protected float force = 5f;
-    [SerializeField] protected Vector3 direction = Vector3.up;
-    [SerializeField] protected float maxLinearVelocity = 1;
-    [SerializeField] protected float maxAngularVelocity = 1;
+    [Header("Force")]
+    [SerializeField] protected AnimationCurve force = AnimationCurve.Constant(0, 1, 1);
+    [SerializeField] protected float forceCycleDuration = 1;
+    [SerializeField] protected float forceMultiplier = 1;
+
+    [Header("Velocity")]
+    [SerializeField] protected float maxLinearVelocity = 10;
+    [SerializeField] protected float maxAngularVelocity = 10;
+
+
+    [Header("Direction")]
+    [SerializeField] protected AnimationCurve directionX = AnimationCurve.Constant(0, 1, 1);
+    [SerializeField] protected AnimationCurve directionY = AnimationCurve.Constant(0, 1, 1);
+    [SerializeField] protected AnimationCurve directionZ = AnimationCurve.Constant(0, 1, 1);
+    [SerializeField] protected Vector3 directionCycleDuration = Vector3.one;
+    [SerializeField] protected Vector3 directionCycleMultiplier = Vector3.one;
+
+    //[Header("Velocity Limit")]
+    //[SerializeField] protected float maxLinearVelocity = 10;
+    //[SerializeField] protected float maxAngularVelocity = 10;
 
     [Header("Advanced Variables")]
-    [SerializeField] protected float forceOscilationTime = 1;
-    [SerializeField] protected float forceOscilationAmplitude = 1;
 
-    [SerializeField] protected Vector3 directionOscilationTime = Vector3.one;
-    [SerializeField] protected Vector3 directionOscilationAmplitude = Vector3.one;
 
     [Header("Debug")]
     [SerializeField][Range(0, 10)] protected float GizmoSize = 1;
 
     //References
     protected Rigidbody rb;
-    protected virtual Vector3 LocalDirection
+  
+    protected Vector3 DirectionOscilating
     {
         get
         {
-            return transform.TransformDirection(direction);
+            float curveDurationX = directionX[directionX.length - 1].time;
+            float timeMultiplierX = curveDurationX / directionCycleDuration.x;
+            float timeX = (Time.time % directionCycleDuration.x) * timeMultiplierX;
+
+
+            float curveDurationY = directionY[directionY.length - 1].time;
+            float timeMultiplierY = curveDurationY / directionCycleDuration.y;
+            float timeY = (Time.time % directionCycleDuration.y) * timeMultiplierY;
+               
+            float curveDurationZ = directionZ[directionZ.length - 1].time;
+            float timeMultiplierZ = curveDurationZ / directionCycleDuration.z;
+            float timeZ = (Time.time % directionCycleDuration.z) * timeMultiplierZ;
+
+            return new Vector3(
+                directionX.Evaluate(timeX),
+                directionY.Evaluate(timeY),
+                directionZ.Evaluate(timeZ)
+            );
         }
     }
 
-    protected Vector3 LocalDirectionOscilating
+    protected virtual Vector3 LocalDirectionOscilating
     {
         get
         {
-            return LocalDirection + new Vector3(
-                Mathf.Sin(Time.time / directionOscilationTime.x) * directionOscilationAmplitude.x,
-                Mathf.Sin(Time.time / directionOscilationTime.y) * directionOscilationAmplitude.y,
-                Mathf.Sin(Time.time / directionOscilationTime.z) * directionOscilationAmplitude.z
-            );
+            return transform.TransformDirection(DirectionOscilating);
         }
     }
 
@@ -47,17 +72,20 @@ public class Movement_Abstract : MonoBehaviour
     {
         get
         {
-            return force + Mathf.Sin(Time.time / forceOscilationTime) * forceOscilationAmplitude;
+            float curveDuration = force[force.length - 1].time;
+            float timeMultiplier = curveDuration / forceCycleDuration;
+            float time = (Time.time % forceCycleDuration) * timeMultiplier;
+            float value = force.Evaluate(time);
+            return value * forceMultiplier;
         }
     }
-
 
     //Private
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
 
-        rb.maxLinearVelocity = maxLinearVelocity;
-        rb.maxAngularVelocity = maxAngularVelocity;
+        //rb.maxLinearVelocity = maxLinearVelocity;
+        //rb.maxAngularVelocity = maxAngularVelocity;
     }
 }
