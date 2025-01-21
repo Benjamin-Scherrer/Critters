@@ -122,12 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &908173022 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2953981515775001461, guid: 658db2d35db1fff428ef58d390a368d7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1058660961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1007801844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,11 +215,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torgue_Movement_Prototype
       objectReference: {fileID: 0}
-    - target: {fileID: 7471838953074670677, guid: cb92bc7a8f3c709488995bfb981fe957,
-        type: 3}
-      propertyPath: m_TagString
-      value: Dragable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -306,80 +295,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2953981515775001461, guid: 658db2d35db1fff428ef58d390a368d7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1212568817}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 658db2d35db1fff428ef58d390a368d7, type: 3}
---- !u!1 &1212568816
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1212568817}
-  - component: {fileID: 1212568819}
-  - component: {fileID: 1212568818}
-  m_Layer: 0
-  m_Name: Looper
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1212568817
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212568816}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 8, y: 0, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 908173022}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!114 &1212568818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212568816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c509043e3aae145b2b966506f781ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tag: Dragable
---- !u!65 &1212568819
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212568816}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 18, y: 16, z: 60}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1930123187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,11 +378,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Force_Movement_Prototype
-      objectReference: {fileID: 0}
-    - target: {fileID: 143003791139975897, guid: 03e88e00a938dcd418d5a135a3768f8e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Dragable
       objectReference: {fileID: 0}
     - target: {fileID: 2371959848189901699, guid: 03e88e00a938dcd418d5a135a3768f8e,
         type: 3}

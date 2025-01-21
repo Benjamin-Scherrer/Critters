@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5940677236935723148}
   m_Layer: 0
   m_Name: Force_Movement_Prototype
-  m_TagString: Untagged
+  m_TagString: Geobody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 4
   direction: {x: 0, y: 1, z: 0}
+  maxLinearVelocity: 1
+  maxAngularVelocity: 1
   forceOscilationTime: 2
   forceOscilationAmplitude: 8
   directionOscilationTime: {x: 1, y: 1, z: 1}

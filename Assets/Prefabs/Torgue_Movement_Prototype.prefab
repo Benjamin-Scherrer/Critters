@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8160780572607230166}
   m_Layer: 0
   m_Name: Torgue_Movement_Prototype
-  m_TagString: Untagged
+  m_TagString: Geobody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,10 +120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd2677a2562c6d4c8bbdaeaccc566f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torgue: 1
+  force: 5
   direction: {x: 1, y: 1, z: 0}
-  oscilationTime: {x: 1, y: 1, z: 1}
-  oscilationAmplitude: {x: 1, y: 1, z: 1}
+  maxLinearVelocity: 1
+  maxAngularVelocity: 1
+  forceOscilationTime: 1
+  forceOscilationAmplitude: 1
+  directionOscilationTime: {x: 1, y: 1, z: 1}
+  directionOscilationAmplitude: {x: 1, y: 1, z: 1}
   GizmoSize: 4
 --- !u!54 &8160780572607230166
 Rigidbody:
