@@ -6,6 +6,8 @@ using UnityEngine;
 public class JointSnap : MonoBehaviour
 {
     [SerializeField] private float snapDistance = 2f;
+
+    [Header("Joint Settings")][Space]
     [SerializeField] private float posSpring = 40f;
     [SerializeField] private float posDamp = 10f;
     [SerializeField] private float rotSpring = 20f;
