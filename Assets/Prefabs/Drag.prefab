@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5583a39a1b2fa0429aeeaaa5d4afe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posSpring: 40
-  posDamp: 10
-  rotSpring: 20
-  rotDamp: 5
+  posSpring: 400
+  posDamp: 100
+  rotSpring: 100
+  rotDamp: 50
 --- !u!54 &5682263189666655237
 Rigidbody:
   m_ObjectHideFlags: 0
