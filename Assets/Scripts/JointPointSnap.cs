@@ -7,7 +7,8 @@ public class JointPointSnap : MonoBehaviour
 {
     [SerializeField] private float snapDistanceMult = 1.5f;
 
-    [Header("Joint Settings")][Space]
+    [Header("Joint Settings")]
+    [Space]
     [SerializeField] private float posSpring = 40f;
     [SerializeField] private float posDamp = 10f;
     [SerializeField] private float rotSpring = 20f;
@@ -15,6 +16,8 @@ public class JointPointSnap : MonoBehaviour
 
     private Collider coll;
     private List<Collider> snappedColliders = new List<Collider>();
+    private List<Transform> unsnappedTransforms = new List<Transform>();
+    private List<Transform> snappedTransforms = new List<Transform>();
 
     void Start()
     {
@@ -23,9 +26,16 @@ public class JointPointSnap : MonoBehaviour
 
     void Update()
     {
+        AddJoint();
+    }
+
+    private void AddJoint()
+    {
         foreach (Transform child in transform)
         {
-            Collider[] collidersToSnap = Physics.OverlapSphere(child.position, child.localScale.x/2);
+            if (child.GetComponent<SnapPoint>().connected) return;
+
+            Collider[] collidersToSnap = Physics.OverlapSphere(child.position, child.localScale.x / 2);
             foreach (Collider collider in collidersToSnap)
             {
                 if (!snappedColliders.Contains(collider) && collider.attachedRigidbody != null && collider.CompareTag("Geobody") && coll != collider)
@@ -43,7 +53,7 @@ public class JointPointSnap : MonoBehaviour
                     joint.zDrive = posDrive;
                     joint.slerpDrive = rotDrive;
                     snappedColliders.Add(collider);
-
+                    child.GetComponent<SnapPoint>().connected = true;
                 }
             }
         }
@@ -54,6 +64,7 @@ public class JointPointSnap : MonoBehaviour
         foreach (Transform child in transform)
         {
             Gizmos.color = Color.green;
+            if (child.GetComponent<SnapPoint>().connected) Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(child.position, child.localScale.x / 2);
         }
     }
