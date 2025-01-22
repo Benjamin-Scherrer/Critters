@@ -27,7 +27,7 @@ public class Grabber : MonoBehaviour {
         position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
         worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButton(0)) {
             if(snappedGeobody == null) {
                 RaycastHit hit = CastRay();
 
@@ -52,16 +52,17 @@ public class Grabber : MonoBehaviour {
                     Cursor.visible = false;
                 }
             } else {
-                transform.position = new Vector3(worldPosition.x, 0.5f, worldPosition.z);
-                Destroy(joint);
-                snappedGeobody = null;
-                meshRenderer.enabled = false;
-                Cursor.visible = true;
+                transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
             }
         }
 
-        if(snappedGeobody != null) {
-            transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
+        else if (snappedGeobody != null)
+        {
+            transform.position = new Vector3(worldPosition.x, 0.5f, worldPosition.z);
+            Destroy(joint);
+            snappedGeobody = null;
+            meshRenderer.enabled = false;
+            Cursor.visible = true;
         }
     }
 
