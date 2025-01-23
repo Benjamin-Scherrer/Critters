@@ -26,11 +26,12 @@ public class JointPointSnap : MonoBehaviour
 
     public void Snap(Collider collider, SnapPoint snapPoint)
     {
-        if (collider.CompareTag("SnapPoint"))
+        var parentCollider = collider.transform.parent.GetComponent<Collider>();
+        if (!snappedColliders.Contains(parentCollider))
         {
             var joint = gameObject.AddComponent<ConfigurableJoint>();
             joint.autoConfigureConnectedAnchor = false;
-            joint.connectedBody = collider.transform.parent.GetComponent<Rigidbody>();
+            joint.connectedBody = parentCollider.attachedRigidbody;
             joint.anchor = Vector3.zero;
             joint.connectedAnchor = collider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * collider.transform.localPosition.normalized);
             joint.rotationDriveMode = RotationDriveMode.Slerp;
@@ -40,7 +41,7 @@ public class JointPointSnap : MonoBehaviour
             joint.yDrive = posDrive;
             joint.zDrive = posDrive;
             joint.slerpDrive = rotDrive;
-            snappedColliders.Add(collider);
+            snappedColliders.Add(parentCollider);
             snapPoint.connected = true;
             snapPoint.coll.enabled = false;
         }

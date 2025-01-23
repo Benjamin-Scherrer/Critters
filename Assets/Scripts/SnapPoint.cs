@@ -12,7 +12,10 @@ public class SnapPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (connected) return;
-        transform.parent.GetComponent<JointPointSnap>().Snap(other, this);
+        if (other.CompareTag("SnapPoint"))
+        {
+            if (connected) return;
+            transform.parent.GetComponent<JointPointSnap>().Snap(other, this);
+        }
     }
 }
