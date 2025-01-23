@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,34 @@ public class JointPointSnap : MonoBehaviour
     private List<Transform> unsnappedTransforms = new List<Transform>();
     private List<Transform> snappedTransforms = new List<Transform>();
 
+
+    public event Geobody.GeobodyEventHandler JointSnapped;
+
+    //PUBLIC
+    public Geobody[] GetSnappedGeobodies()
+    {
+        foreach (var snappedCollider in snappedColliders)
+        {
+            if (snappedCollider == null)
+            {
+                snappedColliders.Remove(snappedCollider);
+            }
+        }
+        Geobody[] geobodies = new Geobody[snappedColliders.Count];
+
+        for (int i = 0; i < snappedColliders.Count; i++)
+        {
+            if (TryGetComponent(out Geobody g))
+            {
+                geobodies[i] = g;
+                continue;
+            }
+            geobodies[i] = snappedColliders[i].GetComponentInParent<Geobody>();
+        }
+        return geobodies;
+    }
+
+
     void Start()
     {
         coll = GetComponent<Collider>();
@@ -26,11 +55,12 @@ public class JointPointSnap : MonoBehaviour
 
     public void Snap(Collider collider, SnapPoint snapPoint)
     {
-        if (collider.CompareTag("SnapPoint"))
+        var parentCollider = collider.transform.parent.GetComponent<Collider>();
+        if (!snappedColliders.Contains(parentCollider))
         {
             var joint = gameObject.AddComponent<ConfigurableJoint>();
             joint.autoConfigureConnectedAnchor = false;
-            joint.connectedBody = collider.transform.parent.GetComponent<Rigidbody>();
+            joint.connectedBody = parentCollider.attachedRigidbody;
             joint.anchor = Vector3.zero;
             joint.connectedAnchor = collider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * collider.transform.localPosition.normalized);
             joint.rotationDriveMode = RotationDriveMode.Slerp;
@@ -40,9 +70,19 @@ public class JointPointSnap : MonoBehaviour
             joint.yDrive = posDrive;
             joint.zDrive = posDrive;
             joint.slerpDrive = rotDrive;
-            snappedColliders.Add(collider);
+            snappedColliders.Add(parentCollider);
             snapPoint.connected = true;
             snapPoint.coll.enabled = false;
+
+            //Tell the geobody that another geobody has been snapped to it.
+            //Somewhat bulky, but it works. Look if there's a saver way to do this.
+            if (collider.TryGetComponent(out Geobody g))
+            {
+                JointSnapped?.Invoke(g);
+                return;
+            }
+            g = collider.GetComponentInParent<Geobody>();
+            JointSnapped?.Invoke(g);
         }
     }
 }
