@@ -2562,6 +2562,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -3030,6 +3031,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -3602,6 +3604,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -3965,6 +3968,7 @@ MonoBehaviour:
   forceMultiplier: 4
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -6234,7 +6238,7 @@ Transform:
   m_GameObject: {fileID: 1019650920}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.57999223, z: 0, w: 0.814622}
-  m_LocalPosition: {x: 1.36, y: 13.99, z: -4.54}
+  m_LocalPosition: {x: -10.08, y: 7.15, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7878,6 +7882,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -8263,6 +8268,7 @@ MonoBehaviour:
   forceMultiplier: 0
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -8577,6 +8583,7 @@ MonoBehaviour:
   forceMultiplier: 12
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -10377,6 +10384,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -10512,6 +10520,7 @@ MonoBehaviour:
   forceMultiplier: 0
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
@@ -10863,6 +10872,7 @@ MonoBehaviour:
   forceMultiplier: 2
   maxLinearVelocity: 8
   maxAngularVelocity: 4
+  localDirection: 0
   directionX:
     serializedVersion: 2
     m_Curve:
