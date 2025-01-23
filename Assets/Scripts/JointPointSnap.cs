@@ -32,7 +32,7 @@ public class JointPointSnap : MonoBehaviour
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedBody = collider.transform.parent.GetComponent<Rigidbody>();
             joint.anchor = Vector3.zero;
-            joint.connectedAnchor = collider.transform.localPosition * 2f;
+            joint.connectedAnchor = collider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * collider.transform.localPosition.normalized);
             joint.rotationDriveMode = RotationDriveMode.Slerp;
             var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
             var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
@@ -42,6 +42,7 @@ public class JointPointSnap : MonoBehaviour
             joint.slerpDrive = rotDrive;
             snappedColliders.Add(collider);
             snapPoint.connected = true;
+            snapPoint.coll.enabled = false;
         }
     }
 }

@@ -3,21 +3,11 @@ using UnityEngine;
 public class SnapPoint : MonoBehaviour
 {
     public bool connected = false;
-    private Collider coll;
+    public Collider coll;
 
     void Start()
     {
         coll = GetComponent<Collider>();
-    }
-
-    void Update()
-    {
-        if (connected)
-        {
-            coll.enabled = false;
-        }
-
-        else coll.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
