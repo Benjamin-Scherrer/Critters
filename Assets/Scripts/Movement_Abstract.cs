@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Movement_Abstract : MonoBehaviour
+public abstract class Movement_Abstract : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] protected MovementType movementType = MovementType.MainMovement;
+
     [Header("Force")]
     [SerializeField] protected AnimationCurve force = AnimationCurve.Constant(0, 1, 1);
     [SerializeField] protected float forceCycleDuration = 1;
     [SerializeField] protected float forceMultiplier = 1;
-
-    [Header("Velocity")]
-    [SerializeField] protected float maxLinearVelocity = 10;
-    [SerializeField] protected float maxAngularVelocity = 10;
-
+    
+    //[Header("Velocity")]
+    //[SerializeField] protected float maxLinearVelocity = 10;
+    //[SerializeField] protected float maxAngularVelocity = 10;
 
     [Header("Direction")]
     [SerializeField] protected bool localDirection = false;
@@ -23,19 +25,18 @@ public class Movement_Abstract : MonoBehaviour
     [SerializeField] protected Vector3 directionCycleDuration = Vector3.one;
     [SerializeField] protected Vector3 directionCycleMultiplier = Vector3.one;
 
-    //[Header("Velocity Limit")]
-    //[SerializeField] protected float maxLinearVelocity = 10;
-    //[SerializeField] protected float maxAngularVelocity = 10;
-
-    [Header("Advanced Variables")]
-
-
     [Header("Debug")]
     [SerializeField][Range(0, 10)] protected float GizmoSize = 1;
 
     //References
     protected Rigidbody rb;
-  
+ 
+    //Extra Variables
+    private float extraForceMultiplier = 1;
+    public MovementType MovementType { get => movementType; }
+    public float ExtraForceMultiplier { get => extraForceMultiplier; set => extraForceMultiplier = value; }
+
+
     protected Vector3 DirectionOscilating
     {
         get
@@ -77,9 +78,10 @@ public class Movement_Abstract : MonoBehaviour
             float timeMultiplier = curveDuration / forceCycleDuration;
             float time = (Time.time % forceCycleDuration) * timeMultiplier;
             float value = force.Evaluate(time);
-            return value * forceMultiplier;
+            return value * forceMultiplier * extraForceMultiplier;
         }
     }
+
 
     //Private
     private void Awake()
