@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class JointPointSnap : MonoBehaviour
 {
-    [SerializeField] private float snapDistanceMult = 1.5f;
+    //[SerializeField] private float snapDistanceMult = 1.5f;
 
     [Header("Joint Settings")]
     [Space]
@@ -24,53 +24,24 @@ public class JointPointSnap : MonoBehaviour
         coll = GetComponent<Collider>();
     }
 
-    void Update()
+    public void Snap(Collider collider, SnapPoint snapPoint)
     {
-        AddJoint();
-    }
-
-    private void AddJoint()
-    {
-        foreach (Transform child in transform)
+        if (collider.CompareTag("SnapPoint"))
         {
-            if (child.GetComponent<SnapPoint>().connected) return;
-
-            Collider[] collidersToSnap = Physics.OverlapSphere(child.position, child.localScale.x / 2);
-            foreach (Collider collider in collidersToSnap)
-            {
-                if (!snappedColliders.Contains(collider) && collider.attachedRigidbody != null && collider.CompareTag("Geobody") && coll != collider)
-                {
-                    var joint = gameObject.AddComponent<ConfigurableJoint>();
-                    joint.autoConfigureConnectedAnchor = false;
-                    joint.connectedBody = collider.attachedRigidbody;
-                    joint.anchor = Vector3.zero;
-                    joint.connectedAnchor = child.localPosition * -snapDistanceMult;
-                    joint.rotationDriveMode = RotationDriveMode.Slerp;
-                    var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-                    var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-                    joint.xDrive = posDrive;
-                    joint.yDrive = posDrive;
-                    joint.zDrive = posDrive;
-                    joint.slerpDrive = rotDrive;
-                    snappedColliders.Add(collider);
-                    child.GetComponent<SnapPoint>().connected = true;
-                }
-            }
+            var joint = gameObject.AddComponent<ConfigurableJoint>();
+            joint.autoConfigureConnectedAnchor = false;
+            joint.connectedBody = collider.transform.parent.GetComponent<Rigidbody>();
+            joint.anchor = Vector3.zero;
+            joint.connectedAnchor = collider.transform.localPosition * 2f;
+            joint.rotationDriveMode = RotationDriveMode.Slerp;
+            var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
+            var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
+            joint.xDrive = posDrive;
+            joint.yDrive = posDrive;
+            joint.zDrive = posDrive;
+            joint.slerpDrive = rotDrive;
+            snappedColliders.Add(collider);
+            snapPoint.connected = true;
         }
-    }
-
-    public void DrawSphere()
-    {
-        foreach (Transform child in transform)
-        {
-            Gizmos.color = Color.green;
-            if (child.GetComponent<SnapPoint>().connected) Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(child.position, child.localScale.x / 2);
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        DrawSphere();
     }
 }

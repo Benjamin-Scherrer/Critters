@@ -3,9 +3,26 @@ using UnityEngine;
 public class SnapPoint : MonoBehaviour
 {
     public bool connected = false;
+    private Collider coll;
 
-    private void OnDrawGizmosSelected()
+    void Start()
     {
-        transform.parent.GetComponent<JointPointSnap>().DrawSphere();
+        coll = GetComponent<Collider>();
+    }
+
+    void Update()
+    {
+        if (connected)
+        {
+            coll.enabled = false;
+        }
+
+        else coll.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (connected) return;
+        transform.parent.GetComponent<JointPointSnap>().Snap(other, this);
     }
 }

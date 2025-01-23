@@ -50,6 +50,7 @@ public class Grabber : MonoBehaviour {
                     joint.slerpDrive = rotDrive;
                     meshRenderer.enabled = true;
                     Cursor.visible = false;
+                    Time.timeScale = 0.8f;
                 }
             } else {
                 transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
@@ -63,6 +64,7 @@ public class Grabber : MonoBehaviour {
             snappedGeobody = null;
             meshRenderer.enabled = false;
             Cursor.visible = true;
+            Time.timeScale = 1f;
         }
     }
 
