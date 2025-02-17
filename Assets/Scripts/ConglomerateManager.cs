@@ -4,7 +4,6 @@ using UnityEngine;
 public class ConglomerateManager : MonoBehaviour
 {
     [Header("Movmeent")]
-
     //Main head gains extra force to pull the rest of the geobodies based on amount of geobodies in the conglomerate.
     [SerializeField] private AnimationCurve mainHeadMainMovmementMult = AnimationCurve.Linear(0, 1, 10, 10);
     [SerializeField] private AnimationCurve mainHeadFloatingMult = AnimationCurve.Linear(0, 1, 10, 10);
@@ -12,6 +11,8 @@ public class ConglomerateManager : MonoBehaviour
     //To be decided. There also needs to be some rule about the floating. 
     [SerializeField] private AnimationCurve sideHeadMainMovementMult = AnimationCurve.Linear(0, 0.5f, 10, 5);
     [SerializeField] private AnimationCurve sideHeadFloatingMult = AnimationCurve.Linear(0, 0.5f, 10, 5);
+
+    [SerializeField][Range(0f,1f)] private float timeOffset = 0.5f;
 
     [Header("Hierarchy")]
     [SerializeField] private int sideHeadInterval = 3;
@@ -162,7 +163,7 @@ public class ConglomerateManager : MonoBehaviour
             Debug.Log("Set to Side Head");
             chainSegmentIndex = 0;
             chainDepth++;
-            geobody.SetToSideHead(this, sideHeadMainMovementMult.Evaluate(chainDepth), sideHeadFloatingMult.Evaluate(chainDepth));
+            geobody.SetToSideHead(this, sideHeadMainMovementMult.Evaluate(chainDepth), sideHeadFloatingMult.Evaluate(chainDepth), timeOffset*chainSegmentIndex*chainDepth);
         }
 
         Geobody[] tempGeobodies = geobody.GetSnappedGeobodies();

@@ -69,10 +69,12 @@ public class Geobody : MonoBehaviour
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
                     movementScript.ExtraForceMultiplier = 1;
+                    movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = false;
                     //movementScript.ExtraForceMultiplier = 1;
+                    //movementScript.TimeOffset = 0;
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
@@ -92,10 +94,12 @@ public class Geobody : MonoBehaviour
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
                     movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
+                    movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = true;
                     movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
+                    movementScript.TimeOffset = 0;
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
@@ -105,7 +109,7 @@ public class Geobody : MonoBehaviour
         conglomerateHead = newConglomerateHead;
     }
 
-    public void SetToSideHead(ConglomerateManager newConglomerateHead,  float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier)
+    public void SetToSideHead(ConglomerateManager newConglomerateHead,  float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier, float timeOffset)
     {
         geobodyType = GeobodyType.SideHead;
         foreach (Movement_Abstract movementScript in movementScripts)
@@ -115,10 +119,12 @@ public class Geobody : MonoBehaviour
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
                     movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
+                    movementScript.TimeOffset = timeOffset;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = true;
                     movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
+                    movementScript.TimeOffset = timeOffset;
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
@@ -138,10 +144,12 @@ public class Geobody : MonoBehaviour
                 case MovementType.MainMovement:
                     movementScript.enabled = false;
                     //movementScript.ExtraForceMultiplier = 1;
+                    //movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = false;
                     //movementScript.ExtraForceMultiplier = 1;
+                    //movementScript.TimeOffset = 0;
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
