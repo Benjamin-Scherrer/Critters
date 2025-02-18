@@ -9,7 +9,7 @@ public abstract class Movement_Abstract : MonoBehaviour
     [SerializeField] protected MovementType movementType = MovementType.MainMovement;
 
     [Header("Force")]
-    [SerializeField] protected ModularCurveContainer forceCurve;
+    [SerializeField] protected ModularCurveContainer forceCurveContainer;
     
     //[Header("Velocity")]
     //[SerializeField] protected float maxLinearVelocity = 10;
@@ -17,9 +17,9 @@ public abstract class Movement_Abstract : MonoBehaviour
 
     [Header("Direction")]
     [SerializeField] protected bool localDirection = false;
-    [SerializeField] protected ModularCurveContainer directionXCurve;
-    [SerializeField] protected ModularCurveContainer directionYCurve;
-    [SerializeField] protected ModularCurveContainer directionZCurve;
+    [SerializeField] protected ModularCurveContainer directionXCurveContainer;
+    [SerializeField] protected ModularCurveContainer directionYCurveContainer;
+    [SerializeField] protected ModularCurveContainer directionZCurveContainer;
 
     [Header("Debug")]
     [SerializeField][Range(0, 10)] protected float GizmoSize = 1;
@@ -31,19 +31,23 @@ public abstract class Movement_Abstract : MonoBehaviour
     private float timeOffset = 0;
     private float extraForceMultiplier = 1;
     public MovementType MovementType { get => movementType; }
+
+    //Public Getters and Setters
+    public ModularCurveContainer SetForceCurveContainer { set => forceCurveContainer = value; }
     public float ExtraForceMultiplier { get => extraForceMultiplier; set => extraForceMultiplier = value; }
     public float TimeOffset { get => timeOffset; set => timeOffset = value; }
 
+    //Protected Getters
     protected Vector3 DirectionOscilating
     {
         get
         {
-            if (directionXCurve == null || directionYCurve == null || directionZCurve == null) return Vector3.zero;
+            if (directionXCurveContainer == null || directionYCurveContainer == null || directionZCurveContainer == null) return Vector3.zero;
 
             return new Vector3(
-                directionXCurve.Evaluate(Time.time + timeOffset),
-                directionYCurve.Evaluate(Time.time + timeOffset),
-                directionZCurve.Evaluate(Time.time + timeOffset)
+                directionXCurveContainer.Evaluate(Time.time + timeOffset),
+                directionYCurveContainer.Evaluate(Time.time + timeOffset),
+                directionZCurveContainer.Evaluate(Time.time + timeOffset)
             );
         }
     }
@@ -60,8 +64,8 @@ public abstract class Movement_Abstract : MonoBehaviour
     {
         get
         {
-            if (forceCurve == null) return 0;
-            return forceCurve.Evaluate(Time.time + timeOffset) * extraForceMultiplier;
+            if (forceCurveContainer == null) return 0;
+            return forceCurveContainer.Evaluate(Time.time + timeOffset) * extraForceMultiplier;
         }
     }
 

@@ -2745,6 +2745,11 @@ PrefabInstance:
       objectReference: {fileID: 1887755218}
     - target: {fileID: 8023173990996398006, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023173990996398006, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
       propertyPath: forceCurve
       value: 
       objectReference: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,

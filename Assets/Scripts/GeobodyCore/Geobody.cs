@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(ConglomerateManager))]
 public class Geobody : MonoBehaviour
 {
+    [Header("Separate Movement Data")]
+    [SerializeField] private SeparateMovementData separateMovementData;
+
     [Header("Debug Materials")]
     [SerializeField] private Material separateMaterial;
     [SerializeField] private Material mainHeadMaterial;
@@ -40,6 +43,8 @@ public class Geobody : MonoBehaviour
     //PUBLIC
     public void OnJointSnap(Geobody other)
     {
+        if (other.GetConglomerateHead != null && other.GetConglomerateHead == conglomerateHead) return; // throw new Exception("WOW this is useless."); //performance improvement but rn unneeded and needs a check against null.
+
         switch (other.geobodyType)
         {
             case GeobodyType.Separate:
@@ -56,11 +61,17 @@ public class Geobody : MonoBehaviour
                 break;
             default: throw new Exception("Unknown geobody type");
         }
-
     }
 
-    public void SetToSeparate()
+    public void SetToSeparate() //consider some way of reseting the modular curve containers when separating, rn its fine to keep it like that because it looks fun if the parts keep moving with their old movement sceme.
     {
+        //prepare force data
+
+        float forceAllocated = separateMovementData.GetForceAllocated;
+        float mainMovementForceMult = forceAllocated * separateMovementData.GetSeparateMainMovementFloatingMovementRatio;
+        float floatingMovementForceMult = forceAllocated * (1 - separateMovementData.GetSeparateMainMovementFloatingMovementRatio);
+
+
         geobodyType = GeobodyType.Separate;
         foreach (Movement_Abstract movementScript in movementScripts)
         {
@@ -68,12 +79,14 @@ public class Geobody : MonoBehaviour
             {
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
-                    movementScript.ExtraForceMultiplier = 1;
-                    movementScript.TimeOffset = 0;
+                    movementScript.SetForceCurveContainer = separateMovementData.GetSeparateMainMovementContainer;
+                    movementScript.ExtraForceMultiplier = mainMovementForceMult;
+                    //movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
-                    movementScript.enabled = false;
-                    //movementScript.ExtraForceMultiplier = 1;
+                    movementScript.enabled = true;
+                    movementScript.SetForceCurveContainer = separateMovementData.GetSeparateFloatingMovementContainer;
+                    movementScript.ExtraForceMultiplier = floatingMovementForceMult;
                     //movementScript.TimeOffset = 0;
                     break;
                 default: throw new ArgumentOutOfRangeException();
@@ -84,7 +97,9 @@ public class Geobody : MonoBehaviour
         conglomerateHead = null;
     }
 
-    public void SetToMainHead(ConglomerateManager newConglomerateHead, float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier)
+    public void SetToMainHead(ConglomerateManager newConglomerateHead,
+        ModularCurveContainer mainMovementContainer, ModularCurveContainer floatingMovementContainer,
+        float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier)
     {
         geobodyType = GeobodyType.MainHead;
         foreach (Movement_Abstract movementScript in movementScripts)
@@ -93,11 +108,13 @@ public class Geobody : MonoBehaviour
             {
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
+                    movementScript.SetForceCurveContainer = mainMovementContainer;
                     movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
                     movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = true;
+                    movementScript.SetForceCurveContainer = floatingMovementContainer;
                     movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
                     movementScript.TimeOffset = 0;
                     break;
@@ -109,7 +126,10 @@ public class Geobody : MonoBehaviour
         conglomerateHead = newConglomerateHead;
     }
 
-    public void SetToSideHead(ConglomerateManager newConglomerateHead,  float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier, float timeOffset)
+    public void SetToSideHead(ConglomerateManager newConglomerateHead,
+        ModularCurveContainer mainMovementContainer, ModularCurveContainer floatingMovementContainer,
+        float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier, 
+        float mainMovementOffset, float floatingMovementOffset)
     {
         geobodyType = GeobodyType.SideHead;
         foreach (Movement_Abstract movementScript in movementScripts)
@@ -118,13 +138,15 @@ public class Geobody : MonoBehaviour
             {
                 case MovementType.MainMovement:
                     movementScript.enabled = true;
+                    movementScript.SetForceCurveContainer = mainMovementContainer;
                     movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
-                    movementScript.TimeOffset = timeOffset;
+                    movementScript.TimeOffset = mainMovementOffset;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = true;
+                    movementScript.SetForceCurveContainer = floatingMovementContainer;
                     movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
-                    movementScript.TimeOffset = timeOffset;
+                    movementScript.TimeOffset = floatingMovementOffset;
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
@@ -143,11 +165,13 @@ public class Geobody : MonoBehaviour
             {
                 case MovementType.MainMovement:
                     movementScript.enabled = false;
+                    //movementScript.SetForceCurveContainer = mainMovementContainer;
                     //movementScript.ExtraForceMultiplier = 1;
                     //movementScript.TimeOffset = 0;
                     break;
                 case MovementType.FloatingMovement:
                     movementScript.enabled = false;
+                    //movementScript.SetForceCurveContainer = floatingMovementContainer;
                     //movementScript.ExtraForceMultiplier = 1;
                     //movementScript.TimeOffset = 0;
                     break;
@@ -221,11 +245,15 @@ public class Geobody : MonoBehaviour
                 break;
             case GeobodyType.MainHead:
                 //throw new Exception("MainHead can't snap to MainHead");
-                AddToConglomerate(other); //this will overwrite the other main head to limb.
+
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
                 //throw new Exception("MainHead can't snap to SideHead");
-                AddToConglomerate(other); //this will overwrite the other main head to limb.
+
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
                 //This case can happen because when two geobodies snap one of them will turn into a mainhead and turn the other into a limb. 
@@ -235,7 +263,8 @@ public class Geobody : MonoBehaviour
                 ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
                 //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
 
-                AddToConglomerate(other); //this will overwrite the other conglomerate to be subordinate to this conglomerate.
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
@@ -250,11 +279,15 @@ public class Geobody : MonoBehaviour
                 break;
             case GeobodyType.MainHead:
                 //throw new Exception("SideHead can't snap to MainHead");
-                AddToConglomerate(other); //this will overwrite the other side head to limb.
+
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
                 //throw new Exception("SideHead can't snap to SideHead");
-                AddToConglomerate(other); //this will overwrite the other side head to limb.
+
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
                 //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
@@ -264,7 +297,8 @@ public class Geobody : MonoBehaviour
                 ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
                 //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
 
-                AddToConglomerate(other); //this will overwrite the other conglomerate to be subordinate to this conglomerate.
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
@@ -285,7 +319,8 @@ public class Geobody : MonoBehaviour
                 ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
                 //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
 
-                AddToConglomerate(other); //this will overwrite the other conglomerate to be subordinate to this conglomerate.
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
                 //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
@@ -295,7 +330,8 @@ public class Geobody : MonoBehaviour
                 ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
                 //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
 
-                AddToConglomerate(other); //this will overwrite the other conglomerate to be subordinate to this conglomerate.
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
                 //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
@@ -305,7 +341,8 @@ public class Geobody : MonoBehaviour
                 ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
                 //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
 
-                AddToConglomerate(other); //this will overwrite the other conglomerate to be subordinate to this conglomerate.
+                //Absorb other conglomerate
+                CombineComglomerates(other.GetConglomerateHead);
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
@@ -324,23 +361,19 @@ public class Geobody : MonoBehaviour
         conglomerateHead.OnJointSnapped(otherGeobody);
     }
 
+    private void CombineComglomerates(ConglomerateManager absorbedConglomerateManager)
+    {
+        conglomerateHead.CombineComglomerates(absorbedConglomerateManager);
+    }
+
+    //private void DestroyConglomerate()
+    //{
+    //    conglomerateManager.DestroyConglemerate();
+    //}
+
     //the following two don't need any difference if i code it sensibly.
     private void AddToConglomerate(Geobody otherGeobody)
     {
         conglomerateHead.OnJointSnapped(otherGeobody);
     }
-
-
-    //private void CheckIfIsAlreadyConnected(Geobody other)
-    //{
-    //    Geobody[] snappedGeobodies = GetSnappedGeobodies();
-
-    //    if (Array.IndexOf(snappedGeobodies, other) == -1) throw new Exception("Not Already Connected. Foreign Geobody reached snapping stage without permission.");
-    //}
-
-
-    //private void NotifyMainHead(Geobody geobody)
-    //{
-    //    JointSnapped?.Invoke(geobody);
-    //}
 }

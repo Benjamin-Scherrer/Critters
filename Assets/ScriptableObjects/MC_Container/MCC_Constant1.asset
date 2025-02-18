@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89dddecf11a0ae4285114d6d6783032, type: 3}
   m_Name: MCC_Constant1
   m_EditorClassIdentifier: 
-  valueCurves:
+  modularCurveBaseHolders:
   - modularCurveBase: {fileID: 11400000, guid: f03e58b9adb5f5b4aa9acef801db46f2, type: 2}
     valueCycleDuration: 1
-    valueMultiplier: 1
+    averageValue: 1
+    adjustmentCoefficient: 1
     offset: 0

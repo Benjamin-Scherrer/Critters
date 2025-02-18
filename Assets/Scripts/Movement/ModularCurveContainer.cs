@@ -5,33 +5,21 @@ using UnityEngine;
 
 public class ModularCurveContainer : ScriptableObject
 {
-   [Serializable]
-   private class ModularCurveBaseHolder
+    [SerializeField] private List<ModularCurveBaseHolder> modularCurveBaseHolders;
+
+    public void CalculateAdjustmentCoefficients()
     {
-        [SerializeField] ModularCurveBase modularCurveBase;
-        [SerializeField] private float valueCycleDuration = 1;
-        [SerializeField] private float valueMultiplier = 1;
-        [SerializeField] private float offset = 0;
-
-        public float Evaluate(float time)
+        foreach (ModularCurveBaseHolder modularCurveBaseHolder in modularCurveBaseHolders)
         {
-            AnimationCurve valueCurve = modularCurveBase.GetValueCurve;
-            float curveDuration = valueCurve[valueCurve.length - 1].time;
-            float timeMultiplier = curveDuration / valueCycleDuration;
-            float localTime = ((time+offset) % valueCycleDuration) * timeMultiplier;
-            float value = valueCurve.Evaluate(localTime);
-            return value * valueMultiplier;
-
+            modularCurveBaseHolder.CalculateAdjustmentCoefficient();
         }
     }
-
-    [SerializeField] private List<ModularCurveBaseHolder> valueCurves;
 
     public float Evaluate(float time)
     {
         float value = 0;
 
-        foreach(ModularCurveBaseHolder modularCurveBaseHolder in valueCurves)
+        foreach(ModularCurveBaseHolder modularCurveBaseHolder in modularCurveBaseHolders)
         {
             value += modularCurveBaseHolder.Evaluate(time);
         }

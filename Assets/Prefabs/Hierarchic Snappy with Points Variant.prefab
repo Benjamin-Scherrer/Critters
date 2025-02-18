@@ -83,11 +83,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2184420461774320340}
+      addedObject: {fileID: 5008893594666657935}
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5008893594666657935}
+      addedObject: {fileID: 2184420461774320340}
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       insertIndex: -1
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832544f55f115040bfb843558152043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  separateMovementData: {fileID: 11400000, guid: fed2327c28b9ad74c98b386197ba608e,
+    type: 2}
   separateMaterial: {fileID: 2100000, guid: 77a3a157307e6634588dbe2e5207bde4, type: 2}
   mainHeadMaterial: {fileID: 2100000, guid: 4213f0a538249284aa98b6c1c923f52f, type: 2}
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
@@ -128,38 +130,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4744931310031922935}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementType: 1
-  forceCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  localDirection: 1
-  directionXCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  directionYCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  directionZCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  GizmoSize: 1
-  target: {fileID: 2159043177347288864}
-  snapToSurfave: 0
---- !u!114 &2184420461774320340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744931310031922935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 2
-  forceCurve: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d, type: 2}
-  localDirection: 0
-  directionXCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  directionYCurve: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08, type: 2}
-  directionZCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
+  movementType: 1
+  forceCurveContainer: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b,
+    type: 2}
+  localDirection: 1
+  directionXCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  directionYCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  directionZCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
+    type: 2}
   GizmoSize: 1
   target: {fileID: 2159043177347288864}
   snapToSurfave: 0
@@ -176,13 +161,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType: 1
-  forceCurve: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b, type: 2}
+  forceCurveContainer: {fileID: 11400000, guid: f4cd56da53e828b46b87380be22111fe,
+    type: 2}
   localDirection: 0
-  directionXCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  directionYCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
-  directionZCurve: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d, type: 2}
+  directionXCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  directionYCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  directionZCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
   GizmoSize: 2
   wayPoint: {fileID: 0}
+--- !u!114 &2184420461774320340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744931310031922935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementType: 2
+  forceCurveContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
+    type: 2}
+  localDirection: 0
+  directionXCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  directionYCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
+    type: 2}
+  directionZCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
+    type: 2}
+  GizmoSize: 1
+  target: {fileID: 2159043177347288864}
+  snapToSurfave: 0
 --- !u!114 &488273853230739240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,101 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43164f3fe5b318145bad22b48734204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainHeadMainMovmementMult:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0.9
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 10
-      value: 10
-      inSlope: 0.9
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  mainHeadFloatingMult:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0.9
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 10
-      value: 10
-      inSlope: 0.9
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sideHeadMainMovementMult:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 0
-      outSlope: 0.45
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 10
-      value: 5
-      inSlope: 0.45
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sideHeadFloatingMult:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 0
-      outSlope: 0.45
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 10
-      value: 5
-      inSlope: 0.45
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  timeOffset: 0.5
-  sideHeadInterval: 3
+  conglomerateMovementData: {fileID: 11400000, guid: c80af9049d782324ebe4a4d8b86a34ba,
+    type: 2}
