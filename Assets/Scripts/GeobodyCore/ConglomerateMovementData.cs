@@ -9,14 +9,17 @@ public class ConglomerateMovementData : ScriptableObject
     [Header("Main Head Movement")]
     [SerializeField] private ModularCurveContainer mainHeadMainMovementContainer;
     [SerializeField] private AnimationCurve mainHeadMainMovementWeight = AnimationCurve.Constant(0, 64, 0.5f);
+    [Space]
     [SerializeField] private ModularCurveContainer mainHeadFloatingMovementContainer;
     [SerializeField] private AnimationCurve mainHeadFloatingMovementWeight = AnimationCurve.Constant(0, 64, 0.5f);
 
     [Header("Side Head Movement")]
     [SerializeField] private ModularCurveContainer sideHeadMainMovementContainer;
     [SerializeField] private AnimationCurve sideHeadMainMovementOffset = AnimationCurve.Constant(0, 64, 0.5f);
+    [Space]
     [SerializeField] private ModularCurveContainer sideHeadFloatingMovementContainer;
     [SerializeField] private AnimationCurve sideHeadFloatingMovementOffset = AnimationCurve.Constant(0, 64, 0.5f);
+    [Space]
     [SerializeField] private int sideHeadInterval = 3;
 
     public ModularCurveContainer GetMainHeadMainMovementContainer { get => mainHeadMainMovementContainer; }

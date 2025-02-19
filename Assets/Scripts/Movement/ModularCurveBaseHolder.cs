@@ -8,10 +8,44 @@ public class ModularCurveBaseHolder
 {
     [SerializeField] ModularCurveBase modularCurveBase;
     [SerializeField] private float valueCycleDuration = 1;
-    [SerializeField] private float averageValue = 1;
+    [SerializeField] private float weight = 1;
+    [SerializeField] private float averageForce = 1;
     [SerializeField] private float adjustmentCoefficient = 1;
     [SerializeField] private float offset = 0;
 
+    public float GetWeight { get => weight; }
+
+    //PUBLIC
+    public void CalculateAdjustmentCoefficient(float forceCoef)
+    {
+        //Set neww average force
+        averageForce = forceCoef * weight;
+
+        //Calculate adjustment coefficient
+        float currentAverage = CalculateCurrentAverage();
+
+        //prevent divide by zero
+        if(Mathf.Abs(currentAverage) < 0.001) 
+        {
+            adjustmentCoefficient = 0;
+                return; 
+        }
+
+        adjustmentCoefficient = averageForce / currentAverage;
+    }
+
+    public float Evaluate(float time)
+    {
+        AnimationCurve valueCurve = modularCurveBase.GetValueCurve;
+        float curveDuration = valueCurve[valueCurve.length - 1].time;
+        float timeMultiplier = curveDuration / valueCycleDuration;
+        float localTime = ((time + offset) % valueCycleDuration) * timeMultiplier;
+        float value = valueCurve.Evaluate(localTime);
+        return value * adjustmentCoefficient;
+
+    }
+
+    //PRIVATE
     private float CalculateCurrentAverage()
     {
         AnimationCurve valueCurve = modularCurveBase.GetValueCurve;
@@ -26,29 +60,6 @@ public class ModularCurveBaseHolder
         }
 
         return sum / (sampleCount + 1);
-    }
-
-    public void CalculateAdjustmentCoefficient()
-    {
-        float currentAverage = CalculateCurrentAverage();
-        if(Mathf.Abs(currentAverage) < 0.001) 
-        {
-            adjustmentCoefficient = 0;
-                return; 
-        }
-
-        adjustmentCoefficient = averageValue / currentAverage;
-    }
-
-    public float Evaluate(float time)
-    {
-        AnimationCurve valueCurve = modularCurveBase.GetValueCurve;
-        float curveDuration = valueCurve[valueCurve.length - 1].time;
-        float timeMultiplier = curveDuration / valueCycleDuration;
-        float localTime = ((time + offset) % valueCycleDuration) * timeMultiplier;
-        float value = valueCurve.Evaluate(localTime);
-        return value * adjustmentCoefficient;
-
     }
 }
 

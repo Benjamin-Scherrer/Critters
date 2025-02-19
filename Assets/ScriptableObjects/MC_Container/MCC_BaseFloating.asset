@@ -15,6 +15,20 @@ MonoBehaviour:
   modularCurveBaseHolders:
   - modularCurveBase: {fileID: 11400000, guid: f03e58b9adb5f5b4aa9acef801db46f2, type: 2}
     valueCycleDuration: 1
-    averageValue: 1
-    adjustmentCoefficient: 1
+    weight: 1
+    averageForce: 1.3333334
+    adjustmentCoefficient: 1.3333334
     offset: 0
+  - modularCurveBase: {fileID: 11400000, guid: c29166b6848eeea48be4825f7f566c57, type: 2}
+    valueCycleDuration: 3
+    weight: 1
+    averageForce: 1.3333334
+    adjustmentCoefficient: 2.6933331
+    offset: 0
+  - modularCurveBase: {fileID: 11400000, guid: c29166b6848eeea48be4825f7f566c57, type: 2}
+    valueCycleDuration: 10
+    weight: 1
+    averageForce: 1.3333334
+    adjustmentCoefficient: 2.6933331
+    offset: 0
+  averageForce: 4

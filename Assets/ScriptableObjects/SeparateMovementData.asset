@@ -17,4 +17,4 @@ MonoBehaviour:
   separateFloatingMovementContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
     type: 2}
   separateMainMovementFloatingMovementRatio: 0.8
-  ForceAllocated: 0.206
+  ForceAllocated: 0.1

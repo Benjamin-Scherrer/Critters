@@ -55,8 +55,14 @@ public class ModularCurveBaseHolderDrawer: PropertyDrawer
         rect1.y += 18;
         rect2.y += 18;
 
-        EditorGUI.LabelField(rect1, "Average Value");
-        EditorGUI.PropertyField(rect2, property.FindPropertyRelative("averageValue"), GUIContent.none);
+        EditorGUI.LabelField(rect1, "Weight Value");
+        EditorGUI.PropertyField(rect2, property.FindPropertyRelative("weight"), GUIContent.none);
+
+        rect1.y += 18;
+        rect2.y += 18;
+
+        using (new EditorGUI.DisabledScope(true)) EditorGUI.LabelField(rect1, "Average Force");
+        using (new EditorGUI.DisabledScope(true)) EditorGUI.PropertyField(rect2, property.FindPropertyRelative("averageForce"), GUIContent.none);
 
         rect1.y += 18;
         rect2.y += 18;
@@ -79,6 +85,6 @@ public class ModularCurveBaseHolderDrawer: PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return 90;
+        return 108;
     }
 }

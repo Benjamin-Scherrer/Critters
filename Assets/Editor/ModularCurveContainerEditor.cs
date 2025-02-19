@@ -9,12 +9,14 @@ public class ModularCurveContainerEditor : Editor
     private ModularCurveContainer modularCurveContainer;
 
     SerializedProperty modularCurveBaseHolders;
+    SerializedProperty averageForce;
 
     private void OnEnable()
     {
         modularCurveContainer = (ModularCurveContainer)target;
 
         modularCurveBaseHolders = serializedObject.FindProperty("modularCurveBaseHolders");
+        averageForce = serializedObject.FindProperty("averageForce");
     }
 
     public override void OnInspectorGUI()
@@ -25,7 +27,9 @@ public class ModularCurveContainerEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(modularCurveBaseHolders, true);
+        averageForce.floatValue = EditorGUILayout.FloatField("Average Force", averageForce.floatValue);
         //modularCurveBaseHolders.objectReferenceValue = EditorGUILayout.ObjectField("Modular Curve Base Holders", modularCurveBaseHolders.objectReferenceValue, typeof(List<ModularCurveBaseHolder>), false);
+
 
         if (GUILayout.Button("Calculate Adjustment Coefficients"))
         {
