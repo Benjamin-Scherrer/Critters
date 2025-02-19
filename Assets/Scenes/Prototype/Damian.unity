@@ -5167,6 +5167,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096305707}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2131882273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3398138107846980095, guid: 658db2d35db1fff428ef58d390a368d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 307512987439697963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbba286dc10e549b2bdec947ef8dbd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &307512987439697963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5225,10 +5237,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8460334198009271852, guid: 658db2d35db1fff428ef58d390a368d7,
+    - target: {fileID: 3398138107846980095, guid: 658db2d35db1fff428ef58d390a368d7,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: _autoConnect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828403926019672340, guid: 658db2d35db1fff428ef58d390a368d7,
         type: 3}
@@ -5321,6 +5333,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drag
       objectReference: {fileID: 0}
+    - target: {fileID: 5743216711076937392, guid: 10a1ae4bb8f8241499ae770c335264bb,
+        type: 3}
+      propertyPath: Receiver
+      value: 
+      objectReference: {fileID: 2131882273}
     - target: {fileID: 7027859925331528390, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: m_LocalPosition.x
