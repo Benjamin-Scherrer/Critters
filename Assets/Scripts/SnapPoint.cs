@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class SnapPoint : MonoBehaviour
 {
-    public bool connected = false;
-    public Collider coll;
+    [HideInInspector] public Collider coll;
 
     void Start()
     {
@@ -14,7 +13,7 @@ public class SnapPoint : MonoBehaviour
     {
         if (other.CompareTag("SnapPoint"))
         {
-            if (connected) return;
+            if (!coll.enabled) return;
             transform.parent.GetComponent<JointPointSnap>().Snap(other, this);
         }
     }

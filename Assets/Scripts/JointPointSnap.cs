@@ -80,13 +80,12 @@ public class JointPointSnap : MonoBehaviour
             joint.zDrive = posDrive;
             joint.slerpDrive = rotDrive;
             snappedColliders.Add(parentCollider);
-            snapPoint.connected = true;
             snapPoint.coll.enabled = false;
 
             ForceInverseSnap(collider, snapPoint);
+            //Tell geobody that is has snapped to another geobody
+            geobody.OnJointSnap(otherGeobody);
         }
-        //Tell geobody that is has snapped to another geobody
-        geobody.OnJointSnap(otherGeobody);
     }
 
     private bool CheckIfSnappedToSameHirarchy(Geobody geobody, Geobody otherGeobody)

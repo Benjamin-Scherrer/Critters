@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour {
 
+    [Range(0.2f,1f)]
+    [SerializeField] private float grabSlowMotion = 0.8f;
+
     [Header("Joint Settings")][Space]
     [SerializeField] private float posSpring = 40f;
     [SerializeField] private float posDamp = 10f;
@@ -50,7 +53,7 @@ public class Grabber : MonoBehaviour {
                     joint.slerpDrive = rotDrive;
                     meshRenderer.enabled = true;
                     Cursor.visible = false;
-                    Time.timeScale = 0.8f;
+                    Time.timeScale = grabSlowMotion;
                 }
             } else {
                 transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
