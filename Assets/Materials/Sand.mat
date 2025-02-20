@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7304431502154383831
+--- !u!114 &-5769069900934660277
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Purple
+  m_Name: Sand
   m_Shader: {fileID: -6465566751694194690, guid: 28cb143f751253f4bae4a9fd0b3e9d3a,
     type: 3}
   m_Parent: {fileID: 0}
@@ -119,7 +119,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 10
-    - _Smoothness: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -128,10 +128,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.79199827, g: 0.44313726, b: 0.9137255, a: 1}
-    - _Color: {r: 0.79199827, g: 0.44313723, b: 0.9137255, a: 1}
+    - _Base: {r: 0.9294118, g: 0.86274517, b: 0.7137255, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 0.62352943, b: 0.62352943, a: 1}
-    - _ShadowColor: {r: 0.523, g: 0.265684, b: 0.29999277, a: 1}
+    - _MainColor: {r: 0.9333334, g: 0.8705883, b: 0.7137255, a: 1}
+    - _Shadow: {r: 0.3679245, g: 0.35451388, b: 0.3245372, a: 1}
+    - _ShadowColor: {r: 0.36862746, g: 0.35294116, b: 0.32549015, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

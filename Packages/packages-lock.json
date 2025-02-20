@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github.d3tonat0r.unitynoise": {
+      "version": "https://github.com/d3tonat0r/unitynoise.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b372b61c8748dad844f79afdfa2998b1b3e4169b"
+    },
     "com.unity.burst": {
       "version": "1.8.18",
       "depth": 1,
