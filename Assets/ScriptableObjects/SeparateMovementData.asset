@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b17852460b025488cb964a956ee8a9, type: 3}
+  m_Name: SeparateMovementData
+  m_EditorClassIdentifier: 
+  separateMainMovementContainer: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b,
+    type: 2}
+  separateFloatingMovementContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
+    type: 2}
+  separateMainMovementFloatingMovementRatio: 0.8
+  ForceAllocated: 0.05
