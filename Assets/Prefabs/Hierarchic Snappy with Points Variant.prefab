@@ -55,22 +55,42 @@ PrefabInstance:
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       propertyPath: mainSnapPoints.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 6065092856005247449}
+      objectReference: {fileID: 1073113583401682471}
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[1]
       value: 
+      objectReference: {fileID: 4700148214263303773}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 6065092856005247449}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[3]
+      value: 
       objectReference: {fileID: 8063176039987242800}
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
+      propertyPath: mainSnapPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 5120462150083257687}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 7822689832136090854}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
       propertyPath: secondarySnapPoints.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
@@ -231,6 +251,7 @@ MonoBehaviour:
   mainHeadMaterial: {fileID: 2100000, guid: 4213f0a538249284aa98b6c1c923f52f, type: 2}
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
+  useDebugMaterials: 0
 --- !u!114 &9170454854264938416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +275,9 @@ MonoBehaviour:
   directionZCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
     type: 2}
   GizmoSize: 3
+  movementToRotationRatio: 0.5
   forwardDirectionToDirectionToWayPointRatio: 0.4
+  minDistanceToWayPoint: 2
   pointForceTarget: {fileID: 8914959906404572461}
   wayPoint: {fileID: 0}
 --- !u!114 &2184420461774320340

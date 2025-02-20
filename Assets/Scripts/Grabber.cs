@@ -38,7 +38,6 @@ public class Grabber : MonoBehaviour {
         if (oscDown)
         {
             Drag(oscPosition, oscDown);
-            Debug.Log(oscPosition + ", " + oscDown);
         }
         else
         {

@@ -882,6 +882,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 51601189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &605835460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3398138107846980095, guid: 658db2d35db1fff428ef58d390a368d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058660961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbba286dc10e549b2bdec947ef8dbd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &624167338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8914959906404572461, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
@@ -2705,6 +2717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drag
       objectReference: {fileID: 0}
+    - target: {fileID: 5743216711076937392, guid: 10a1ae4bb8f8241499ae770c335264bb,
+        type: 3}
+      propertyPath: Receiver
+      value: 
+      objectReference: {fileID: 605835460}
     - target: {fileID: 7027859925331528390, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: m_LocalPosition.x

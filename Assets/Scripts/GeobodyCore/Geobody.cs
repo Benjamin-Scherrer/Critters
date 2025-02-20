@@ -14,8 +14,10 @@ public class Geobody : MonoBehaviour
     [SerializeField] private Material mainHeadMaterial;
     [SerializeField] private Material sideHeadMaterial;
     [SerializeField] private Material limbMaterial;
+    [SerializeField] private bool useDebugMaterials = false;
+    private bool baseMaterialCheck = false;
+    private Material baseMaterial;
     private Renderer myRenderer;
-
 
     //*******************************
     //VARIABLES
@@ -95,7 +97,7 @@ public class Geobody : MonoBehaviour
             }
         }
 
-        if(separateMaterial != null) myRenderer.material = separateMaterial;
+        if(separateMaterial != null && useDebugMaterials) myRenderer.material = separateMaterial;
         conglomerateHead = null;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
@@ -126,7 +128,7 @@ public class Geobody : MonoBehaviour
             }
         }
 
-        if(mainHeadMaterial != null) myRenderer.material = mainHeadMaterial;
+        if(mainHeadMaterial != null && useDebugMaterials) myRenderer.material = mainHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
         
@@ -159,7 +161,7 @@ public class Geobody : MonoBehaviour
             }
         }
 
-        if(sideHeadMaterial != null) myRenderer.material = sideHeadMaterial;
+        if(sideHeadMaterial != null && useDebugMaterials) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, true);
@@ -188,7 +190,7 @@ public class Geobody : MonoBehaviour
             }
         }
 
-        if(limbMaterial != null) myRenderer.material = limbMaterial;
+        if(limbMaterial != null && useDebugMaterials) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
@@ -218,12 +220,23 @@ public class Geobody : MonoBehaviour
         //
         if(!TryGetComponent<Renderer>(out myRenderer))
             throw new Exception("No Renderer component found in children of Geobody");
+
+        if (myRenderer != null) baseMaterial = myRenderer.material;
     }
 
     private void Start()
     {
         //Set Geobody Type
         SetToSeparate();
+    }
+
+    private void Update()
+    {
+        if (!useDebugMaterials && baseMaterialCheck)
+        {
+            myRenderer.material = baseMaterial;
+        }
+        baseMaterialCheck = useDebugMaterials;
     }
 
     //
