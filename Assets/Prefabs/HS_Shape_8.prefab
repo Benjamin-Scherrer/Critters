@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &3600985354117611409
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -112,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &9089025260517189018
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -179,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &5061202414132536116
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -246,7 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &8374378001591915497
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -313,7 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &1170553668897418942
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -380,7 +375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &2943734710520149090
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -447,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &5968666221174034063
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -514,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &6337538717231582686
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -581,7 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &4168165453378162793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -648,7 +639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!135 &6770724967231710166
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -728,6 +718,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 5856020580785134127}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2378444146505299303}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1203830402840729527}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 3075684510893735673}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1224444070870448314}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 6583078917967944749}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 6118932650694157099}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 8768359536337985268}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[6]
+      value: 
+      objectReference: {fileID: 5945371866823607071}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: secondarySnapPoints.Array.data[7]
+      value: 
+      objectReference: {fileID: 6190139514263974912}
     - target: {fileID: 3765175800961690988, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: m_Mesh

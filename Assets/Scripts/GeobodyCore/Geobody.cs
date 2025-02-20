@@ -43,7 +43,8 @@ public class Geobody : MonoBehaviour
     //PUBLIC
     public void OnJointSnap(Geobody other)
     {
-        if (other.GetConglomerateHead != null && other.GetConglomerateHead == conglomerateHead) return; // throw new Exception("WOW this is useless."); //performance improvement but rn unneeded and needs a check against null.
+        if (other.GetConglomerateHead != null && other.GetConglomerateHead == conglomerateHead) return; 
+        // throw new Exception("WOW this is useless."); //performance improvement but rn unneeded and needs a check against null.
 
         switch (other.geobodyType)
         {
@@ -95,6 +96,8 @@ public class Geobody : MonoBehaviour
 
         if(separateMaterial != null) myRenderer.material = separateMaterial;
         conglomerateHead = null;
+
+        jointPointSnap.DisableSecondarySnapPointsColliders();
     }
 
     public void SetToMainHead(ConglomerateManager newConglomerateHead,
@@ -124,6 +127,8 @@ public class Geobody : MonoBehaviour
 
         if(mainHeadMaterial != null) myRenderer.material = mainHeadMaterial;
         conglomerateHead = newConglomerateHead;
+
+        jointPointSnap.EnableSecondarySnapPointsColliders();
     }
 
     public void SetToSideHead(ConglomerateManager newConglomerateHead,
@@ -154,6 +159,8 @@ public class Geobody : MonoBehaviour
 
         if(sideHeadMaterial != null) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
+
+        jointPointSnap.EnableSecondarySnapPointsColliders();
     }
 
     public void SetToLimb(ConglomerateManager newConglomerateHead)
@@ -181,6 +188,8 @@ public class Geobody : MonoBehaviour
 
         if(limbMaterial != null) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;
+
+        jointPointSnap.DisableSecondarySnapPointsColliders();
     }
 
 
@@ -207,13 +216,13 @@ public class Geobody : MonoBehaviour
         //
         if(!TryGetComponent<Renderer>(out myRenderer))
             throw new Exception("No Renderer component found in children of Geobody");
+    }
 
-
+    private void Start()
+    {
         //Set Geobody Type
         SetToSeparate();
     }
-
-
 
     //
     private void OnOtherSeparate(Geobody other)
