@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &790885488283778104
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76,10 +76,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407021994628329111}
+  - component: {fileID: 9179629798333219780}
   - component: {fileID: 4700347429184011865}
   - component: {fileID: 8337945388434641616}
   - component: {fileID: 2054843027682950439}
-  - component: {fileID: 9179629798333219780}
   - component: {fileID: 5558053267106702521}
   m_Layer: 0
   m_Name: Shape 2_Points
@@ -109,6 +109,22 @@ Transform:
   - {fileID: 2732310720345430487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9179629798333219780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412142243698006960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50ca1f1966a5af42bd4deba9ae1c352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posSpring: 40
+  posDamp: 10
+  rotSpring: 20
+  rotDamp: 5
 --- !u!33 &4700347429184011865
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -186,22 +202,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9179629798333219780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4412142243698006960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50ca1f1966a5af42bd4deba9ae1c352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posSpring: 40
-  posDamp: 10
-  rotSpring: 20
-  rotDamp: 5
 --- !u!64 &5558053267106702521
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &70256729688571268
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &6625685532877109286
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &6544965367472170151
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &3613098200684508104
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connected: 0
+  coll: {fileID: 0}
 --- !u!135 &5065793058985573739
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5986555465027510869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8914959906404572461}
+  m_Layer: 0
+  m_Name: ForceTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8914959906404572461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986555465027510869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2159043177347288864}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4099042469644466299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2671988336530421595, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8914959906404572461}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
@@ -145,8 +180,8 @@ MonoBehaviour:
     type: 2}
   directionZCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
     type: 2}
-  GizmoSize: 1
-  target: {fileID: 2159043177347288864}
+  GizmoSize: 2
+  target: {fileID: 8914959906404572461}
   snapToSurfave: 0
 --- !u!114 &5008893594666657935
 MonoBehaviour:
@@ -194,8 +229,8 @@ MonoBehaviour:
     type: 2}
   directionZCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
     type: 2}
-  GizmoSize: 1
-  target: {fileID: 2159043177347288864}
+  GizmoSize: 0.5
+  target: {fileID: 8914959906404572461}
   snapToSurfave: 0
 --- !u!114 &488273853230739240
 MonoBehaviour:

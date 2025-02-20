@@ -121,7 +121,7 @@ public class ConglomerateManager : MonoBehaviour
         //        + ", Geobodies needed:" + Geobodies.Count);
         //}
 
-        Debug.Log("End");
+        //Debug.Log("End");
     }//
 
     private void GoThroughHierarchy(Geobody mainHead, List<Geobody> geobodiesAlreadyReached, List<Geobody> sideHeads)
