@@ -23,6 +23,7 @@ public class AwayOrienter : MonoBehaviour
 
         repulsionSum = repulsionSum.normalized;
         if (repulsionSum == Vector3.zero) return;
+        repulsionSum.y = Mathf.Abs(repulsionSum.y);
         transform.rotation = Quaternion.LookRotation(repulsionSum);
     }
 

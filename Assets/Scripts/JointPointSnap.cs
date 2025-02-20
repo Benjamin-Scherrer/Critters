@@ -70,7 +70,7 @@ public class JointPointSnap : MonoBehaviour
         var parentCollider = other.transform.parent.GetComponent<Collider>();
         if (parentCollider.attachedRigidbody == null) throw new Exception("Rigidbody not found");
         if (!parentCollider.TryGetComponent(out Geobody otherGeobody)) throw new Exception("Geobody not found");
-        if(snappedColliders.Count >= maxSnaps) throw new Exception("Max snaps reached");
+        if (snappedColliders.Count >= maxSnaps) return; // throw new Exception("Max snaps reached");
 
         //if the hierachy check works this is not needed.
         //if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
