@@ -25,22 +25,22 @@ public class JointPointSnap : MonoBehaviour
     private List<Collider> snappedColliders = new List<Collider>();
 
     //PUBLIC
-    public void DisableSecondarySnapPointsColliders()
+    public void UpdateSnapPointStatus(bool allowMainSnapPoints, bool allowSecondarySnapPoints)
     {
-        foreach (var snapPoint in secondarySnapPoints)
+        if (snappedColliders.Count >= maxSnaps)
         {
-            snapPoint.DisableCollider();
+            DisableMainSnapPoints();
+            DisableSecondarySnapPointsColliders();
         }
+
+        if(allowMainSnapPoints) EnableMainSnapPoints();
+        else DisableMainSnapPoints();
+
+        if (allowSecondarySnapPoints) EnableSecondarySnapPointsColliders();
+        else DisableSecondarySnapPointsColliders();
     }
 
-    public void EnableSecondarySnapPointsColliders()
-    {
-        foreach (var snapPoint in secondarySnapPoints)
-        {
-            snapPoint.EnableCollider();
-        }
-    }
-
+    public List<Collider> GetSnappedColliders { get => snappedColliders; }
 
     public Geobody[] GetSnappedGeobodies()
     {
@@ -70,40 +70,45 @@ public class JointPointSnap : MonoBehaviour
         var parentCollider = other.transform.parent.GetComponent<Collider>();
         if (parentCollider.attachedRigidbody == null) throw new Exception("Rigidbody not found");
         if (!parentCollider.TryGetComponent(out Geobody otherGeobody)) throw new Exception("Geobody not found");
-
+        if(snappedColliders.Count >= maxSnaps) throw new Exception("Max snaps reached");
 
         //if the hierachy check works this is not needed.
-        if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
+        //if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
+        if (snappedColliders.Contains(parentCollider)) return;
+        if (CheckIfSnappedToSameHirarchy(geobody, otherGeobody)) return;
+
+        var joint = gameObject.AddComponent<ConfigurableJoint>();
+        joint.autoConfigureConnectedAnchor = false;
+        joint.connectedBody = parentCollider.attachedRigidbody;
+        joint.anchor = Vector3.zero;
+        joint.connectedAnchor = other.transform.localPosition + (snapPoint.transform.localPosition.magnitude * other.transform.localPosition.normalized);
+        joint.rotationDriveMode = RotationDriveMode.Slerp;
+        var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
+        var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
+        joint.xDrive = posDrive;
+        joint.yDrive = posDrive;
+        joint.zDrive = posDrive;
+        joint.slerpDrive = rotDrive;
+        snappedColliders.Add(parentCollider);
+
+        Debug.Log("Snappped collider count: " + snappedColliders.Count);
+        if (snappedColliders.Count >= maxSnaps)
         {
-            var joint = gameObject.AddComponent<ConfigurableJoint>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedBody = parentCollider.attachedRigidbody;
-            joint.anchor = Vector3.zero;
-            joint.connectedAnchor = other.transform.localPosition + (snapPoint.transform.localPosition.magnitude * other.transform.localPosition.normalized);
-            joint.rotationDriveMode = RotationDriveMode.Slerp;
-            var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-            var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-            joint.xDrive = posDrive;
-            joint.yDrive = posDrive;
-            joint.zDrive = posDrive;
-            joint.slerpDrive = rotDrive;
-            snappedColliders.Add(parentCollider);
-            if(snappedColliders.Count >= maxSnaps)
-            {
-                DisableSecondarySnapPointsColliders();
-            }   
-
-            //Disable snapPoint once used.... needs a better system for further development.
-            //In the new version the side snap points should be disabled and only enabled when the geobody is turned into a main head or side head.
-            //By setting a configurable joint reference I am able to see which snap points have their colliders disables because of snapping
-            //and which have it disabled because of other reasons
-            snapPoint.SetConfigurableJointReference(joint);
-            snapPoint.DisableCollider();
-
-            ForceInverseSnap(other, snapPoint);
-            //Tell geobody that is has snapped to another geobody
-            geobody.OnJointSnap(otherGeobody);
+            Debug.Log("Max snaps reached");
+            DisableMainSnapPoints();
+            DisableSecondarySnapPointsColliders();
         }
+
+        //Disable snapPoint once used.... needs a better system for further development.
+        //In the new version the side snap points should be disabled and only enabled when the geobody is turned into a main head or side head.
+        //By setting a configurable joint reference I am able to see which snap points have their colliders disables because of snapping
+        //and which have it disabled because of other reasons
+        snapPoint.SetConfigurableJointReference(joint);
+        snapPoint.DisableCollider();
+
+        ForceInverseSnap(other, snapPoint);
+        //Tell geobody that is has snapped to another geobody
+        geobody.OnJointSnap(otherGeobody);
     }
 
     //public void Snap(Collider otherCollider, SnapPoint snapPoint)
@@ -168,6 +173,49 @@ public class JointPointSnap : MonoBehaviour
         //return;
         //dangerous loop, but should never happpen.
     }
+
+
+    //SnapPoint Methods
+    private void DisableMainSnapPoints()
+    {
+        foreach (SnapPoint snapPoint in mainSnapPoints)
+        {
+            snapPoint.DisableCollider();
+        }
+    }
+
+    private void EnableMainSnapPoints()
+    {
+        foreach (SnapPoint snapPoint in mainSnapPoints)
+        {
+            snapPoint.EnableCollider();
+        }
+    }
+
+    private void DisableSecondarySnapPointsColliders()
+    {
+        //Debug.Log("Disabling secondary snap points colliders");
+        foreach (SnapPoint snapPoint in secondarySnapPoints)
+        {
+            //Debug.Log("//Disabled");
+            snapPoint.DisableCollider();
+        }
+    }
+
+    private void EnableSecondarySnapPointsColliders()
+    {
+        if (snappedColliders.Count >= maxSnaps)
+        {
+            //Debug.Log("Max snaps reached, cannot enable secondary snap points colliders");
+            return;
+        }
+        foreach (SnapPoint snapPoint in secondarySnapPoints)
+        {
+            snapPoint.EnableCollider();
+        }
+    }
+
+
 
     //private void ForceInverseSnap(Collider collider, SnapPoint snapPoint)
     //{

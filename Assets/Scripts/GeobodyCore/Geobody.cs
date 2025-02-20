@@ -28,6 +28,7 @@ public class Geobody : MonoBehaviour
 
     private ConglomerateManager conglomerateHead;
 
+    //PROPERTIES
     public ConglomerateManager GetConglomerateHead { get { return conglomerateHead; } } 
 
     //EVENTS
@@ -97,7 +98,7 @@ public class Geobody : MonoBehaviour
         if(separateMaterial != null) myRenderer.material = separateMaterial;
         conglomerateHead = null;
 
-        jointPointSnap.DisableSecondarySnapPointsColliders();
+        jointPointSnap.UpdateSnapPointStatus(true, false);
     }
 
     public void SetToMainHead(ConglomerateManager newConglomerateHead,
@@ -128,7 +129,8 @@ public class Geobody : MonoBehaviour
         if(mainHeadMaterial != null) myRenderer.material = mainHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
-        jointPointSnap.EnableSecondarySnapPointsColliders();
+        
+        jointPointSnap.UpdateSnapPointStatus(true, true);
     }
 
     public void SetToSideHead(ConglomerateManager newConglomerateHead,
@@ -160,7 +162,7 @@ public class Geobody : MonoBehaviour
         if(sideHeadMaterial != null) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
-        jointPointSnap.EnableSecondarySnapPointsColliders();
+        jointPointSnap.UpdateSnapPointStatus(true, true);
     }
 
     public void SetToLimb(ConglomerateManager newConglomerateHead)
@@ -189,7 +191,7 @@ public class Geobody : MonoBehaviour
         if(limbMaterial != null) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;
 
-        jointPointSnap.DisableSecondarySnapPointsColliders();
+        jointPointSnap.UpdateSnapPointStatus(true, false);
     }
 
 

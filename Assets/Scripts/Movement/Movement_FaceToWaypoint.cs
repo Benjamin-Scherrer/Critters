@@ -15,7 +15,7 @@ public class Movement_FaceToWaypoint : Movement_Abstract
         {
             if (wayPoint == null)
             {
-                wayPoint = GameObject.Find("Waypoint").transform;
+                wayPoint = WayPointManager.Instance.GetWayPoint(null);
             }
             return wayPoint;
         }

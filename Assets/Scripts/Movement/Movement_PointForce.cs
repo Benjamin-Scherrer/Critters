@@ -8,7 +8,7 @@ public class Movement_PointForce : Movement_Abstract
     [SerializeField] private Transform target;
 
     [Header("Features")]
-    [SerializeField] private bool snapToSurfave;
+    [SerializeField] private bool snapToSurface;
 
     protected override Vector3 LocalDirectionOscilating
     {
@@ -20,7 +20,7 @@ public class Movement_PointForce : Movement_Abstract
 
     private void Start()
     {
-        if (snapToSurfave)
+        if (snapToSurface)
         {
             RaycastHit hit;
             if (Physics.Raycast(target.position, transform.position-target.position, out hit))

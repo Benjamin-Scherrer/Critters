@@ -16,6 +16,7 @@ public class SnapPoint : MonoBehaviour
     public bool EnableCollider()
     {
         if (configurableJointReference != null) return false;
+        coll.enabled = true;
         return true;
     }
 
