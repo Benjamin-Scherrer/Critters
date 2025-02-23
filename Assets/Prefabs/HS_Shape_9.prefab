@@ -795,6 +795,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2335455508766122403, guid: cdbfa6074ad2f774c95dab74d40c8482,
         type: 3}
+    - target: {fileID: 7010937489622114739, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: EasyButton
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8023173990996398006, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: m_Enabled
@@ -825,6 +830,12 @@ PrefabInstance:
     - {fileID: 7365531698002407090, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
     - {fileID: 8371818552892111925, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
     - {fileID: 4416127502012239232, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 3311777970957488184, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 5474239399719104327, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 6204551432649264795, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 6130372000329563606, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 6504810303751695965, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
+    - {fileID: 6573034671365502537, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2159043177347288864, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}

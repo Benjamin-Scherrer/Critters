@@ -36,7 +36,14 @@ public class SnapPoint : MonoBehaviour
         if (other.CompareTag("SnapPoint"))
         {
             if (!coll.enabled) return;
+            if(configurableJointReference != null) return;
             transform.parent.GetComponent<JointPointSnap>().Snap(other.gameObject, this);
         }
     }
+
+
+    //private void OnDestroy()
+    //{
+    //    throw new Exception("BRUH WTF.");
+    //}
 }

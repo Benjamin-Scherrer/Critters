@@ -20,9 +20,13 @@ public class JointPointSnap : MonoBehaviour
     [Header("Snapping Limit")]
     [SerializeField] private int maxSnaps = 4;
 
-
     private Geobody geobody;
     private List<Collider> snappedColliders = new List<Collider>();
+
+    //FUCK ME JANK UTILITY
+    public List<SnapPoint> GetMainSnapPoints {  get  { return mainSnapPoints; } }
+    public List<SnapPoint> GetSondarySnapPoints { get { return secondarySnapPoints; } }
+
 
     //PUBLIC
     public void UpdateSnapPointStatus(bool allowMainSnapPoints, bool allowSecondarySnapPoints)
@@ -67,19 +71,25 @@ public class JointPointSnap : MonoBehaviour
 
     public void Snap(GameObject other, SnapPoint snapPoint)
     {
-        var parentCollider = other.transform.parent.GetComponent<Collider>();
-        if (parentCollider.attachedRigidbody == null) throw new Exception("Rigidbody not found");
-        if (!parentCollider.TryGetComponent(out Geobody otherGeobody)) throw new Exception("Geobody not found");
-        if (snappedColliders.Count >= maxSnaps) return; // throw new Exception("Max snaps reached");
+        if(!other.TryGetComponent(out SnapPoint otherSnapPoint)) throw new Exception("SnapPoint not found");
+        if(!other.transform.parent.TryGetComponent(out Collider otherParentCollider)) throw new Exception("Rigidbody not found");
+        if(!other.transform.parent.TryGetComponent(out Geobody otherParentGeobody)) throw new Exception("Geobody not found");
+        if(!other.transform.parent.TryGetComponent(out JointPointSnap otherParentJointPointSnap)) throw new Exception("JointPointSnap not found");
 
-        //if the hierachy check works this is not needed.
-        //if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
-        if (snappedColliders.Contains(parentCollider)) return;
-        if (CheckIfSnappedToSameHirarchy(geobody, otherGeobody)) return;
+        //General check if it is already snapped to the same thing, possible by weird edge cases, just abort.
+        if (snappedColliders.Contains(otherParentCollider)) return; // throw new Exception("Collider already snapped");
 
+        //Check if either of the geobodies have reached the max snaps
+        if (otherParentJointPointSnap.snappedColliders.Count >= otherParentJointPointSnap.maxSnaps) return;
+        if (this.snappedColliders.Count >= this.maxSnaps) return; // throw new Exception("Max snaps reached");
+
+        //Hierarchy check - if of the same hierarchy, do not snap
+        if (CheckIfSnappedToSameHirarchy(geobody, otherParentGeobody)) return;
+
+        //create joint
         var joint = gameObject.AddComponent<ConfigurableJoint>();
         joint.autoConfigureConnectedAnchor = false;
-        joint.connectedBody = parentCollider.attachedRigidbody;
+        joint.connectedBody = otherParentCollider.attachedRigidbody;
         joint.anchor = Vector3.zero;
         joint.connectedAnchor = other.transform.localPosition + (snapPoint.transform.localPosition.magnitude * other.transform.localPosition.normalized);
         joint.rotationDriveMode = RotationDriveMode.Slerp;
@@ -89,64 +99,25 @@ public class JointPointSnap : MonoBehaviour
         joint.yDrive = posDrive;
         joint.zDrive = posDrive;
         joint.slerpDrive = rotDrive;
-        snappedColliders.Add(parentCollider);
 
-        Debug.Log("Snappped collider count: " + snappedColliders.Count);
         if (snappedColliders.Count >= maxSnaps)
         {
-            Debug.Log("Max snaps reached");
             DisableMainSnapPoints();
             DisableSecondarySnapPointsColliders();
         }
 
-        //Disable snapPoint once used.... needs a better system for further development.
-        //In the new version the side snap points should be disabled and only enabled when the geobody is turned into a main head or side head.
-        //By setting a configurable joint reference I am able to see which snap points have their colliders disables because of snapping
+        //Disable snapPoint once used. Set configurable joint reference to snapPoint,
+        //so it can be used to check if the collider is disabled because of snapping
         //and which have it disabled because of other reasons
         snapPoint.SetConfigurableJointReference(joint);
         snapPoint.DisableCollider();
+        snappedColliders.Add(otherParentCollider);
 
-        ForceInverseSnap(other, snapPoint);
+        ForceInverseSnap(otherSnapPoint, otherParentJointPointSnap,  joint, snapPoint);
         //Tell geobody that is has snapped to another geobody
-        geobody.OnJointSnap(otherGeobody);
+        geobody.OnJointSnap(otherParentGeobody);
     }
 
-    //public void Snap(Collider otherCollider, SnapPoint snapPoint)
-    //{
-    //    var parentCollider = otherCollider.transform.parent.GetComponent<Collider>();
-    //    if (parentCollider.attachedRigidbody == null) throw new Exception("Rigidbody not found");
-    //    if (!parentCollider.TryGetComponent(out Geobody otherGeobody)) throw new Exception("Geobody not found");
-
-
-    //    //if the hierachy check works this is not needed.
-    //    if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
-    //    { 
-    //        var joint = gameObject.AddComponent<ConfigurableJoint>();
-    //        joint.autoConfigureConnectedAnchor = false;
-    //        joint.connectedBody = parentCollider.attachedRigidbody;
-    //        joint.anchor = Vector3.zero;
-    //        joint.connectedAnchor = otherCollider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * otherCollider.transform.localPosition.normalized);
-    //        joint.rotationDriveMode = RotationDriveMode.Slerp;
-    //        var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-    //        var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-    //        joint.xDrive = posDrive;
-    //        joint.yDrive = posDrive;
-    //        joint.zDrive = posDrive;
-    //        joint.slerpDrive = rotDrive;
-    //        snappedColliders.Add(parentCollider);
-
-    //        //Disable snapPoint once used.... needs a better system for further development.
-    //        //In the new version the side snap points should be disabled and only enabled when the geobody is turned into a main head or side head.
-    //        //By setting a configurable joint reference I am able to see which snap points have their colliders disables because of snapping
-    //        //and which have it disabled because of other reasons
-    //        snapPoint.SetConfigurableJointReference(joint);
-    //        snapPoint.DisabbleCollider();
-
-    //        ForceInverseSnap(otherCollider, snapPoint);
-    //        //Tell geobody that is has snapped to another geobody
-    //        geobody.OnJointSnap(otherGeobody);
-    //    }
-    //}
 
     //PRIVATE
     private void Awake()
@@ -165,13 +136,18 @@ public class JointPointSnap : MonoBehaviour
         return false;
     }
 
-    private void ForceInverseSnap(GameObject other, SnapPoint snapPoint)
+    private void ForceInverseSnap(SnapPoint otherSnappoint, JointPointSnap otherParentJointPointSnap, ConfigurableJoint joint, SnapPoint snapPoint)
     {
-        //force inverse snap
-        SnapPoint otherSnappoint = other.GetComponent<SnapPoint>();
-        otherSnappoint.transform.parent.GetComponent<JointPointSnap>().Snap(snapPoint.gameObject, otherSnappoint);
-        //return;
-        //dangerous loop, but should never happpen.
+        //Add joint reference to otherSnapPoint
+        //disable otherSnapPoint collider
+        otherSnappoint.SetConfigurableJointReference(joint);
+        otherSnappoint.DisableCollider();
+
+        //Add parent collider of snapPoint to snappedColliders of the parent of other SnapPoint
+        otherParentJointPointSnap.snappedColliders.Add(snapPoint.transform.parent.GetComponent<Collider>());
+
+        //No looping anymore!
+        //Bad old code: otherSnappoint.transform.parent.GetComponent<JointPointSnap>().Snap(snapPoint.gameObject, otherSnappoint);
     }
 
 
@@ -215,14 +191,42 @@ public class JointPointSnap : MonoBehaviour
         }
     }
 
+    //Original Damian Code
 
-
-    //private void ForceInverseSnap(Collider collider, SnapPoint snapPoint)
+    //public void Snap(Collider otherCollider, SnapPoint snapPoint)
     //{
-    //    //force inverse snap
-    //    SnapPoint otherSnappoint = collider.GetComponent<SnapPoint>();
-    //    otherSnappoint.transform.parent.GetComponent<JointPointSnap>().Snap(snapPoint.coll, otherSnappoint);
-    //    //return;
-    //    //dangerous loop, but should never happpen.
+    //    var parentCollider = otherCollider.transform.parent.GetComponent<Collider>();
+    //    if (parentCollider.attachedRigidbody == null) throw new Exception("Rigidbody not found");
+    //    if (!parentCollider.TryGetComponent(out Geobody otherGeobody)) throw new Exception("Geobody not found");
+
+
+    //    //if the hierachy check works this is not needed.
+    //    if (!snappedColliders.Contains(parentCollider) && !CheckIfSnappedToSameHirarchy(geobody, otherGeobody))
+    //    { 
+    //        var joint = gameObject.AddComponent<ConfigurableJoint>();
+    //        joint.autoConfigureConnectedAnchor = false;
+    //        joint.connectedBody = parentCollider.attachedRigidbody;
+    //        joint.anchor = Vector3.zero;
+    //        joint.connectedAnchor = otherCollider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * otherCollider.transform.localPosition.normalized);
+    //        joint.rotationDriveMode = RotationDriveMode.Slerp;
+    //        var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
+    //        var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
+    //        joint.xDrive = posDrive;
+    //        joint.yDrive = posDrive;
+    //        joint.zDrive = posDrive;
+    //        joint.slerpDrive = rotDrive;
+    //        snappedColliders.Add(parentCollider);
+
+    //        //Disable snapPoint once used.... needs a better system for further development.
+    //        //In the new version the side snap points should be disabled and only enabled when the geobody is turned into a main head or side head.
+    //        //By setting a configurable joint reference I am able to see which snap points have their colliders disables because of snapping
+    //        //and which have it disabled because of other reasons
+    //        snapPoint.SetConfigurableJointReference(joint);
+    //        snapPoint.DisabbleCollider();
+
+    //        ForceInverseSnap(otherCollider, snapPoint);
+    //        //Tell geobody that is has snapped to another geobody
+    //        geobody.OnJointSnap(otherGeobody);
+    //    }
     //}
 }
