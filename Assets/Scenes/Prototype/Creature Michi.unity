@@ -500,6 +500,69 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &148398187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148398189}
+  - component: {fileID: 148398188}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &148398188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148398187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2130323484
+      Data2: 1100261586
+      Data3: -1567232891
+      Data4: 1924265764
+    Path: event:/New Event
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &148398189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148398187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &150322431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,121 +3916,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 673872158}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &673872160
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4322,121 +4279,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 757058329}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &757058331
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4886,130 +4737,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 1.9600936
-      outSlope: 1.9600936
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.51
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.21651447
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 763722820}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!1 &820571591
 GameObject:
   m_ObjectHideFlags: 0
@@ -5259,121 +4995,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 4
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 820571597}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!4 &825423668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1343858023207497276, guid: d94c776768dc6d04b97a509e2553113e,
@@ -10584,121 +10214,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1983054322}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &1351821093
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -10961,130 +10485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 1.9600936
-      outSlope: 1.9600936
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.51
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.21651447
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 0
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1355219504}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &1355219500
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -11285,121 +10694,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 12
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1355219504}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!1 &1369893802
 GameObject:
   m_ObjectHideFlags: 0
@@ -13656,121 +12959,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1983054322}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!114 &1983054317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13783,130 +12980,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 1.9600936
-      outSlope: 1.9600936
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.51
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.21651447
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 0
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1983054322}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &1983054318
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -14144,121 +13226,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.008334339
-      value: -0.0047256304
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50416565
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14285888
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.572279
-      outSlope: 1.572279
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07563014
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  forceCycleDuration: 1
-  forceMultiplier: 2
-  maxLinearVelocity: 8
-  maxAngularVelocity: 4
+  movementType: 1
+  forceCurveContainer: {fileID: 0}
   localDirection: 0
-  directionX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  directionCycleDuration: {x: 1, y: 1, z: 1}
-  directionCycleMultiplier: {x: 1, y: 1, z: 1}
+  directionXCurveContainer: {fileID: 0}
+  directionYCurveContainer: {fileID: 0}
+  directionZCurveContainer: {fileID: 0}
   GizmoSize: 2.15
   target: {fileID: 1986870630}
-  snapToSurfave: 0
+  snapToSurface: 0
 --- !u!153 &1986870632
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -14652,6 +13628,26 @@ Transform:
   - {fileID: 757058329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 70.9, z: 0}
+--- !u!1 &2026414336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8420056736043627227, guid: 658db2d35db1fff428ef58d390a368d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 307512987439697963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026414338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026414336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &2065701185
 GameObject:
   m_ObjectHideFlags: 0
@@ -15305,10 +14301,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8609470697353871743, guid: 658db2d35db1fff428ef58d390a368d7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8420056736043627227, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2026414338}
   m_SourcePrefab: {fileID: 100100000, guid: 658db2d35db1fff428ef58d390a368d7, type: 3}
 --- !u!1001 &643992510886886343
 PrefabInstance:
@@ -17014,3 +16015,4 @@ SceneRoots:
   - {fileID: 405007896}
   - {fileID: 2083251959}
   - {fileID: 103828245}
+  - {fileID: 148398189}
