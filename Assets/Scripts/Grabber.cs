@@ -7,8 +7,12 @@ public class Grabber : MonoBehaviour {
     [SerializeField] private OSCReceiver Receiver;
     [SerializeField] private string Address = "/ipad";
 
+    [Header("Grabber Settings")][Space]
     [Range(0.2f,1f)]
     [SerializeField] private float grabSlowMotion = 0.8f;
+    [Range(0f, 5f)]
+    [SerializeField] private float grabLift = 2f;
+    [SerializeField] private float floatHeight = 0.25f;
 
     [Header("Joint Settings")][Space]
     [SerializeField] private float posSpring = 40f;
@@ -68,7 +72,7 @@ public class Grabber : MonoBehaviour {
                     meshRenderer.enabled = true;
                     Cursor.visible = false;
                     Time.timeScale = grabSlowMotion;
-                    transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
+                    transform.position = new Vector3(worldPosition.x, floatHeight, worldPosition.z);
 
                     if (!hit.collider.CompareTag("Geobody"))
                     {
@@ -91,7 +95,7 @@ public class Grabber : MonoBehaviour {
             }
             else
             {
-                transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
+                transform.position = new Vector3(worldPosition.x, floatHeight + grabLift, worldPosition.z);
             }
         }
 
@@ -99,7 +103,7 @@ public class Grabber : MonoBehaviour {
         {
             if (snappedGeobody != null)
             {
-                transform.position = new Vector3(worldPosition.x, 0.5f, worldPosition.z);
+                transform.position = new Vector3(worldPosition.x, floatHeight, worldPosition.z);
                 Destroy(joint);
                 snappedGeobody = null;
             }
