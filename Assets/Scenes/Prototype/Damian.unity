@@ -1274,7 +1274,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: c194968bba6ad304e8b7136b7e25df12, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 5b2c93e771205ab43be779ab38f6e57c, type: 2}
 --- !u!1001 &966292176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3413,6 +3413,31 @@ PrefabInstance:
         type: 3}
       propertyPath: floatHeight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200082001975880541, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200082001975880541, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200082001975880541, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200082001975880541, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200082001975880541, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8828403926019672340, guid: 658db2d35db1fff428ef58d390a368d7,
         type: 3}

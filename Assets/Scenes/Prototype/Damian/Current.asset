@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7857619305919753402
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-5913505185945778556
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: -0.04
+  xMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  yMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-5121714903346541446
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -55,13 +99,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.71202314, z: 0.617699, w: 0.118279725}
+    m_Value: {x: 0.8601977, y: 0.9411926, z: 1, w: 0.118279725}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9559212, z: 0.96011657, w: 0}
+    m_Value: {x: 1, y: 0.93965197, z: 0.7581987, w: 0}
   highlights:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 0.96011764, z: 0.9559218, w: 0}
+    m_Value: {x: 0.9869005, y: 0.99212396, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -84,7 +128,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Main Camera Profile
+  m_Name: Current
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4043274340568954490}
@@ -96,6 +140,32 @@ MonoBehaviour:
   - {fileID: 1076097321269203759}
   - {fileID: 7657552283794685999}
   - {fileID: 8220982432638682029}
+  - {fileID: 813891259589384658}
+  - {fileID: -7857619305919753402}
+  - {fileID: -5913505185945778556}
+  - {fileID: 6152127162581004000}
+--- !u!114 &813891259589384658
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
+  m_Name: SplitToning
+  m_EditorClassIdentifier: 
+  active: 0
+  shadows:
+    m_OverrideState: 1
+    m_Value: {r: 0.36862746, g: 0.33333334, b: 0.31764707, a: 1}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {r: 0.92941177, g: 0.8, b: 0.5058824, a: 1}
+  balance:
+    m_OverrideState: 1
+    m_Value: -15
 --- !u!114 &1076097321269203759
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -108,12 +178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   type:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 2
   intensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   response:
     m_OverrideState: 1
@@ -378,6 +448,25 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &6152127162581004000
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
+  m_Name: PaniniProjection
+  m_EditorClassIdentifier: 
+  active: 0
+  distance:
+    m_OverrideState: 1
+    m_Value: 0
+  cropToFit:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &7657552283794685999
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -436,19 +525,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
   threshold:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 15.8
   intensity:
-    m_OverrideState: 1
-    m_Value: 3
+    m_OverrideState: 0
+    m_Value: 0
   scatter:
     m_OverrideState: 0
-    m_Value: 0.7
+    m_Value: 1
   clamp:
     m_OverrideState: 0
     m_Value: 65472
