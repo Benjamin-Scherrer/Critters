@@ -1,5 +1,3 @@
-using UnityEditor.UIElements;
-using UnityEditorInternal;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
