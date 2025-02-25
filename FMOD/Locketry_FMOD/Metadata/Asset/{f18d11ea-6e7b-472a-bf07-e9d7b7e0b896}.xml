@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{f18d11ea-6e7b-472a-bf07-e9d7b7e0b896}">
+		<property name="assetPath">
+			<value>Locketry Assets/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c7e01be6-1452-4a8e-bcba-fbf0c4d4b330}</destination>
+		</relationship>
+	</object>
+</objects>
