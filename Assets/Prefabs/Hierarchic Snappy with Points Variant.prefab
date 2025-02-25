@@ -398,6 +398,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
+      propertyPath: joint
+      value: 
+      objectReference: {fileID: 3698164021789695243, guid: ef0ed7f6920807541bf293ab78d62fe4,
+        type: 3}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: posDamp
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: posSpring
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: jointPrefab
+      value: 
+      objectReference: {fileID: 3698164021789695243, guid: ef0ed7f6920807541bf293ab78d62fe4,
+        type: 3}
+    - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
       propertyPath: mainSnapPoints.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -581,7 +603,7 @@ MonoBehaviour:
   mainHeadMaterial: {fileID: 2100000, guid: 4213f0a538249284aa98b6c1c923f52f, type: 2}
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
-  useDebugMaterials: 0
+  useDebugMaterials: 1
 --- !u!114 &9170454854264938416
 MonoBehaviour:
   m_ObjectHideFlags: 0

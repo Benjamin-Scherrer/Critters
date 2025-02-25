@@ -1,17 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class JointPointSnap : MonoBehaviour
 {
     [Header("Joint Settings")]
-    [Space]
-    [SerializeField] private float posSpring = 40f;
-    [SerializeField] private float posDamp = 10f;
-    [SerializeField] private float rotSpring = 20f;
-    [SerializeField] private float rotDamp = 5f;
+    [SerializeField] private ConfigurableJoint jointPrefab;
+
+    //[SerializeField] private float posSpring = 40f;
+    //[SerializeField] private float posDamp = 10f;
+    //[SerializeField] private float rotSpring = 20f;
+    //[SerializeField] private float rotDamp = 5f;
 
     [Header("Joint Groups")]
     [SerializeField] private List<SnapPoint> mainSnapPoints = new List<SnapPoint>();
@@ -69,12 +69,12 @@ public class JointPointSnap : MonoBehaviour
         return geobodies;
     }
 
-    public void Snap(GameObject other, SnapPoint snapPoint)
+    public void Snap(GameObject otherSnapPointCollider, SnapPoint snapPoint)
     {
-        if(!other.TryGetComponent(out SnapPoint otherSnapPoint)) throw new Exception("SnapPoint not found");
-        if(!other.transform.parent.TryGetComponent(out Collider otherParentCollider)) throw new Exception("Rigidbody not found");
-        if(!other.transform.parent.TryGetComponent(out Geobody otherParentGeobody)) throw new Exception("Geobody not found");
-        if(!other.transform.parent.TryGetComponent(out JointPointSnap otherParentJointPointSnap)) throw new Exception("JointPointSnap not found");
+        if(!otherSnapPointCollider.TryGetComponent(out SnapPoint otherSnapPoint)) throw new Exception("SnapPoint not found");
+        if(!otherSnapPointCollider.transform.parent.TryGetComponent(out Collider otherParentCollider)) throw new Exception("Rigidbody not found");
+        if(!otherSnapPointCollider.transform.parent.TryGetComponent(out Geobody otherParentGeobody)) throw new Exception("Geobody not found");
+        if(!otherSnapPointCollider.transform.parent.TryGetComponent(out JointPointSnap otherParentJointPointSnap)) throw new Exception("JointPointSnap not found");
 
         //General check if it is already snapped to the same thing, possible by weird edge cases, just abort.
         if (snappedColliders.Contains(otherParentCollider)) return; // throw new Exception("Collider already snapped");
@@ -88,17 +88,45 @@ public class JointPointSnap : MonoBehaviour
 
         //create joint
         var joint = gameObject.AddComponent<ConfigurableJoint>();
-        joint.autoConfigureConnectedAnchor = false;
+
+        joint = SetJointPrefabSettings(joint);
+
+
+        //first get direction of snapPoint
+        Vector3 snapPointDirection = -snapPoint.transform.localPosition.normalized;
+
+        // Choose an arbitrary vector that is not parallel to snapPointDirection
+        Vector3 arbitraryVector = (Mathf.Abs(snapPointDirection.x) < 0.9f) ? Vector3.right : Vector3.up;
+
+        // Calculate the first orthogonal vector
+        joint.secondaryAxis = Vector3.Cross(snapPointDirection, arbitraryVector).normalized;
+
+        // Calculate the second orthogonal vector
+        joint.axis = Vector3.Cross(snapPointDirection, joint.secondaryAxis).normalized;
+        //this is correct but for some reason the joint constraints wobble
+
+
+
+        //sett other connected body
         joint.connectedBody = otherParentCollider.attachedRigidbody;
-        joint.anchor = Vector3.zero;
-        joint.connectedAnchor = other.transform.localPosition + (snapPoint.transform.localPosition.magnitude * other.transform.localPosition.normalized);
-        joint.rotationDriveMode = RotationDriveMode.Slerp;
-        var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-        var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-        joint.xDrive = posDrive;
-        joint.yDrive = posDrive;
-        joint.zDrive = posDrive;
-        joint.slerpDrive = rotDrive;
+
+        //Set anchors
+        joint.anchor = snapPoint.transform.localPosition;
+        joint.connectedAnchor = otherSnapPointCollider.transform.localPosition;
+
+        //joint.anchor = Vector3.zero;
+        //joint.connectedAnchor = otherSnapPointCollider.transform.localPosition + (snapPoint.transform.localPosition.magnitude * otherSnapPointCollider.transform.localPosition.normalized);
+
+        //joint.rotationDriveMode = RotationDriveMode.Slerp;
+
+
+        //var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
+        //var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
+
+        //joint.xDrive = posDrive;
+        //joint.yDrive = posDrive;
+        //joint.zDrive = posDrive;
+        //joint.slerpDrive = rotDrive;
 
         if (snappedColliders.Count >= maxSnaps)
         {
@@ -113,7 +141,7 @@ public class JointPointSnap : MonoBehaviour
         snapPoint.DisableCollider();
         snappedColliders.Add(otherParentCollider);
 
-        ForceInverseSnap(otherSnapPoint, otherParentJointPointSnap,  joint, snapPoint);
+        SimulateInverseSnap(otherSnapPoint, otherParentJointPointSnap,  joint, snapPoint);
         //Tell geobody that is has snapped to another geobody
         geobody.OnJointSnap(otherParentGeobody);
     }
@@ -136,7 +164,7 @@ public class JointPointSnap : MonoBehaviour
         return false;
     }
 
-    private void ForceInverseSnap(SnapPoint otherSnappoint, JointPointSnap otherParentJointPointSnap, ConfigurableJoint joint, SnapPoint snapPoint)
+    private void SimulateInverseSnap(SnapPoint otherSnappoint, JointPointSnap otherParentJointPointSnap, ConfigurableJoint joint, SnapPoint snapPoint)
     {
         //Add joint reference to otherSnapPoint
         //disable otherSnapPoint collider
@@ -229,4 +257,97 @@ public class JointPointSnap : MonoBehaviour
     //        geobody.OnJointSnap(otherGeobody);
     //    }
     //}
+
+
+    private ConfigurableJoint SetJointPrefabSettings(ConfigurableJoint joint)
+    {
+        ////Useless assignement bc its overwriten later,
+        //joint.connectedBody = jointPrefab.connectedBody;
+        //joint.connectedArticulationBody = jointPrefab.connectedArticulationBody;
+
+        ////Useless assignement bc its overwriten later,
+        //joint.anchor = jointPrefab.anchor;
+
+        //Special settings for that
+        //joint.axis = jointPrefab.axis;
+
+        //yes but needs to be always set to false, condiering to hardcode this.
+        joint.autoConfigureConnectedAnchor = jointPrefab.autoConfigureConnectedAnchor;
+        //joint.autoConfigureConnectedAnchor = false;
+
+        ////Useless assignement bc its overwriten later,
+        //joint.connectedAnchor = jointPrefab.connectedAnchor;
+
+        //special settings for that
+        //joint.secondaryAxis = jointPrefab.secondaryAxis;
+
+        //probably set to limited
+        joint.xMotion = jointPrefab.xMotion;
+        joint.yMotion = jointPrefab.yMotion;
+        joint.zMotion = jointPrefab.zMotion;
+
+        //probably set to free
+        joint.angularXMotion = jointPrefab.angularXMotion;
+        joint.angularYMotion = jointPrefab.angularYMotion;
+        joint.angularZMotion = jointPrefab.angularZMotion;
+
+        //here go settings
+        joint.linearLimitSpring = jointPrefab.linearLimitSpring;
+        joint.linearLimit = jointPrefab.linearLimit;
+
+        ////nothing bc of free //not free now
+        joint.angularXLimitSpring = jointPrefab.angularXLimitSpring;
+        joint.lowAngularXLimit = jointPrefab.lowAngularXLimit;
+        joint.highAngularXLimit = jointPrefab.highAngularXLimit;
+        joint.angularYZLimitSpring = jointPrefab.angularYZLimitSpring;
+        joint.angularYLimit = jointPrefab.angularYLimit;
+        joint.angularZLimit = jointPrefab.angularZLimit;
+
+        ////will be vector3.zero to get to stable position -> So no assignement needed
+        //joint.targetPosition = jointPrefab.targetPosition;
+        //joint.targetVelocity = jointPrefab.targetVelocity;
+
+        joint.xDrive = jointPrefab.xDrive;
+        joint.yDrive = jointPrefab.yDrive;
+        joint.zDrive = jointPrefab.zDrive;
+
+        ////will be vector3.zero to get to stable position -> So no assignement needed
+        //joint.targetRotation = jointPrefab.targetRotation;
+        //joint.targetAngularVelocity = jointPrefab.targetAngularVelocity;
+
+        //probably slerp drive
+        joint.rotationDriveMode = jointPrefab.rotationDriveMode;
+
+        ////nothing bc of slerp drive
+        //joint.angularXDrive = jointPrefab.angularXDrive;
+        //joint.angularYZDrive = jointPrefab.angularYZDrive;
+
+        //filled with slerp drive data
+        joint.slerpDrive = jointPrefab.slerpDrive;
+
+        ////probably nothing bc of none
+        //joint.projectionMode = jointPrefab.projectionMode;
+        //joint.projectionDistance = jointPrefab.projectionDistance;
+        //joint.projectionAngle = jointPrefab.projectionAngle;
+
+        //probably none bc we need the anchors relative to the geobodies    
+        joint.configuredInWorldSpace = jointPrefab.configuredInWorldSpace;
+
+        //suss mogus maybe swap every update lololol
+        joint.swapBodies = jointPrefab.swapBodies;
+
+        //RN none but eventually maybe to make the geobodies break apart
+        joint.breakForce = jointPrefab.breakForce;
+        joint.breakTorque = jointPrefab.breakTorque;
+
+        //probably yes
+        joint.enableCollision = jointPrefab.enableCollision;
+        joint.enablePreprocessing = jointPrefab.enablePreprocessing;
+
+        //idk what this does.
+        joint.massScale = jointPrefab.massScale;
+        joint.connectedMassScale = jointPrefab.connectedMassScale;
+
+        return joint;
+    }
 }
