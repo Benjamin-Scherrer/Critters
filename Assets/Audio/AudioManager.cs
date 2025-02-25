@@ -84,7 +84,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeAmbience(FMODEvents.instance.AmbientNoise);
+        InitializeAmbience(FMODEvents.instance.Ambience);
         AudioManager.Instance.SetAmbienceParameter(parameterName, parameterValue);
         
         

@@ -103,18 +103,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TestSoundtrack>k__BackingField:
     Guid:
-      Data1: 2130323484
-      Data2: 1100261586
-      Data3: -1567232891
-      Data4: 1924265764
-    Path: event:/New Event
+      Data1: 1850802097
+      Data2: 1076640835
+      Data3: 1887570826
+      Data4: 46008331
+    Path: event:/00_Test Events/Test_Music
   <TestConfirm>k__BackingField:
     Guid:
-      Data1: 2130323484
-      Data2: 1100261586
-      Data3: -1567232891
-      Data4: 1924265764
-    Path: event:/New Event
+      Data1: 82938376
+      Data2: 1118611796
+      Data3: -1517758538
+      Data4: -905898425
+    Path: event:/00_Test Events/Test_Event
   <UI_Confirm>k__BackingField:
     Guid:
       Data1: -841462713
@@ -129,20 +129,13 @@ MonoBehaviour:
       Data3: 1336351127
       Data4: -5190690
     Path: event:/01_UI/UI_Close
-  <UI_Open>k__BackingField:
-    Guid:
-      Data1: -841462713
-      Data2: 1123857687
-      Data3: 493306552
-      Data4: 1504004622
-    Path: event:/01_UI/UI_Confirm
-  <AmbientNoise>k__BackingField:
+  <Ambience>k__BackingField:
     Guid:
       Data1: -849759519
       Data2: 1148374492
       Data3: -1128658553
       Data4: 197456768
-    Path: event:/02_Ambient/AmbientNoise
+    Path: event:/02_Ambient/Ambience
   <Item_Pickup>k__BackingField:
     Guid:
       Data1: -1241106972
@@ -150,45 +143,87 @@ MonoBehaviour:
       Data3: 144713601
       Data4: 457451176
     Path: event:/03_Mechanics/Item_Pickup
+  <Collisions>k__BackingField:
+    Guid:
+      Data1: 1826440220
+      Data2: 1283037857
+      Data3: -1659388235
+      Data4: -239256870
+    Path: event:/03_Mechanics/Collisions
+  <Grabbing>k__BackingField:
+    Guid:
+      Data1: -623805217
+      Data2: 1290313797
+      Data3: -51228744
+      Data4: 722411092
+    Path: event:/03_Mechanics/Grabbing
+  <Breaking>k__BackingField:
+    Guid:
+      Data1: -1765379066
+      Data2: 1293788823
+      Data3: 113995654
+      Data4: 1573088604
+    Path: event:/03_Mechanics/Breaking
+  <Touch>k__BackingField:
+    Guid:
+      Data1: -1015197458
+      Data2: 1229801711
+      Data3: -401816181
+      Data4: 740248502
+    Path: event:/03_Mechanics/Touch
+  <Jellyfish_Movement>k__BackingField:
+    Guid:
+      Data1: 550737428
+      Data2: 1310603094
+      Data3: 959167638
+      Data4: -1546689254
+    Path: event:/03_Mechanics/Jellyfish_Movement
   <Music1>k__BackingField:
     Guid:
       Data1: 1119905940
       Data2: 1292101539
       Data3: 244805248
       Data4: 1667499652
-    Path: event:/04_Music/Cursed
+    Path: event:/04_Music/Music_1
   <Music2>k__BackingField:
     Guid:
       Data1: 2098627827
       Data2: 1209017293
       Data3: 457973682
       Data4: 2065564134
-    Path: event:/04_Music/Heyaha
+    Path: event:/04_Music/Music_2
   <Music3>k__BackingField:
     Guid:
       Data1: 1369625054
       Data2: 1186341507
       Data3: -1485604179
       Data4: -344767215
-    Path: event:/04_Music/I have Trample
+    Path: event:/04_Music/Music_3
   <Music4>k__BackingField:
+    Guid:
+      Data1: 478420438
+      Data2: 1307366789
+      Data3: -1305217870
+      Data4: 231827982
+    Path: event:/04_Music/Music_4
+  <Music5>k__BackingField:
     Guid:
       Data1: -567739821
       Data2: 1312571681
       Data3: -162637166
       Data4: -394657506
-    Path: event:/04_Music/Main Theme
-  <Music5>k__BackingField:
+    Path: event:/04_Music/Music_5
+  <Music6>k__BackingField:
     Guid:
       Data1: 52460729
       Data2: 1133455930
       Data3: -1771873139
       Data4: 511903257
-    Path: event:/04_Music/Merchants Tale
-  <Music6>k__BackingField:
+    Path: event:/04_Music/Music_6
+  <Music_Shutoff>k__BackingField:
     Guid:
       Data1: -787256676
       Data2: 1083138403
       Data3: -1983902564
       Data4: -340636202
-    Path: event:/04_Music/Radio Shutoff
+    Path: event:/04_Music/Music_Shutoff
