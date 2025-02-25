@@ -6,6 +6,9 @@ using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
+    //USE THIS LINE FOR ONE SHOT EVENTS
+    //AudioManager.Instance.PlayOneShot(FMODEvents.instance.Item_Pickup, this.transform.position);
+
     [Header("Volume")]
     [Range(0, 1)]
     public float masterVolume = 1;
