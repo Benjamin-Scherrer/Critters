@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be7e1a8c60ebbd49a7b21b3dc3291c1, type: 3}
-  m_Name: ConglomerateMovementData
+  m_Name: CMD_Snake
   m_EditorClassIdentifier: 
+  minConglomerateSize: 4
+  maxConglomerateSize: 64
+  conglomerateBranchingCoef: 1
   ForceAllocated:
     serializedVersion: 2
     m_Curve:
@@ -50,19 +53,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.8
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 64
-      value: 0.4
+      time: 1
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -76,17 +79,17 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.8
       inSlope: 0
-      outSlope: 0.0031250003
+      outSlope: 0
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 64
-      value: 0.6
-      inSlope: 0.0031250003
+      value: 0.8
+      inSlope: -0
       outSlope: Infinity
       tangentMode: 69
       weightedMode: 3
@@ -95,7 +98,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  mainHeadFloatingMovementContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
+  mainHeadFloatingMovementContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
     type: 2}
   mainHeadFloatingMovementWeight:
     serializedVersion: 2
@@ -147,7 +150,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  sideHeadFloatingMovementContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
+  sideHeadFloatingMovementContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
     type: 2}
   sideHeadFloatingMovementOffset:
     serializedVersion: 2

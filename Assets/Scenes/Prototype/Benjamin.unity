@@ -1477,9 +1477,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2953981515775001461, guid: 658db2d35db1fff428ef58d390a368d7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1515488936}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 658db2d35db1fff428ef58d390a368d7, type: 3}
+--- !u!4 &1058660962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2953981515775001461, guid: 658db2d35db1fff428ef58d390a368d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058660961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1138709176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2145,6 +2155,54 @@ MonoBehaviour:
   minDistanceToWayPoint: 2
   pointForceTarget: {fileID: 1251056565}
   wayPoint: {fileID: 1887755218}
+--- !u!1 &1515488935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515488936}
+  - component: {fileID: 1515488937}
+  m_Layer: 0
+  m_Name: ConglomerateAnalyser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1515488936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515488935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1058660962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1515488937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515488935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd629ec36ff7e194f80e9396fea70667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conglomerateMovementDatas:
+  - {fileID: 11400000, guid: c80af9049d782324ebe4a4d8b86a34ba, type: 2}
+  - {fileID: 11400000, guid: f76159d8cb092b34bb1f8570a57e8ee1, type: 2}
+  - {fileID: 11400000, guid: 7749842efb9a7d146b6e9b35ec54f041, type: 2}
 --- !u!1 &1541228901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4744931310031922935, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,

@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class ConglomerateMovementData : ScriptableObject
 {
+    [Header("Requirements")]
+    [SerializeField] private int minConglomerateSize = 1;
+    [SerializeField] private int maxConglomerateSize = 8;
+    [SerializeField][Range(0f,1f)][Tooltip("0 = lots of branches, 1 = no branches.")] private float conglomerateBranchingCoef = 0.5f;
+
+
     [Header("Overarching")]
     [SerializeField] private AnimationCurve ForceAllocated = AnimationCurve.Linear(0, 0, 64, 64);
     [SerializeField] private AnimationCurve MainMovementFloatingMovementRatio = AnimationCurve.Constant(0, 64, 0.5f);
@@ -21,6 +27,11 @@ public class ConglomerateMovementData : ScriptableObject
     [SerializeField] private AnimationCurve sideHeadFloatingMovementOffset = AnimationCurve.Constant(0, 64, 0.5f);
     [Space]
     [SerializeField] private int sideHeadInterval = 3;
+
+    public int GetMinConglomerateSize { get => minConglomerateSize; }
+    public int GetMaxConglomerateSize { get => maxConglomerateSize; }
+    public float GetConglomerateBranchingCoef { get => conglomerateBranchingCoef; }
+
 
     public ModularCurveContainer GetMainHeadMainMovementContainer { get => mainHeadMainMovementContainer; }
     public ModularCurveContainer GetMainHeadFloatingMovementContainer { get => mainHeadMainMovementContainer; }
