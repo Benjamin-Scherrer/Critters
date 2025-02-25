@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{db08ea39-aaf6-4f6d-9719-a74fdecbb0ff}">
 		<property name="color">
-			<value>Red</value>
+			<value>Purple</value>
 		</property>
 		<property name="name">
 			<value>UI_Close</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3cb6196e-8b90-45ce-af42-a18ebba4b331}</destination>
@@ -90,7 +90,7 @@
 	</object>
 	<object class="MultiSound" id="{d8f827e3-f101-41d1-9e9a-1caf85a9dd23}">
 		<relationship name="sounds">
-			<destination>{fbb82481-947a-46f8-b883-d830264e0bce}</destination>
+			<destination>{870c8688-53fa-413d-ae39-73d2f45a72d9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{32685774-4278-45b6-931c-209a49e0bcc0}">
@@ -105,9 +105,9 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2fa6a086-4a7e-4b3f-92ab-6a2692c7849d}" />
-	<object class="SingleSound" id="{fbb82481-947a-46f8-b883-d830264e0bce}">
+	<object class="SingleSound" id="{870c8688-53fa-413d-ae39-73d2f45a72d9}">
 		<relationship name="audioFile">
-			<destination>{56a13991-9383-4532-83fc-fcffa7c2b23d}</destination>
+			<destination>{927abcf5-8d58-4642-a4bb-88a436e09c4d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{ae09ff15-51e5-455a-9602-3336219684d9}" />

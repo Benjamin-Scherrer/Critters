@@ -17,8 +17,7 @@ public class FMODEvents : MonoBehaviour
     [field: Header ("Ambient")]
     [field: SerializeField] public EventReference Ambience {get; private set;}
 
-    [field: Header ("Item Pickup")]
-    [field: SerializeField] public EventReference Item_Pickup {get; private set;}
+    [field: Header ("SFX")]
     [field: SerializeField] public EventReference Collisions {get; private set;}
     [field: SerializeField] public EventReference Grabbing {get; private set;}
     [field: SerializeField] public EventReference Breaking {get; private set;}
