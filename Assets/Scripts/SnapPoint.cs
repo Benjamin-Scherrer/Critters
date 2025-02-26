@@ -31,12 +31,19 @@ public class SnapPoint : MonoBehaviour
         coll = GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider otherSnapPointCollider)
     {
-        if (other.CompareTag("SnapPoint"))
+        if (otherSnapPointCollider.CompareTag("SnapPoint"))
         {
             if (!coll.enabled) return;
-            transform.parent.GetComponent<JointPointSnap>().Snap(other.gameObject, this);
+            if(configurableJointReference != null) return;
+            transform.parent.GetComponent<JointPointSnap>().Snap(otherSnapPointCollider.gameObject, this);
         }
     }
+
+
+    //private void OnDestroy()
+    //{
+    //    throw new Exception("BRUH WTF.");
+    //}
 }
