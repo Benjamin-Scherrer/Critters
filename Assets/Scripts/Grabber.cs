@@ -1,20 +1,21 @@
 using extOSC;
 using UnityEngine;
 
-public class Grabber : MonoBehaviour {
+public class Grabber : MonoBehaviour
+{
 
-    [Header("OSC Settings")][Space]
+    [Header("OSC Settings")]
     [SerializeField] private OSCReceiver Receiver;
     [SerializeField] private string Address = "/ipad";
 
-    [Header("Grabber Settings")][Space]
-    [Range(0.2f,1f)]
+    [Header("Grabber Settings")]
+    [Range(0.2f, 1f)]
     [SerializeField] private float grabSlowMotion = 0.8f;
-    [Range(0f, 5f)]
     [SerializeField] private float grabLift = 2f;
     [SerializeField] private float floatHeight = 0.25f;
+    [SerializeField] private float grabRadius = 1f;
 
-    [Header("Joint Settings")][Space]
+    [Header("Joint Settings")]
     [SerializeField] private float posSpring = 40f;
     [SerializeField] private float posDamp = 10f;
     [SerializeField] private float rotSpring = 20f;
@@ -22,18 +23,28 @@ public class Grabber : MonoBehaviour {
 
     private Vector3 oscPosition = Vector3.zero;
     private bool oscDown = false;
-    private Vector3 position;
     private Vector3 worldPosition;
     private Rigidbody rb;
     private MeshRenderer meshRenderer;
     private GameObject snappedGeobody;
     private ConfigurableJoint joint;
+    private Camera mainCam;
 
-    private void Start()
+    private LayerMask geobodyLayer;
+    private LayerMask backgroundLayer;
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false;
+        geobodyLayer = LayerMask.GetMask("Geobody");
+        backgroundLayer = LayerMask.GetMask("Background");
+    }
+
+    private void Start()
+    {
+        mainCam = Camera.main;
         Receiver.Bind(Address, MapValues);
     }
 
@@ -58,52 +69,50 @@ public class Grabber : MonoBehaviour {
 
     private void Drag(Vector3 inputPosition, bool down)
     {
-        position = new Vector3(inputPosition.x, inputPosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
-        worldPosition = Camera.main.ScreenToWorldPoint(position);
+        RaycastHit geobodyHit;
+        RaycastHit cursorHit;
+        Vector3 rayOrigin = mainCam.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCam.nearClipPlane));
+        Vector3 rayDirection = mainCam.ScreenToWorldPoint(new Vector3(0f, 0f, mainCam.farClipPlane - mainCam.nearClipPlane));
+        Physics.Raycast(rayOrigin, rayDirection, out cursorHit, Mathf.Infinity, backgroundLayer);
+        Physics.SphereCast(rayOrigin, grabRadius, rayDirection, out geobodyHit, Mathf.Infinity, geobodyLayer);
+        worldPosition = cursorHit.point;
+        rb.position = worldPosition - rayDirection.normalized * floatHeight;
 
         if (down)
         {
             if (snappedGeobody == null)
             {
-                RaycastHit hit = CastRay(inputPosition);
+                if (cursorHit.collider == null) return;
 
-                if (hit.collider != null)
-                {
-                    meshRenderer.enabled = true;
-                    Cursor.visible = false;
-                    Time.timeScale = grabSlowMotion;
-                    transform.position = new Vector3(worldPosition.x, floatHeight, worldPosition.z);
+                meshRenderer.enabled = true;
+                Cursor.visible = false;
+                Time.timeScale = grabSlowMotion;
 
-                    if (!hit.collider.CompareTag("Geobody"))
-                    {
-                        return;
-                    }
+                if (geobodyHit.collider == null) return;
 
-                    snappedGeobody = hit.collider.gameObject;
-                    transform.position = snappedGeobody.transform.position;
-                    joint = snappedGeobody.AddComponent<ConfigurableJoint>();
-                    joint.connectedBody = rb;
-                    joint.anchor = Vector3.zero;
-                    joint.rotationDriveMode = RotationDriveMode.Slerp;
-                    var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-                    var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-                    joint.xDrive = posDrive;
-                    joint.yDrive = posDrive;
-                    joint.zDrive = posDrive;
-                    joint.slerpDrive = rotDrive;
-                }
+                snappedGeobody = geobodyHit.collider.gameObject;
+                joint = snappedGeobody.AddComponent<ConfigurableJoint>();
+                joint.autoConfigureConnectedAnchor = false;
+                joint.connectedBody = rb;
+                joint.anchor = Vector3.zero;
+                joint.connectedAnchor = snappedGeobody.transform.localPosition - transform.localPosition;
+                joint.rotationDriveMode = RotationDriveMode.Slerp;
+                var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
+                var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
+                joint.xDrive = posDrive;
+                joint.yDrive = posDrive;
+                joint.zDrive = posDrive;
+                joint.slerpDrive = rotDrive;
             }
             else
             {
-                transform.position = new Vector3(worldPosition.x, floatHeight + grabLift, worldPosition.z);
+                rb.position = worldPosition - rayDirection.normalized * (floatHeight + grabLift);
             }
         }
-
-        else 
+        else
         {
             if (snappedGeobody != null)
             {
-                transform.position = new Vector3(worldPosition.x, floatHeight, worldPosition.z);
                 Destroy(joint);
                 snappedGeobody = null;
             }
@@ -114,20 +123,9 @@ public class Grabber : MonoBehaviour {
         }
     }
 
-    private RaycastHit CastRay(Vector3 inputPosition) {
-        Vector3 screenMousePosFar = new Vector3(
-            inputPosition.x,
-            inputPosition.y,
-            Camera.main.farClipPlane);
-        Vector3 screenMousePosNear = new Vector3(
-            inputPosition.x,
-            inputPosition.y,
-            Camera.main.nearClipPlane);
-        Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
-        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
-        RaycastHit hit;
-        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
-
-        return hit;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(worldPosition, grabRadius);
     }
 }
