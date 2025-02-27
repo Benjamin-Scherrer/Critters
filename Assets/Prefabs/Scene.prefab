@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 3257920652954961564}
   - component: {fileID: 5815238031540639689}
   - component: {fileID: 8959406734319887108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,6 +462,7 @@ MonoBehaviour:
   grabSlowMotion: 0.8
   grabLift: 0
   floatHeight: 1
+  grabRadius: 1
   posSpring: 400
   posDamp: 100
   rotSpring: 100
@@ -872,7 +873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   looseCount: 12
-  maxCount: 25
+  maxCount: 24
+  edgeToSpawnDistance: 4
   geobodies:
   - {fileID: 2100023758627800783, guid: 6d57b64e35e8bb044aed58dba1d037da, type: 3}
   - {fileID: 1224952393688860678, guid: 0192b412ed8b36c499ab3eb04d41376a, type: 3}
