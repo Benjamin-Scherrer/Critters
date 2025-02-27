@@ -13,37 +13,51 @@ public class WayPointManager : MonoBehaviour
 
     private float distanceTreshhold = 0;
 
-    private void Awake()
-    {
-        Instance = this;
-
-
-        float largestDistance = 0;
-
-        for (int i = 1; i < wayPoints.Count; i++)
-        {
-            Transform wayPoint = wayPoints[i];
-            float distance = Vector3.Distance(wayPoint.position, wayPoints[0].position);
-            if(distance > largestDistance)
-            {
-                largestDistance = distance;
-            }
-        }
-        distanceTreshhold = largestDistance * IgnoreCloserPercentageCoef;
-    }
-
+    //PUBLIC
     public Transform GetWayPoint(Transform previousWayPoint)
     {
-        if(wayPoints.Count == 0) throw new System.Exception("WayPointManager has no waypoints assigned");
+        if (wayPoints.Count == 0) throw new System.Exception("WayPointManager has no waypoints assigned");
 
         int randomIndex = Random.Range(0, wayPoints.Count);
-        for(int i = randomIndex, steps = 0; steps < wayPoints.Count; i++, steps++)
+        for (int i = randomIndex, steps = 0; steps < wayPoints.Count; i++, steps++)
         {
             i = i % wayPoints.Count;
             if (Vector3.Distance(wayPoints[i].position, previousWayPoint.position) < distanceTreshhold) continue;
             if (previousWayPoint != null && wayPoints[randomIndex] == previousWayPoint) continue;
             return wayPoints[i];
         }
-        throw new System.Exception("No available waypoints");
+        return wayPoints[(randomIndex + 1) % wayPoints.Count];
+        //throw new System.Exception("No available waypoints");
+    }
+
+    //PRIVATE
+    private void Awake()
+    {
+        Instance = this;
+
+
+
+        CalculateDistancetreshhold();
+    }
+
+
+    private void CalculateDistancetreshhold()
+    {
+        float largestDistance = 0;
+
+        for (int i = 0; i < wayPoints.Count; i++)
+        {
+            for (int j = 0; i < wayPoints.Count; i++)
+            {
+                if(i == j) continue;
+                float distance = Vector3.Distance(wayPoints[j].position, wayPoints[i].position);
+                if (distance < largestDistance) continue;
+                largestDistance = distance;
+            }
+        }
+
+        Debug.Log("Larget Distance: " + largestDistance);
+        distanceTreshhold = largestDistance * IgnoreCloserPercentageCoef;
+        Debug.Log("Distance Treshhold:" + distanceTreshhold);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-public class CreateSeparateMovementData : Editor
+public class CreateSeparateMovementData
 {
     [MenuItem("Assets/Create/ScriptableObjects/SeparateMovementData")]
     public static void CreateMyAsset()

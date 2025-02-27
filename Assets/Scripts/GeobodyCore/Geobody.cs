@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(JointPointSnap))]
-[RequireComponent(typeof(Movement_PointForce))]
+[RequireComponent(typeof(MovementModuleManager))]
 [RequireComponent(typeof(ConglomerateManager))]
 public class Geobody : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Geobody : MonoBehaviour
 
     //REFERENCES
     private JointPointSnap jointPointSnap;
-    private Movement_Abstract[] movementScripts;
+    private MovementModuleManager movementModuleManager;
     private ConglomerateManager conglomerateManager;
 
     private ConglomerateManager conglomerateHead;
@@ -71,97 +72,37 @@ public class Geobody : MonoBehaviour
     {
         //prepare force data
 
+        List<IMovementModule> separateMovementModules = separateMovementData.GetMovementModules;
         float forceAllocated = separateMovementData.GetForceAllocated;
-        float mainMovementForceMult = forceAllocated * separateMovementData.GetSeparateMainMovementFloatingMovementRatio;
-        float floatingMovementForceMult = forceAllocated * (1 - separateMovementData.GetSeparateMainMovementFloatingMovementRatio);
 
 
         geobodyType = GeobodyType.Separate;
-        foreach (Movement_Abstract movementScript in movementScripts)
-        {
-            switch (movementScript.MovementType)
-            {
-                case MovementType.MainMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = separateMovementData.GetSeparateMainMovementContainer;
-                    movementScript.ExtraForceMultiplier = mainMovementForceMult;
-                    //movementScript.TimeOffset = 0;
-                    break;
-                case MovementType.FloatingMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = separateMovementData.GetSeparateFloatingMovementContainer;
-                    movementScript.ExtraForceMultiplier = floatingMovementForceMult;
-                    //movementScript.TimeOffset = 0;
-                    break;
-                default: throw new ArgumentOutOfRangeException();
-            }
-        }
+        movementModuleManager.SetMovementModules(separateMovementModules, forceAllocated, 0);
 
-        if(separateMaterial != null && useDebugMaterials) myRenderer.material = separateMaterial;
+        if (separateMaterial != null && useDebugMaterials) myRenderer.material = separateMaterial;
         conglomerateHead = null;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
     }
 
-    public void SetToMainHead(ConglomerateManager newConglomerateHead,
-        ModularCurveContainer mainMovementContainer, ModularCurveContainer floatingMovementContainer,
-        float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier)
+    public void SetToMainHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated)
     {
         geobodyType = GeobodyType.MainHead;
-        foreach (Movement_Abstract movementScript in movementScripts)
-        {
-           switch(movementScript.MovementType)
-            {
-                case MovementType.MainMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = mainMovementContainer;
-                    movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
-                    movementScript.TimeOffset = 0;
-                    break;
-                case MovementType.FloatingMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = floatingMovementContainer;
-                    movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
-                    movementScript.TimeOffset = 0;
-                    break;
-                default: throw new ArgumentOutOfRangeException();
-            }
-        }
+        movementModuleManager.SetMovementModules(movementModules, forceAllocated, 0);
 
-        if(mainHeadMaterial != null && useDebugMaterials) myRenderer.material = mainHeadMaterial;
+        if (mainHeadMaterial != null && useDebugMaterials) myRenderer.material = mainHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
         
         jointPointSnap.UpdateSnapPointStatus(true, true);
     }
 
-    public void SetToSideHead(ConglomerateManager newConglomerateHead,
-        ModularCurveContainer mainMovementContainer, ModularCurveContainer floatingMovementContainer,
-        float mainMovementExtraForceMultiplier, float floatingExtraForceMultiplier, 
-        float mainMovementOffset, float floatingMovementOffset)
+    public void SetToSideHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated, float timeOffset)
     {
         geobodyType = GeobodyType.SideHead;
-        foreach (Movement_Abstract movementScript in movementScripts)
-        {
-            switch (movementScript.MovementType)
-            {
-                case MovementType.MainMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = mainMovementContainer;
-                    movementScript.ExtraForceMultiplier = mainMovementExtraForceMultiplier;
-                    movementScript.TimeOffset = mainMovementOffset;
-                    break;
-                case MovementType.FloatingMovement:
-                    movementScript.enabled = true;
-                    movementScript.SetForceCurveContainer = floatingMovementContainer;
-                    movementScript.ExtraForceMultiplier = floatingExtraForceMultiplier;
-                    movementScript.TimeOffset = floatingMovementOffset;
-                    break;
-                default: throw new ArgumentOutOfRangeException();
-            }
-        }
+        movementModuleManager.SetMovementModules(movementModules, forceAllocated, timeOffset);
 
-        if(sideHeadMaterial != null && useDebugMaterials) myRenderer.material = sideHeadMaterial;
+        if (sideHeadMaterial != null && useDebugMaterials) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, true);
@@ -170,27 +111,9 @@ public class Geobody : MonoBehaviour
     public void SetToLimb(ConglomerateManager newConglomerateHead)
     {
         geobodyType = GeobodyType.Limb;
-        foreach (Movement_Abstract movementScript in movementScripts)
-        {
-            switch (movementScript.MovementType)
-            {
-                case MovementType.MainMovement:
-                    movementScript.enabled = false;
-                    //movementScript.SetForceCurveContainer = mainMovementContainer;
-                    //movementScript.ExtraForceMultiplier = 1;
-                    //movementScript.TimeOffset = 0;
-                    break;
-                case MovementType.FloatingMovement:
-                    movementScript.enabled = false;
-                    //movementScript.SetForceCurveContainer = floatingMovementContainer;
-                    //movementScript.ExtraForceMultiplier = 1;
-                    //movementScript.TimeOffset = 0;
-                    break;
-                default: throw new ArgumentOutOfRangeException();
-            }
-        }
+        movementModuleManager.SetMovementModules(null, 0, 0);
 
-        if(limbMaterial != null && useDebugMaterials) myRenderer.material = limbMaterial;
+        if (limbMaterial != null && useDebugMaterials) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
@@ -208,8 +131,8 @@ public class Geobody : MonoBehaviour
         //removed because i'm referencing the geobody anyways.
 
         //
-        movementScripts = GetComponentsInChildren<Movement_Abstract>();
-        if(movementScripts.Length == 0) throw new Exception("No Movement_Abstract components found in children of Geobody");
+        movementModuleManager = GetComponent<MovementModuleManager>();
+        if(movementModuleManager == null) throw new Exception("No movement module manager found");
 
         //
         if(!TryGetComponent<ConglomerateManager>(out conglomerateManager)) 

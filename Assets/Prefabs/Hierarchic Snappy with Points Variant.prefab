@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914959906404572461}
-  - component: {fileID: 807202412780080228}
   m_Layer: 0
   m_Name: ForceTarget
   m_TagString: Untagged
@@ -32,18 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2159043177347288864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &807202412780080228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5986555465027510869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d66d7bba9e7da488d406c6053d9cbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2347421449439602584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,11 +550,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9170454854264938416}
-    - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2184420461774320340}
+      addedObject: {fileID: 7386213441478182648}
     - targetCorrespondingSourceObject: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       insertIndex: -1
@@ -604,7 +587,7 @@ MonoBehaviour:
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
   useDebugMaterials: 1
---- !u!114 &9170454854264938416
+--- !u!114 &7386213441478182648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -613,50 +596,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4744931310031922935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d73ea9f099fd2c47a909a5a6b2bf293, type: 3}
+  m_Script: {fileID: 11500000, guid: 62173efd7cff8fc47ac02a83350e2dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 1
-  forceCurveContainer: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b,
-    type: 2}
-  localDirection: 1
-  directionXCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
-    type: 2}
-  directionYCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
-    type: 2}
-  directionZCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
-    type: 2}
-  GizmoSize: 3
-  movementToRotationRatio: 0.5
-  forwardDirectionToDirectionToWayPointRatio: 0.4
-  minDistanceToWayPoint: 2
-  pointForceTarget: {fileID: 8914959906404572461}
-  wayPoint: {fileID: 0}
---- !u!114 &2184420461774320340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744931310031922935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c52cfc0ee1d5f41a71a27b8da5974a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementType: 2
-  forceCurveContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
-    type: 2}
-  localDirection: 0
-  directionXCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
-    type: 2}
-  directionYCurveContainer: {fileID: 11400000, guid: ebd07ea3b45e68b4b953ce7c69605c08,
-    type: 2}
-  directionZCurveContainer: {fileID: 11400000, guid: f808c724cd325494a9e66d827ecea78d,
-    type: 2}
-  GizmoSize: 0.5
-  target: {fileID: 8914959906404572461}
-  snapToSurface: 0
+  forceTarget: {fileID: 8914959906404572461}
 --- !u!114 &488273853230739240
 MonoBehaviour:
   m_ObjectHideFlags: 0

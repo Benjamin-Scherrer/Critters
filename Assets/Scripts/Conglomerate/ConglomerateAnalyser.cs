@@ -19,6 +19,11 @@ public class ConglomerateAnalyser : MonoBehaviour
 
         geobodiesAlreadyReachedTemp = new List<Geobody>();
         geobodyLayersTemp = new List<List<Geobody>>();
+
+        foreach(ConglomerateMovementData conglomerateMovementData in conglomerateMovementDatas)
+        {
+            conglomerateMovementData.NormalizeMovementModuleMultipliers();
+        }
     }
 
     public void AnalyseConglomerate(List<Geobody> conglomerateGeobodies, out ConglomerateMovementData conglomerateMovementData, out List<List<Geobody>> geobodyLayers)
