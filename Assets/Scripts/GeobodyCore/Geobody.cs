@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(JointPointSnap))]
@@ -32,6 +33,8 @@ public class Geobody : MonoBehaviour
 
     //PROPERTIES
     public ConglomerateManager GetConglomerateHead { get { return conglomerateHead; } } 
+
+    public static int colorCount = 0;
 
     //EVENTS
     //public delegate void GeobodyEventHandler(Geobody geobody);
@@ -101,6 +104,9 @@ public class Geobody : MonoBehaviour
         conglomerateHead = null;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
+
+        if (!GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Add(this);
+        if (GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Remove(this);
     }
 
     public void SetToMainHead(ConglomerateManager newConglomerateHead,
@@ -133,6 +139,9 @@ public class Geobody : MonoBehaviour
 
         
         jointPointSnap.UpdateSnapPointStatus(true, true);
+
+        if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
+        if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
     }
 
     public void SetToSideHead(ConglomerateManager newConglomerateHead,
@@ -165,6 +174,9 @@ public class Geobody : MonoBehaviour
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, true);
+
+        if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
+        if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
     }
 
     public void SetToLimb(ConglomerateManager newConglomerateHead)
@@ -194,6 +206,9 @@ public class Geobody : MonoBehaviour
         conglomerateHead = newConglomerateHead;
 
         jointPointSnap.UpdateSnapPointStatus(true, false);
+
+        if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
+        if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
     }
 
 
@@ -220,14 +235,15 @@ public class Geobody : MonoBehaviour
         //
         if(!TryGetComponent<Renderer>(out myRenderer))
             throw new Exception("No Renderer component found in children of Geobody");
-
-        if (myRenderer != null) baseMaterial = myRenderer.material;
     }
 
     private void Start()
     {
         //Set Geobody Type
         SetToSeparate();
+
+        baseMaterial = GeobodyManager.Instance.PickMaterial();
+        myRenderer.material = baseMaterial;
     }
 
     private void Update()

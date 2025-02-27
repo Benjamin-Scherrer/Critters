@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8914959906404572461}
   - component: {fileID: 807202412780080228}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ForceTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 408567492783388155, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2068323605057964382, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       propertyPath: mainSnapPoints.Array.size
@@ -167,10 +172,45 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 295a9880b02fc1f478566ccad6f89463, type: 2}
+    - target: {fileID: 4296606672472209133, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533822191311602766, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833395937817515721, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740396099382204211, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942089115117367789, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
         type: 3}
       propertyPath: m_Name
       value: Hierarchic Snappy with Points Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735813996150595212, guid: 467df8abecccb2f4c9cb18124eab12cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
