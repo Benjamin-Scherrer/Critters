@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4595629800490849554}
   - component: {fileID: 7212741385963715921}
   m_Layer: 2
-  m_Name: Cursor
+  m_Name: Drag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,8 +50,6 @@ MonoBehaviour:
   Receiver: {fileID: 0}
   Address: /ipad
   grabSlowMotion: 0.8
-  grabLift: 0
-  floatHeight: 1
   posSpring: 400
   posDamp: 100
   rotSpring: 100

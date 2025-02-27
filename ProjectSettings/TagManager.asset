@@ -9,15 +9,14 @@ TagManager:
   - Magnet S
   - Magnet N
   - Magnet NS
-  - SnapPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Geobody
+  - 
   - Water
   - UI
-  - Background
+  - 
   - 
   - 
   - 
