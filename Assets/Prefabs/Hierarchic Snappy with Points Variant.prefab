@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8914959906404572461}
-  - component: {fileID: 807202412780080228}
   m_Layer: 3
   m_Name: ForceTarget
   m_TagString: Untagged
@@ -627,7 +626,7 @@ MonoBehaviour:
   mainHeadMaterial: {fileID: 2100000, guid: 4213f0a538249284aa98b6c1c923f52f, type: 2}
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
-  useDebugMaterials: 1
+  useDebugMaterials: 0
 --- !u!114 &7386213441478182648
 MonoBehaviour:
   m_ObjectHideFlags: 0
