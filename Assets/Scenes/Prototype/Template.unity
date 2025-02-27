@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &20294991
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -277,14 +277,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 20294990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &25345958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,7 +812,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -843,14 +838,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 71833056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &138775663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,7 +1217,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -1253,14 +1243,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 191062219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1 &203388259
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,7 +6205,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -6246,14 +6231,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1032163047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &1037440956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7384,6 +7364,29 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42bc4486e564c414eac2b5595d7918e8, type: 3}
+--- !u!1 &1198921687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6974859310707951513, guid: 175452ec2fba8084599a71e2d44b748c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645064947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1198921693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198921687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &1242180846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8442,7 +8445,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -8468,14 +8471,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1399377893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &1403080598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9716,7 +9714,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 13
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -9742,14 +9740,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603534196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541, type: 2}
 --- !u!1001 &1607170623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10151,10 +10144,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3981181776218524034, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4371066951105528044, guid: 175452ec2fba8084599a71e2d44b748c,
         type: 3}
       propertyPath: m_Name
       value: Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175303296107826704, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354145495886211550, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354145495886211550, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 7530294462695731931, guid: 175452ec2fba8084599a71e2d44b748c,
         type: 3}
@@ -10186,6 +10199,21 @@ PrefabInstance:
       propertyPath: virtualCameras.Array.data[5]
       value: 
       objectReference: {fileID: 191062221}
+    - target: {fileID: 7623637386970375520, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: orthographic size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163465385311626175, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163465385311626175, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16
+      objectReference: {fileID: 0}
     - target: {fileID: 9204969934333328081, guid: 175452ec2fba8084599a71e2d44b748c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10239,7 +10267,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6974859310707951513, guid: 175452ec2fba8084599a71e2d44b748c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1198921693}
   m_SourcePrefab: {fileID: 100100000, guid: 175452ec2fba8084599a71e2d44b748c, type: 3}
 --- !u!1001 &1671373174
 PrefabInstance:
