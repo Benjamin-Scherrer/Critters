@@ -36,6 +36,8 @@ public class Geobody : MonoBehaviour
 
     public static int colorCount = 0;
 
+    public bool wasOnScreen = false;
+
     //EVENTS
     //public delegate void GeobodyEventHandler(Geobody geobody);
     //public event GeobodyEventHandler JointSnapped;
@@ -170,6 +172,8 @@ public class Geobody : MonoBehaviour
 
     private void Update()
     {
+        //CheckScreen();
+
         if (!useDebugMaterials && baseMaterialCheck)
         {
             myRenderer.material = baseMaterial;
@@ -337,5 +341,23 @@ public class Geobody : MonoBehaviour
     private void AddToConglomerate(Geobody otherGeobody)
     {
         conglomerateHead.OnJointSnapped(otherGeobody);
+    }
+
+    private void CheckScreen()
+    {
+        float edgeOffset = 4f * Screen.height / (2 * Camera.main.orthographicSize);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (screenPos.x < Screen.width && screenPos.x > 0f && screenPos.y < Screen.height && screenPos.y > 0f)
+        {
+            wasOnScreen = true;
+        }
+
+        if (screenPos.x > Screen.width + edgeOffset || screenPos.x < - edgeOffset || screenPos.y > Screen.height + edgeOffset || screenPos.y < - edgeOffset && wasOnScreen)
+        {
+            if (GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Remove(this);
+            if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
+            Destroy(this);
+        }
     }
 }

@@ -11,6 +11,7 @@ public class GeobodyManager : MonoBehaviour
     [SerializeField] private float looseCount = 12f;
     [SerializeField] private float maxCount = 25f;
     [SerializeField] private float edgeToSpawnDistance = 2f;
+    [SerializeField] private float spawnInterval = 2f;
 
     [Header("Asset Reference")]
     [SerializeField] private List<GameObject> geobodies = new List<GameObject>();
@@ -19,6 +20,8 @@ public class GeobodyManager : MonoBehaviour
     [Header("Geobody Tracking")]
     public List<Geobody> looseGeobodies = new List<Geobody>();
     public List<Geobody> snappedGeobodies = new List<Geobody>();
+
+    private float timer;
 
     private List<GameObject> geobodyPool = new List<GameObject>();
     private List<Material> materialPool = new List<Material>();
@@ -43,10 +46,13 @@ public class GeobodyManager : MonoBehaviour
 
     void Update()
     {
-        if (looseGeobodies.Count < looseCount && looseGeobodies.Count+snappedGeobodies.Count < maxCount)
+        if (looseGeobodies.Count < looseCount && looseGeobodies.Count+snappedGeobodies.Count < maxCount && timer == spawnInterval)
         {
             InstantiateGeobody(GetScreenEdgePosition());
         }
+
+        timer -= Time.deltaTime;
+        if (timer < 0f) timer = spawnInterval;
     }
 
     private Vector3 GetScreenEdgePosition()
@@ -93,7 +99,7 @@ public class GeobodyManager : MonoBehaviour
     private void InstantiateGeobody(Vector3 position)
     {
         int selectedElement = Random.Range(0, geobodyPool.Count);
-        Instantiate(geobodyPool[selectedElement], position, Quaternion.identity);
+        Instantiate(geobodyPool[selectedElement], position, Quaternion.LookRotation(transform.up, transform.forward));
         geobodyPool.RemoveAt(selectedElement);
         if (geobodyPool.Count == 0) geobodyPool.AddRange(geobodies);
     }

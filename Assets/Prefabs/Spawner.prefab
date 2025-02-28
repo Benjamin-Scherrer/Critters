@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &311900953507280666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6446393741046040697}
+  - component: {fileID: 4082316068018816576}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6446393741046040697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311900953507280666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4082316068018816576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311900953507280666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba92a4dfc1cefd46a30ab14c5719762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  looseCount: 12
+  maxCount: 24
+  edgeToSpawnDistance: 2
+  spawnInterval: 1
+  geobodies:
+  - {fileID: 2100023758627800783, guid: 6d57b64e35e8bb044aed58dba1d037da, type: 3}
+  - {fileID: 1224952393688860678, guid: 0192b412ed8b36c499ab3eb04d41376a, type: 3}
+  - {fileID: 2702925788362182650, guid: 03758ed8915d82442b94e3d4517e1619, type: 3}
+  - {fileID: 7676204379187422226, guid: 631a93bce3d958d4bb1062f1e9045bed, type: 3}
+  - {fileID: 8403392115781136880, guid: 91115ef522b59bc49a5f91837fbfd823, type: 3}
+  - {fileID: 6508565848963589489, guid: 87b3039f3db585f45a281a66e731e45f, type: 3}
+  - {fileID: 815137150220020677, guid: 5aaa2ef9286376e4492fbd23cc691eb5, type: 3}
+  - {fileID: 2403378995272793919, guid: 0c6221c6be5dc6f4ea1826f773db98b6, type: 3}
+  - {fileID: 354356924761799053, guid: 42bc4486e564c414eac2b5595d7918e8, type: 3}
+  - {fileID: 4928157991822243330, guid: a639220ddcc75c74bb3fd2256bc3e741, type: 3}
+  - {fileID: 2100023758627800783, guid: 8b987bb74705f41199c823e0e465d7cf, type: 3}
+  - {fileID: 2100023758627800783, guid: 12b6026c4df61439d9e66c86202a2921, type: 3}
+  - {fileID: 2100023758627800783, guid: c84ad3b50ef6f45b2b112bdb30a5733c, type: 3}
+  stippledMaterials:
+  - {fileID: 2100000, guid: 30c28bcfb82f6994c840fb3ff13da0d8, type: 2}
+  - {fileID: 2100000, guid: 6a8c3475aa43d5644989358e8edf538a, type: 2}
+  - {fileID: 2100000, guid: 4b621c718a8800b43bad032bc2112490, type: 2}
+  - {fileID: 2100000, guid: 8bd4870446e83c8409f6cb171b9ec06e, type: 2}
+  looseGeobodies: []
+  snappedGeobodies: []
