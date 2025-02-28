@@ -1350,6 +1350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder.001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7994205589922085314, guid: 2a1b07add2a5b4cb0923a51adaf830f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2316,10 +2321,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4222077231404538306, guid: 5c923dcf1dfa04871a0587fde7e4d074,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5500627245527138432, guid: 5c923dcf1dfa04871a0587fde7e4d074,
         type: 3}
       propertyPath: m_Name
       value: Cylinder.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5500627245527138432, guid: 5c923dcf1dfa04871a0587fde7e4d074,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6296029521003273586, guid: 5c923dcf1dfa04871a0587fde7e4d074,
         type: 3}
@@ -2627,6 +2642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cylinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091369413775033422, guid: b8d152c023c4f4a0ba42ff1349a7eaa4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3975,7 +3995,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sharedProfile
       value: 
-      objectReference: {fileID: 11400000, guid: 5b2c93e771205ab43be779ab38f6e57c,
+      objectReference: {fileID: 11400000, guid: c6c6e1625143049689b4923f92156541,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

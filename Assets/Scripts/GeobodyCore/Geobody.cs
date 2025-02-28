@@ -357,7 +357,7 @@ public class Geobody : MonoBehaviour
         {
             if (GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Remove(this);
             if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
