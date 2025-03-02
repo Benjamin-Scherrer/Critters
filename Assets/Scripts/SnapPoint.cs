@@ -6,7 +6,32 @@ public class SnapPoint : MonoBehaviour
     private Collider coll;
     private ConfigurableJoint configurableJointReference;
 
+    public bool HasJoint { get { return configurableJointReference != null; } }
     //PUBLIC
+    public bool JointIsConnectingTo(Geobody geobody)
+    {
+        if (configurableJointReference == null) throw new Exception("configurableJointReference is null.");
+        Geobody originGeobody = configurableJointReference.GetComponent<Geobody>();
+        Geobody connectedGeobody = configurableJointReference.connectedBody.GetComponent<Geobody>();
+
+        return originGeobody == geobody || connectedGeobody == geobody;
+    }
+
+    public void RemoveConnection()
+    {
+        if (configurableJointReference == null) throw new Exception("configurableJointReference is null.");
+
+        Debug.Log("Split Off");
+        //remove each other from list
+        JointPointSnap originJointPointSnap = configurableJointReference.GetComponent<JointPointSnap>();
+        JointPointSnap connectedJointPointSnap = configurableJointReference.connectedBody.GetComponent<JointPointSnap>();
+        originJointPointSnap.RemoveJointPointSnapFromList(connectedJointPointSnap);
+        connectedJointPointSnap.RemoveJointPointSnapFromList(originJointPointSnap);
+
+        Destroy(configurableJointReference);
+        configurableJointReference = null;
+    }
+
     public void SetConfigurableJointReference(ConfigurableJoint joint)
     {
         if (configurableJointReference != null) throw new Exception("configurableJointReference already set: " + configurableJointReference);

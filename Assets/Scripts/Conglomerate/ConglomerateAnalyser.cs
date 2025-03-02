@@ -60,6 +60,22 @@ public class ConglomerateAnalyser : MonoBehaviour
         geobodyLayers = geobodyLayersTemp;
 
         if (geobodyLayers[0].Count != 1) throw new System.Exception("GeobodyLayers has weird amount of goebodies in main head layer:" + geobodyLayers[0].Count);
+
+
+        if (geobodiesAlreadyReachedTemp.Count < conglomerateGeobodies.Count)
+        {
+            //throw new System.Exception("More geobodies were reached than there exist in the conglomerate... ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
+            conglomerateGeobodies.Clear();
+            conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
+            Debug.Log("Conglomerate Reduced");
+        }
+        if (geobodiesAlreadyReachedTemp.Count > conglomerateGeobodies.Count)
+        {
+            //throw new System.Exception("Not all geobodies were reached... "); 
+            conglomerateGeobodies.Clear();
+            conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
+            Debug.Log("Conglomerate Expanded");
+        }
     }
 
     private void GoThroughConglomerateHierarchy(Geobody mainHead, List<Geobody> geobodiesAlreadyReached, List<List<Geobody>> geobodyLayers)
@@ -103,19 +119,26 @@ public class ConglomerateAnalyser : MonoBehaviour
 
     private ConglomerateMovementData FitToMovementData(int conglomerateSize, int geobodyLayersCount)
     {
+        //layer count is always equal or smaller than the conglomerate size. Thus divide the two to get a value between 0 and 1.
         float conglomerateBranchingCoef = (float)geobodyLayersCount / (float)conglomerateSize; //the more layers the closer to 1, thus the less branches it has.
+        Debug.Log("ConglomerateBranchingCoef: " + conglomerateBranchingCoef + ", GeobodyLayersCount: " + geobodyLayersCount + ", conglomerateSize: " + conglomerateSize);
+        //Somehow geobodyLayerCount is larger sometimes... weird bug... easy fix is to clamp lmao.
+        conglomerateBranchingCoef = Mathf.Clamp(conglomerateBranchingCoef, 0, 1);
+        //TODO: Unfuck the bug
+
 
         float matchingCoef = -1;
         ConglomerateMovementData selectedConglomerateMovementData = null;
         foreach (ConglomerateMovementData conglomerateMovementData in conglomerateMovementDatas)
         {
-             float tempMatchingCoef = MatchConglorateMovementDatarequirements(conglomerateMovementData, conglomerateSize, conglomerateBranchingCoef);
+            float tempMatchingCoef = MatchConglorateMovementDatarequirements(conglomerateMovementData, conglomerateSize, conglomerateBranchingCoef);
+            Debug.Log("TempMatchingCoef: " + tempMatchingCoef);
             if (tempMatchingCoef < matchingCoef) continue;
             matchingCoef = tempMatchingCoef;
             selectedConglomerateMovementData = conglomerateMovementData;
         }
 
-        if(selectedConglomerateMovementData == null) throw new System.Exception("No movement data found");
+        if(selectedConglomerateMovementData == null) throw new System.Exception("No movement data found. Matching coef: " + matchingCoef);
         return selectedConglomerateMovementData;
     }
 

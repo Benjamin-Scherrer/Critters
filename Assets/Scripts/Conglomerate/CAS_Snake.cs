@@ -27,7 +27,7 @@ public class CAS_Snake : CongomerateAllotmentScript
 
         SnakeSideHeadSetupAndLimbSearching(conglomerateManager, conglomerateMovementData, snakeChain, forceAllocated, mainHeadForceAllocated, limbs);
 
-        LimbSetup(conglomerateManager, limbs);
+        LimbSetup(conglomerateManager, conglomerateMovementData, limbs);
     }
 
 
@@ -112,8 +112,9 @@ public class CAS_Snake : CongomerateAllotmentScript
             mainHeadMovementModules[i] = snakeMovementModule;
         }
 
+        int mainHeadMaxSnap = conglomerateMovementData.GetMainHeadMaxSnaps;
         //Set main head. //Calculate variables depending on the existence of side heads.
-        snakeChain[0].SetToMainHead(conglomerateManager, mainHeadMovementModules, mainHeadForceAllocated);
+        snakeChain[0].SetToMainHead(conglomerateManager, mainHeadMovementModules, mainHeadForceAllocated, mainHeadMaxSnap);
     }
 
     private void SnakeSideHeadSetupAndLimbSearching(ConglomerateManager conglomerateManager, ConglomerateMovementData conglomerateMovementData, List<Geobody> snakeChain, float forceAllocated, float mainHeadForceAllocated, List<Geobody> Limbs)
@@ -152,14 +153,16 @@ public class CAS_Snake : CongomerateAllotmentScript
             sideHeadMovementModules[i] = snakeMovementModule;
         }
 
-        sideHead.SetToSideHead(conglomerateManager, sideHeadMovementModules, sideHeadForceAllocated, sideTimeOffset);
+        int sideHeadMaxSnap = conglomerateMovementData.GetSideHeadMaxSnaps;
+        sideHead.SetToSideHead(conglomerateManager, sideHeadMovementModules, sideHeadForceAllocated, sideHeadMaxSnap, sideTimeOffset);
     }
 
-    private void LimbSetup(ConglomerateManager conglomerateManager, List<Geobody> limbs)
+    private void LimbSetup(ConglomerateManager conglomerateManager, ConglomerateMovementData conglomerateMovementData, List<Geobody> limbs)
     {
+        int limbMaxSnap = conglomerateMovementData.GetLimbMaxSnaps;
         foreach (Geobody g in limbs)
         {
-            g.SetToLimb(conglomerateManager);
+            g.SetToLimb(conglomerateManager, limbMaxSnap);
         }
     }
 }

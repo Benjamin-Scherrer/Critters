@@ -174,8 +174,9 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
         float mainHeadMainMovementWeight = hasSideHeads ? conglomerateMovementData.EvaluateMainHeadSideHeadForceRatio(conglomerateGeobodiesCount) : 1;
         mainHeadForceAllocated = movementForceAllocated * mainHeadMainMovementWeight;
 
+        int mainHeadMaxSnap = conglomerateMovementData.GetMainHeadMaxSnaps;
         //Set main head. //Calculate variables depending on the existence of side heads.
-        mainHead.SetToMainHead(conglomerateManager, mainHeadMovementModules, mainHeadForceAllocated);
+        mainHead.SetToMainHead(conglomerateManager, mainHeadMovementModules, mainHeadForceAllocated, mainHeadMaxSnap);
     }
 
     private void SideHeadAndLimbSetup(ConglomerateManager conglomerateManager, ConglomerateMovementData conglomerateMovementData, List<List<Geobody>> geobodyLayers, int sideHeadCount, float movementForceAllocated, float mainHeadMovementMult)
@@ -187,7 +188,7 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
         {
             if (geobodyLayers[i].Count == 0) break;
             if (i % sideHeadInterval == 0) SideHeadSetup(conglomerateManager, conglomerateMovementData, geobodyLayers[i], sideHeadCount, i / sideHeadInterval, movementForceAllocated, mainHeadMovementMult);
-            else LimbSetup(conglomerateManager, geobodyLayers[i]);
+            else LimbSetup(conglomerateManager, conglomerateMovementData, geobodyLayers[i]);
         }
     }
 
@@ -205,17 +206,19 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
         //Set all selected side heads.
         sideHeadForceAllocated /= sideHeadCount;
 
+        int sideHeadMaxSnap = conglomerateMovementData.GetSideHeadMaxSnaps;
         foreach (Geobody g in sideHeads)
         {
-            g.SetToSideHead(conglomerateManager, sideHeadMovementModules, sideHeadForceAllocated, sideTimeOffset);
+            g.SetToSideHead(conglomerateManager, sideHeadMovementModules, sideHeadForceAllocated, sideHeadMaxSnap, sideTimeOffset);
         }
     }
 
-    private void LimbSetup(ConglomerateManager conglomerateManager, List<Geobody> limbs)
+    private void LimbSetup(ConglomerateManager conglomerateManager, ConglomerateMovementData conglomerateMovementData, List<Geobody> limbs)
     {
+        int limbMaxSnap = conglomerateMovementData.GetLimbMaxSnaps; 
         foreach (Geobody g in limbs)
         {
-            g.SetToLimb(conglomerateManager);
+            g.SetToLimb(conglomerateManager, limbMaxSnap);
         }
     }
 }

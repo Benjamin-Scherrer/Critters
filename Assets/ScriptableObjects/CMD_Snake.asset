@@ -92,5 +92,8 @@ MonoBehaviour:
     Weight: 1
   sideHeadTimeOffset: 0.3
   sideHeadInterval: 3
+  mainHeadMaxSnaps: 1
+  sideHeadMaxSnaps: 3
+  limbMaxSnaps: 2
   congomerateAllotmentScript: {fileID: 11400000, guid: c98f0e13bc5b64c4eab832e4c7eec6df,
     type: 2}

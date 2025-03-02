@@ -39,11 +39,13 @@ public struct MM_Waypoint : IMovementModule
         rigidbody.AddForceAtPosition(fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection, forceTarget.position, ForceMode.Impulse);
 
 
-        //Debug.DrawLine(forceTarget.position, GetWaypoint.position, Color.red);  
-        //Debug.DrawLine(forceTarget.position, forceTarget.position + forceWorldDirection * 2f, Color.green);
+        Debug.DrawLine(forceTarget.position, GetWaypoint.position, Color.red);  
+        Debug.DrawLine(forceTarget.position, forceTarget.position + forceWorldDirection * 2f, Color.green);
 
+        
         if (Vector3.Distance(forceTarget.position, GetWaypoint.position) < 2f) //fixed variable bc fuck it.
         {
+            Debug.Log("Change Waypoint!");
             waypoint = WayPointManager.Instance.GetWayPoint(GetWaypoint);
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class JointPointSnap : MonoBehaviour
@@ -14,37 +15,86 @@ public class JointPointSnap : MonoBehaviour
     //[SerializeField] private float rotDamp = 5f;
 
     [Header("Joint Groups")]
-    [SerializeField] private List<SnapPoint> mainSnapPoints = new List<SnapPoint>();
-    [SerializeField] private List<SnapPoint> secondarySnapPoints = new List<SnapPoint>();
+    [SerializeField] private List<SnapPoint> mainSnapPoints = new();
+    [SerializeField] private List<SnapPoint> secondarySnapPoints = new();
 
     [Header("Snapping Limit")]
     [SerializeField] private int maxSnaps = 4;
 
+    private bool allowMainSnapPoints = true;
+    private bool allowSecondarySnapPoints = true;
+
+    //References
     private Geobody geobody;
-    private List<Collider> snappedColliders = new List<Collider>();
+    private List<Collider> snappedColliders = new();
+
+
 
     //FUCK ME JANK UTILITY
     public List<SnapPoint> GetMainSnapPoints {  get  { return mainSnapPoints; } }
     public List<SnapPoint> GetSondarySnapPoints { get { return secondarySnapPoints; } }
 
+    public List<Collider> GetSnappedColliders { get => snappedColliders; }
 
-    //PUBLIC
-    public void UpdateSnapPointStatus(bool allowMainSnapPoints, bool allowSecondarySnapPoints)
+
+    //timestamp float
+    private float timeOfSplit = 0;
+    private float timePastSplitNeeded = 1;
+
+    public bool IsPastTImeOfSplit
     {
-        if (snappedColliders.Count >= maxSnaps)
+    get
         {
-            DisableMainSnapPoints();
-            DisableSecondarySnapPointsColliders();
+            return Time.time - timeOfSplit > timePastSplitNeeded;
         }
-
-        if(allowMainSnapPoints) EnableMainSnapPoints();
-        else DisableMainSnapPoints();
-
-        if (allowSecondarySnapPoints) EnableSecondarySnapPointsColliders();
-        else DisableSecondarySnapPointsColliders();
     }
 
-    public List<Collider> GetSnappedColliders { get => snappedColliders; }
+
+    //PUBLIC
+    public void UpdateSnapPointStatus(bool allowMainSnapPoints, bool allowSecondarySnapPoints, int newMaxSnaps)
+    {
+        this.allowMainSnapPoints = allowMainSnapPoints;
+        this.allowSecondarySnapPoints = allowSecondarySnapPoints;
+        maxSnaps = newMaxSnaps;
+        UpdateSnapPointStatus();
+    }
+
+  
+    //idk what this is for just coded it for good measure lmao
+    public void SplitOffGeobody(Geobody splitOffGeobody)
+    {
+        //find joint and delete it
+        foreach(SnapPoint snapPoint in secondarySnapPoints.Concat(mainSnapPoints))
+        {
+            if (!snapPoint.HasJoint) continue;
+            if (! snapPoint.JointIsConnectingTo(splitOffGeobody)) continue;
+            snapPoint.RemoveConnection();
+        }
+    }
+
+    public void SplitOffAll()
+    {
+        foreach (SnapPoint snapPoint in secondarySnapPoints.Concat(mainSnapPoints))
+        {
+            if (!snapPoint.HasJoint) continue;
+            snapPoint.RemoveConnection();
+        }
+    }
+
+    public void RemoveJointPointSnapFromList(JointPointSnap jointPointSnap)
+    {
+        Collider collider = jointPointSnap.GetComponent<Collider>();
+        snappedColliders.Remove(collider);
+
+        timeOfSplit = Time.time;
+
+        //update snap points.
+        UpdateSnapPointStatus();
+
+        //Update Geobody
+        geobody.OnJointSplit();
+    }
+
 
     public Geobody[] GetSnappedGeobodies()
     {
@@ -75,6 +125,9 @@ public class JointPointSnap : MonoBehaviour
         if(!otherSnapPointCollider.transform.parent.TryGetComponent(out Collider otherParentCollider)) throw new Exception("Rigidbody not found");
         if(!otherSnapPointCollider.transform.parent.TryGetComponent(out Geobody otherParentGeobody)) throw new Exception("Geobody not found");
         if(!otherSnapPointCollider.transform.parent.TryGetComponent(out JointPointSnap otherParentJointPointSnap)) throw new Exception("JointPointSnap not found");
+
+        //prevent snapping to the same geobody it just split off from.
+        if (!IsPastTImeOfSplit || !otherParentJointPointSnap.IsPastTImeOfSplit) return;
 
         //General check if it is already snapped to the same thing, possible by weird edge cases, just abort.
         if (snappedColliders.Contains(otherParentCollider)) return; // throw new Exception("Collider already snapped");
@@ -350,4 +403,48 @@ public class JointPointSnap : MonoBehaviour
 
         return joint;
     }
+
+    //PRIVATE SNAP POINT CODE
+    private void UpdateSnapPointStatus()
+    {
+        if (snappedColliders.Count >= maxSnaps)
+        {
+            DisableMainSnapPoints();
+            DisableSecondarySnapPointsColliders();
+
+            //toss away extra geobodies, starting with those on the secondary snap points.
+            StartRemovingSnappedGeobodies();
+        }
+
+        if (allowMainSnapPoints) EnableMainSnapPoints();
+        else DisableMainSnapPoints();
+
+        if (allowSecondarySnapPoints) EnableSecondarySnapPointsColliders();
+        else DisableSecondarySnapPointsColliders();
+    }
+
+    //Split Off Code
+    private void StartRemovingSnappedGeobodies()
+    {
+        for (int i = 0; i < snappedColliders.Count; i++)
+        {
+            if (snappedColliders.Count <= maxSnaps) break;
+            if (GoThroughSnapPointsAndRemoveConnectedGeobody(secondarySnapPoints)) continue;
+            if (GoThroughSnapPointsAndRemoveConnectedGeobody(mainSnapPoints)) continue;
+            break;
+        }
+        //No need to update snap point status, as the relevant geobodies will do that themselves.
+    }
+
+    private bool GoThroughSnapPointsAndRemoveConnectedGeobody(List<SnapPoint> snapPoints)
+    {
+        foreach(SnapPoint snapPoint in snapPoints)
+        {
+            if (!snapPoint.HasJoint) continue;
+            snapPoint.RemoveConnection();
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -23,6 +23,11 @@ public class ConglomerateMovementData : ScriptableObject
     [SerializeField] private float sideHeadTimeOffset = 0.5f;
     [SerializeField] private int sideHeadInterval = 3;
 
+    [Header("Max Snaps")]
+    [SerializeField] private int mainHeadMaxSnaps = 4;
+    [SerializeField] private int sideHeadMaxSnaps = 3;
+    [SerializeField] private int limbMaxSnaps = 2;
+
     [Header("Special Conglomerate Alotment Script")]
     [SerializeReference] private CongomerateAllotmentScript congomerateAllotmentScript;
 
@@ -59,6 +64,11 @@ public class ConglomerateMovementData : ScriptableObject
     public int GetSideHeadInterval { get => sideHeadInterval; }
     public float GetSideHeadTimeOffset { get => sideHeadTimeOffset; }
 
+    public int GetMainHeadMaxSnaps { get => mainHeadMaxSnaps; }
+    public int GetSideHeadMaxSnaps { get => sideHeadMaxSnaps; }
+    public int GetLimbMaxSnaps { get => limbMaxSnaps; }
+
+
     public float EvaluateForceAllocated(int conglomerateSize)
     {
         return ForceAllocated.Evaluate(conglomerateSize);
@@ -92,9 +102,9 @@ public class ConglomerateMovementData : ScriptableObject
         }
     }
 
-    public void RunConglomerateAllotmentScript(ConglomerateManager conglomerateMaanger, List<Geobody> conglomerateGeobodies, List<List<Geobody>> geobodyLayers)
+    public void RunConglomerateAllotmentScript(ConglomerateManager conglomerateMananger, List<Geobody> conglomerateGeobodies, List<List<Geobody>> geobodyLayers)
     {
         if (congomerateAllotmentScript == null) throw new Exception("No Conglomerate Allotment Script assigned to Conglomerate Movement Data");
-        congomerateAllotmentScript.RunConglomerateAlotmentScript(conglomerateMaanger, this, conglomerateGeobodies, geobodyLayers);
+        congomerateAllotmentScript.RunConglomerateAlotmentScript(conglomerateMananger, this, conglomerateGeobodies, geobodyLayers);
     }
 }

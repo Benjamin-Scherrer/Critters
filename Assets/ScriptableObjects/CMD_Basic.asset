@@ -80,5 +80,8 @@ MonoBehaviour:
   SideHeadMovementModules: []
   sideHeadTimeOffset: 0.5
   sideHeadInterval: 3
+  mainHeadMaxSnaps: 4
+  sideHeadMaxSnaps: 4
+  limbMaxSnaps: 3
   congomerateAllotmentScript: {fileID: 11400000, guid: a66d4771de9f311419e2cd103c3fe24c,
     type: 2}

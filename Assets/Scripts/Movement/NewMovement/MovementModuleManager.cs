@@ -33,10 +33,10 @@ public class MovementModuleManager : MonoBehaviour
     private void FixedUpdate()
     {
         if(movementModules.Count == 0) return;
-        Debug.Log("MovementModuleManagerCount: " + movementModules.Count);
+        //Debug.Log("MovementModuleManagerCount: " + movementModules.Count);
         foreach (IMovementModule movementModule in movementModules)
         {
-            Debug.Log("MovementModule: " + movementModule.GetType().ToString());
+            //Debug.Log("MovementModule: " + movementModule.GetType().ToString());
             movementModule.Run(rb, forceTarget, forceAllocated, timeOffset);
         }
     }

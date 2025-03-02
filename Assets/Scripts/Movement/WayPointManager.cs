@@ -23,7 +23,7 @@ public class WayPointManager : MonoBehaviour
         {
             i = i % wayPoints.Count;
             if (Vector3.Distance(wayPoints[i].position, previousWayPoint.position) < distanceTreshhold) continue;
-            if (previousWayPoint != null && wayPoints[randomIndex] == previousWayPoint) continue;
+            if (previousWayPoint != null && wayPoints[i] == previousWayPoint) continue;
             return wayPoints[i];
         }
         return wayPoints[(randomIndex + 1) % wayPoints.Count];
@@ -56,8 +56,8 @@ public class WayPointManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Larget Distance: " + largestDistance);
+        //Debug.Log("Larget Distance: " + largestDistance);
         distanceTreshhold = largestDistance * IgnoreCloserPercentageCoef;
-        Debug.Log("Distance Treshhold:" + distanceTreshhold);
+        //Debug.Log("Distance Treshhold:" + distanceTreshhold);
     }
 }

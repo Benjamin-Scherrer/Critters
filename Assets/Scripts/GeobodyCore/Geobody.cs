@@ -47,6 +47,12 @@ public class Geobody : MonoBehaviour
     }
 
     //PUBLIC
+    public void OnJointSplit()
+    {
+        //important: This is called on its own conglomerate manager not caring whether it already has a head or not.
+        conglomerateManager.OnJointSplit(this);
+    }
+
     public void OnJointSnap(Geobody other)
     {
         if (other.GetConglomerateHead != null && other.GetConglomerateHead == conglomerateHead) return; 
@@ -84,13 +90,17 @@ public class Geobody : MonoBehaviour
         if (separateMaterial != null && useDebugMaterials) myRenderer.material = separateMaterial;
         conglomerateHead = null;
 
-        jointPointSnap.UpdateSnapPointStatus(true, false);
+        jointPointSnap.SplitOffAll();
+        jointPointSnap.UpdateSnapPointStatus(true, false, 2);
 
         if (!GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Add(this);
         if (GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Remove(this);
+
+        conglomerateManager.enabled = false;
+        conglomerateManager.DeactivateConglomerateManager();
     }
 
-    public void SetToMainHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated)
+    public void SetToMainHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated, int maxSnaps)
     {
         geobodyType = GeobodyType.MainHead;
         movementModuleManager.SetMovementModules(movementModules, forceAllocated, 0);
@@ -99,13 +109,15 @@ public class Geobody : MonoBehaviour
         conglomerateHead = newConglomerateHead;
 
         
-        jointPointSnap.UpdateSnapPointStatus(true, true);
+        jointPointSnap.UpdateSnapPointStatus(true, true, maxSnaps);
 
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
+
+        conglomerateManager.enabled = true;
     }
 
-    public void SetToSideHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated, float timeOffset)
+    public void SetToSideHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated, int maxSnaps, float timeOffset)
     {
         geobodyType = GeobodyType.SideHead;
         movementModuleManager.SetMovementModules(movementModules, forceAllocated, timeOffset);
@@ -113,13 +125,16 @@ public class Geobody : MonoBehaviour
         if (sideHeadMaterial != null && useDebugMaterials) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
 
-        jointPointSnap.UpdateSnapPointStatus(true, true);
+        jointPointSnap.UpdateSnapPointStatus(true, true, maxSnaps);
 
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
+
+        conglomerateManager.enabled = false;
+        conglomerateManager.DeactivateConglomerateManager();
     }
 
-    public void SetToLimb(ConglomerateManager newConglomerateHead)
+    public void SetToLimb(ConglomerateManager newConglomerateHead, int maxSnaps)
     {
         geobodyType = GeobodyType.Limb;
         movementModuleManager.SetMovementModules(null, 0, 0);
@@ -127,10 +142,13 @@ public class Geobody : MonoBehaviour
         if (limbMaterial != null && useDebugMaterials) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;
 
-        jointPointSnap.UpdateSnapPointStatus(true, false);
+        jointPointSnap.UpdateSnapPointStatus(true, true, maxSnaps);
 
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
+
+        conglomerateManager.enabled = false;
+        conglomerateManager.DeactivateConglomerateManager();
     }
 
 
@@ -206,25 +224,14 @@ public class Geobody : MonoBehaviour
                 other.AddToConglomerate(this);
                 break;
             case GeobodyType.MainHead:
-                //throw new Exception("MainHead can't snap to MainHead");
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
-                //throw new Exception("MainHead can't snap to SideHead");
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
-                //This case can happen because when two geobodies snap one of them will turn into a mainhead and turn the other into a limb. 
-                //Thus triggering this case, in which nothing happens because the geobody was already snapped.
-
-                ////Still there needs to be a save against two conglomerates snapping to each other.
-                ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
-                //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
@@ -240,25 +247,14 @@ public class Geobody : MonoBehaviour
                 other.AddToConglomerate(this);
                 break;
             case GeobodyType.MainHead:
-                //throw new Exception("SideHead can't snap to MainHead");
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
-                //throw new Exception("SideHead can't snap to SideHead");
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
-                //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
-                //Thus triggering this case, in which nothing happens because the geobody was already snapped.
-
-                ////Still there needs to be a save against two conglomerates snapping to each other.
-                ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
-                //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
@@ -274,43 +270,20 @@ public class Geobody : MonoBehaviour
                 other.AddToConglomerate(this);
                 break;
             case GeobodyType.MainHead:
-                //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
-                //Thus triggering this case, in which nothing happens because the geobody was already snapped.
-
-                ////Still there needs to be a save against two conglomerates snapping to each other.
-                ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
-                //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.SideHead:
-                //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
-                //Thus triggering this case, in which nothing happens because the geobody was already snapped.
-
-                ////Still there needs to be a save against two conglomerates snapping to each other.
-                ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
-                //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             case GeobodyType.Limb:
-                //This case can happen because when two geobodies snap, and one of them is a side head, it  will turn the other into a limb. 
-                //Thus triggering this case, in which nothing happens because the geobody was already snapped.
-
-                ////Still there needs to be a save against two conglomerates snapping to each other.
-                ////check if this conglomerate is the same as the other ones. Otherwise throw an error.
-                //CheckIfIsAlreadyConnected(other); removed for noww, because now we're working with overwriting the other conglomerate.
-
                 //Absorb other conglomerate
                 CombineComglomerates(other.GetConglomerateHead);
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
     }
-
-
 
     private void CreateConglomerate(Geobody otherGeobody)
     {
@@ -319,6 +292,7 @@ public class Geobody : MonoBehaviour
 
         //first set this geobody to head
         conglomerateManager.CreateConglomerate(this);
+        conglomerateHead = conglomerateManager;
         //then add the other geobody to the conglomerate
         conglomerateHead.OnJointSnapped(otherGeobody);
     }
@@ -328,14 +302,10 @@ public class Geobody : MonoBehaviour
         conglomerateHead.CombineComglomerates(absorbedConglomerateManager);
     }
 
-    //private void DestroyConglomerate()
-    //{
-    //    conglomerateManager.DestroyConglemerate();
-    //}
-
-    //the following two don't need any difference if i code it sensibly.
     private void AddToConglomerate(Geobody otherGeobody)
     {
         conglomerateHead.OnJointSnapped(otherGeobody);
     }
+
+
 }
