@@ -92,5 +92,5 @@ MonoBehaviour:
     Weight: 1
   sideHeadTimeOffset: 0.5
   sideHeadInterval: 3
-  congomerateAllotmentScript: {fileID: 11400000, guid: a66d4771de9f311419e2cd103c3fe24c,
+  congomerateAllotmentScript: {fileID: 11400000, guid: ec81cce987ce61d40a9e3e93f6511814,
     type: 2}

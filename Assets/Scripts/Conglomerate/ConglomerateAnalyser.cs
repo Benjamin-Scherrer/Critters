@@ -39,8 +39,6 @@ public class ConglomerateAnalyser : MonoBehaviour
                 geobodyLayersCount++;
         }
         conglomerateMovementData = FitToMovementData(conglomerateSize, geobodyLayersCount);
-
-       
     }
 
     private void GoThroughConglomerateHierarchyStart(List<Geobody> conglomerateGeobodies, out List<List<Geobody>> geobodyLayers)
@@ -76,17 +74,13 @@ public class ConglomerateAnalyser : MonoBehaviour
             //Debug.Log("before hierarchy step 1");
             if (geobody == null) throw new System.Exception("Geobody is null");
             //Debug.Log("before hierarchy step 2");
-            if (geobody == mainHead)
-            {
-                Debug.Log("Geobody g is the same as the main head");
-                continue;
-            }
+            if (geobody == mainHead) { /*Debug.Log("Geobody g is the same as the main head");*/ continue; }
             //Debug.Log("before hierarchy step 3");
             GoThroughConglomerateHierarchyStep(0, geobody, geobodiesAlreadyReached, geobodyLayers);
         }
     }
 
-    private void GoThroughConglomerateHierarchyStep(int chainDepth, Geobody originGeobody, List<Geobody> geobodiesAlreadyReached, List<List<Geobody>> sideHeadLayers)
+    private void GoThroughConglomerateHierarchyStep(int chainDepth, Geobody originGeobody, List<Geobody> geobodiesAlreadyReached, List<List<Geobody>> GeobodyLayers)
     {
         if (chainDepth < 0) throw new System.Exception("Depth out of bounds");
         if (originGeobody == null) throw new System.Exception("Geobody is null");
@@ -95,15 +89,15 @@ public class ConglomerateAnalyser : MonoBehaviour
 
         chainDepth++;
 
-        if (sideHeadLayers.Count <= chainDepth) sideHeadLayers.Add(new List<Geobody>());
-        sideHeadLayers[chainDepth].Add(originGeobody);
+        if (GeobodyLayers.Count <= chainDepth) GeobodyLayers.Add(new List<Geobody>());
+        GeobodyLayers[chainDepth].Add(originGeobody);
 
         Geobody[] tempGeobodies = originGeobody.GetSnappedGeobodies();
         foreach (Geobody geobody in tempGeobodies)
         {
             if (geobody == null) throw new System.Exception("Geobody is null");
             if (geobody == originGeobody) throw new System.Exception("Geobody is itself");
-            GoThroughConglomerateHierarchyStep(chainDepth, geobody, geobodiesAlreadyReached, sideHeadLayers);
+            GoThroughConglomerateHierarchyStep(chainDepth, geobody, geobodiesAlreadyReached, GeobodyLayers);
         }
     }
 
