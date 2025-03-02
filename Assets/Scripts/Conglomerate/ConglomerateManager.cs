@@ -17,26 +17,27 @@ public class ConglomerateManager : MonoBehaviour
 
     private float currentLiveTime = 0;
 
-    private  List<Geobody> Geobodies = new();
+    private  List<Geobody> geobodies = new();
 
     //PUBLIC
     public void CreateConglomerate(Geobody geobody)
     {
-        if(Geobodies.Count != 0) throw new System.Exception("Conglomerate already exists");
-        Geobodies.Add(geobody);
+        //if(geobodies.Count != 0) throw new System.Exception("Conglomerate already exists");
+        geobodies.Clear();
+        geobodies.Add(geobody);
 
         //Set currentLiveTIme
         currentLiveTime = liveTime;
 
-        //Run once to set the first geobody to main head. //DONT RUN BECAUSE THE AMOUNT OF GEOBOIES IN THE LIST IS STILL FUCKED; CAN ONLY RUN AFTER THEOTHER GEOBDY IS ADDED
+        //Run once to set the first geobody to main head. //DONT RUN BECAUSE THE AMOUNT OF GEOBOIES IN THE LIST IS STILL FUCKED; CAN ONLY RUN AFTER THEOTHER GEOBODY IS ADDED
         //UpdateConglomerate();
     }
 
     public void CombineComglomerates(ConglomerateManager absorbedConglomerateManager)
     {
         //move all content from absorbed conglomerate manager to this conglomerate manager.
-        Geobodies.AddRange(absorbedConglomerateManager.Geobodies);
-        absorbedConglomerateManager.Geobodies.Clear();
+        geobodies.AddRange(absorbedConglomerateManager.geobodies);
+        //absorbedConglomerateManager.geobodies.Clear(); idk remove bc i dont care anymore
 
         currentLiveTime += liveGainedFromSnap;
 
@@ -45,21 +46,21 @@ public class ConglomerateManager : MonoBehaviour
 
     public void DeactivateConglomerateManager()
     {
-        Geobodies.Clear();
+        geobodies.Clear();
     }
 
     public void OnJointSplit(Geobody geobody)
     {
         //Redo the conglomerate calcualtion.
-        Geobodies.Clear(); //jank workaround
+        //geobodies.Clear(); //jank workaround
         CreateConglomerate(geobody);
         UpdateConglomerate();
     }
 
     public void OnJointSnapped(Geobody geobody)
     {
-        if(Geobodies.IndexOf(geobody) != -1) return;
-        Geobodies.Add(geobody);
+        if(geobodies.IndexOf(geobody) != -1) return;
+        geobodies.Add(geobody);
 
         currentLiveTime += liveGainedFromSnap;
         //Debug.Log("On joint snappped");
@@ -69,24 +70,26 @@ public class ConglomerateManager : MonoBehaviour
     //PRIVATE
     private void UpdateConglomerate()
     {
-        ConglomerateAnalyser.Instance.AnalyseConglomerate(Geobodies, out conglomerateMovementData, out List<List<Geobody>> geobodyLayers);
+        ConglomerateAnalyser.Instance.AnalyseConglomerate(geobodies, out conglomerateMovementData, out List<List<Geobody>> geobodyLayers);
 
-        if(Geobodies.Count == 0) throw new System.Exception("No geobodies in conglomerate");
-        if(Geobodies.Count == 1)
+        if(geobodies.Count == 0) throw new System.Exception("No geobodies in conglomerate");
+        if(geobodies.Count == 1)
         {
-            Geobodies[0].SetToSeparate();
+            geobodies[0].SetToSeparate();
             return;
         }
 
-        conglomerateMovementData.RunConglomerateAllotmentScript(this, Geobodies, geobodyLayers);
+        conglomerateMovementData.RunConglomerateAllotmentScript(this, geobodies, geobodyLayers);
     }
 
     private void Update()
     {
-        if(Geobodies.Count == 0) return;
+        if(geobodies.Count == 0) return;
         currentLiveTime -= Time.deltaTime;
         if (currentLiveTime > 0) return;
-        foreach(Geobody geobody in Geobodies)
+        List<Geobody> geobodiesCopy = new List<Geobody>(geobodies);
+        geobodiesCopy.AddRange(geobodies);
+        foreach (Geobody geobody in geobodiesCopy)
         {
             geobody.SetToSeparate();
         }

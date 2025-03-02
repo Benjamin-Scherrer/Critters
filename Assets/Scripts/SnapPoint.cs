@@ -17,16 +17,29 @@ public class SnapPoint : MonoBehaviour
         return originGeobody == geobody || connectedGeobody == geobody;
     }
 
-    public void RemoveConnection()
+    public void SaveRemoveConnection()
     {
         if (configurableJointReference == null) throw new Exception("configurableJointReference is null.");
 
-        Debug.Log("Split Off");
-        //remove each other from list
+        //this one does make every affected geobody check their hierarchy...
         JointPointSnap originJointPointSnap = configurableJointReference.GetComponent<JointPointSnap>();
         JointPointSnap connectedJointPointSnap = configurableJointReference.connectedBody.GetComponent<JointPointSnap>();
-        originJointPointSnap.RemoveJointPointSnapFromList(connectedJointPointSnap);
-        connectedJointPointSnap.RemoveJointPointSnapFromList(originJointPointSnap);
+        originJointPointSnap.SaveRemoveJointPointSnapFromList(connectedJointPointSnap);
+        connectedJointPointSnap.SaveRemoveJointPointSnapFromList(originJointPointSnap);
+
+        Destroy(configurableJointReference);
+        configurableJointReference = null;
+    }
+
+    public void RiskyRemoveConnection()
+    {
+        if (configurableJointReference == null) throw new Exception("configurableJointReference is null.");
+
+        //The difference is that this one does not make the geobodies check their hierarchy...
+        JointPointSnap originJointPointSnap = configurableJointReference.GetComponent<JointPointSnap>();
+        JointPointSnap connectedJointPointSnap = configurableJointReference.connectedBody.GetComponent<JointPointSnap>();
+        originJointPointSnap.RiskyRemoveJointPointSnapFromList(connectedJointPointSnap);
+        connectedJointPointSnap.RiskyRemoveJointPointSnapFromList(originJointPointSnap);
 
         Destroy(configurableJointReference);
         configurableJointReference = null;

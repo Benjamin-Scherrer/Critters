@@ -45,7 +45,7 @@ public struct MM_Waypoint : IMovementModule
         
         if (Vector3.Distance(forceTarget.position, GetWaypoint.position) < 2f) //fixed variable bc fuck it.
         {
-            Debug.Log("Change Waypoint!");
+            //Debug.Log("Change Waypoint!");
             waypoint = WayPointManager.Instance.GetWayPoint(GetWaypoint);
         }
     }

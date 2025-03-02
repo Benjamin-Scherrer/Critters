@@ -51,6 +51,7 @@ public class Geobody : MonoBehaviour
     {
         //important: This is called on its own conglomerate manager not caring whether it already has a head or not.
         conglomerateManager.OnJointSplit(this);
+        conglomerateHead = conglomerateManager;
     }
 
     public void OnJointSnap(Geobody other)
@@ -76,10 +77,11 @@ public class Geobody : MonoBehaviour
         }
     }
 
-    public void SetToSeparate() //consider some way of reseting the modular curve containers when separating, rn its fine to keep it like that because it looks fun if the parts keep moving with their old movement sceme.
+    public void SetToSeparate() 
+        //consider some way of reseting the modular curve containers when separating,
+        //rn its fine to keep it like that because it looks fun if the parts keep moving with their old movement sceme.
     {
         //prepare force data
-
         List<IMovementModule> separateMovementModules = separateMovementData.GetMovementModules;
         float forceAllocated = separateMovementData.GetForceAllocated;
 
@@ -114,7 +116,10 @@ public class Geobody : MonoBehaviour
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
 
-        conglomerateManager.enabled = true;
+        if (conglomerateManager == conglomerateHead)
+        {
+            conglomerateManager.enabled = true;
+        }
     }
 
     public void SetToSideHead(ConglomerateManager newConglomerateHead, List<IMovementModule> movementModules, float forceAllocated, int maxSnaps, float timeOffset)
@@ -130,8 +135,11 @@ public class Geobody : MonoBehaviour
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
 
-        conglomerateManager.enabled = false;
-        conglomerateManager.DeactivateConglomerateManager();
+        if (conglomerateManager != conglomerateHead)
+        {
+            conglomerateManager.enabled = false;
+            conglomerateManager.DeactivateConglomerateManager();
+        }
     }
 
     public void SetToLimb(ConglomerateManager newConglomerateHead, int maxSnaps)
@@ -147,8 +155,11 @@ public class Geobody : MonoBehaviour
         if (!GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Add(this);
         if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
 
-        conglomerateManager.enabled = false;
-        conglomerateManager.DeactivateConglomerateManager();
+        if (conglomerateManager != conglomerateHead)
+        {
+            conglomerateManager.enabled = false;
+            conglomerateManager.DeactivateConglomerateManager();
+        }
     }
 
 
@@ -287,8 +298,8 @@ public class Geobody : MonoBehaviour
 
     private void CreateConglomerate(Geobody otherGeobody)
     {
-        if(conglomerateManager.enabled) throw new Exception("ConglomerateManager already enabled");
-        conglomerateManager.enabled = true;
+        //if(conglomerateManager.enabled) throw new Exception("ConglomerateManager already enabled");
+        //conglomerateManager.enabled = true;
 
         //first set this geobody to head
         conglomerateManager.CreateConglomerate(this);

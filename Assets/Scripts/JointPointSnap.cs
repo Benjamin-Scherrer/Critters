@@ -18,8 +18,8 @@ public class JointPointSnap : MonoBehaviour
     [SerializeField] private List<SnapPoint> mainSnapPoints = new();
     [SerializeField] private List<SnapPoint> secondarySnapPoints = new();
 
-    [Header("Snapping Limit")]
-    [SerializeField] private int maxSnaps = 4;
+    //[Header("Snapping Limit")]
+    private int maxSnaps = 4;
 
     private bool allowMainSnapPoints = true;
     private bool allowSecondarySnapPoints = true;
@@ -39,7 +39,8 @@ public class JointPointSnap : MonoBehaviour
 
     //timestamp float
     private float timeOfSplit = 0;
-    private float timePastSplitNeeded = 1;
+    [Header("Snapping Cooldown after Splitting")] 
+    [SerializeField] private float timePastSplitNeeded = 4;
 
     public bool IsPastTImeOfSplit
     {
@@ -68,7 +69,7 @@ public class JointPointSnap : MonoBehaviour
         {
             if (!snapPoint.HasJoint) continue;
             if (! snapPoint.JointIsConnectingTo(splitOffGeobody)) continue;
-            snapPoint.RemoveConnection();
+            snapPoint.SaveRemoveConnection();
         }
     }
 
@@ -77,22 +78,30 @@ public class JointPointSnap : MonoBehaviour
         foreach (SnapPoint snapPoint in secondarySnapPoints.Concat(mainSnapPoints))
         {
             if (!snapPoint.HasJoint) continue;
-            snapPoint.RemoveConnection();
+            snapPoint.RiskyRemoveConnection();
         }
     }
 
-    public void RemoveJointPointSnapFromList(JointPointSnap jointPointSnap)
+    public void SaveRemoveJointPointSnapFromList(JointPointSnap jointPointSnap)
     {
         Collider collider = jointPointSnap.GetComponent<Collider>();
         snappedColliders.Remove(collider);
-
         timeOfSplit = Time.time;
+        //update snap points
+        UpdateSnapPointStatus();
+        //Update Geobody. -> Allows safety as geobody hierarchy is checked. 
+        geobody.OnJointSplit();
+    }
 
+    public void RiskyRemoveJointPointSnapFromList(JointPointSnap jointPointSnap)
+    {
+        Collider collider = jointPointSnap.GetComponent<Collider>();
+        snappedColliders.Remove(collider);
+        timeOfSplit = Time.time;
         //update snap points.
         UpdateSnapPointStatus();
-
-        //Update Geobody
-        geobody.OnJointSplit();
+        ////Update Geobody //no need for savety 
+        //geobody.OnJointSplit();
     }
 
 
@@ -441,7 +450,7 @@ public class JointPointSnap : MonoBehaviour
         foreach(SnapPoint snapPoint in snapPoints)
         {
             if (!snapPoint.HasJoint) continue;
-            snapPoint.RemoveConnection();
+            snapPoint.SaveRemoveConnection();
             return true;
         }
         return false;

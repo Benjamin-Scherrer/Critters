@@ -65,16 +65,16 @@ public class ConglomerateAnalyser : MonoBehaviour
         if (geobodiesAlreadyReachedTemp.Count < conglomerateGeobodies.Count)
         {
             //throw new System.Exception("More geobodies were reached than there exist in the conglomerate... ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
+            Debug.Log("Conglomerate Reduced. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
             conglomerateGeobodies.Clear();
             conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
-            Debug.Log("Conglomerate Reduced");
         }
-        if (geobodiesAlreadyReachedTemp.Count > conglomerateGeobodies.Count)
+        else if (geobodiesAlreadyReachedTemp.Count > conglomerateGeobodies.Count)
         {
             //throw new System.Exception("Not all geobodies were reached... "); 
+            Debug.Log("Conglomerate Expanded. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: " + geobodiesAlreadyReachedTemp.Count);
             conglomerateGeobodies.Clear();
             conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
-            Debug.Log("Conglomerate Expanded");
         }
     }
 
@@ -121,10 +121,11 @@ public class ConglomerateAnalyser : MonoBehaviour
     {
         //layer count is always equal or smaller than the conglomerate size. Thus divide the two to get a value between 0 and 1.
         float conglomerateBranchingCoef = (float)geobodyLayersCount / (float)conglomerateSize; //the more layers the closer to 1, thus the less branches it has.
-        Debug.Log("ConglomerateBranchingCoef: " + conglomerateBranchingCoef + ", GeobodyLayersCount: " + geobodyLayersCount + ", conglomerateSize: " + conglomerateSize);
+        //Debug.Log("ConglomerateBranchingCoef: " + conglomerateBranchingCoef + ", GeobodyLayersCount: " + geobodyLayersCount + ", conglomerateSize: " + conglomerateSize);
         //Somehow geobodyLayerCount is larger sometimes... weird bug... easy fix is to clamp lmao.
         conglomerateBranchingCoef = Mathf.Clamp(conglomerateBranchingCoef, 0, 1);
-        //TODO: Unfuck the bug
+        //TODO: Unfuck the bug 
+        //TODO: LMAO THIS WILL NEVER HAPPEN THE JANK WILL REIGN SURPREME
 
 
         float matchingCoef = -1;
@@ -132,7 +133,7 @@ public class ConglomerateAnalyser : MonoBehaviour
         foreach (ConglomerateMovementData conglomerateMovementData in conglomerateMovementDatas)
         {
             float tempMatchingCoef = MatchConglorateMovementDatarequirements(conglomerateMovementData, conglomerateSize, conglomerateBranchingCoef);
-            Debug.Log("TempMatchingCoef: " + tempMatchingCoef);
+            //Debug.Log("TempMatchingCoef: " + tempMatchingCoef);
             if (tempMatchingCoef < matchingCoef) continue;
             matchingCoef = tempMatchingCoef;
             selectedConglomerateMovementData = conglomerateMovementData;
