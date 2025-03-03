@@ -205,7 +205,7 @@ public class Geobody : MonoBehaviour
 
     private void Update()
     {
-        //CheckScreen();
+        CheckScreen();
 
         if (!useDebugMaterials && baseMaterialCheck)
         {
@@ -338,9 +338,11 @@ public class Geobody : MonoBehaviour
 
         if (screenPos.x > Screen.width + edgeOffset || screenPos.x < - edgeOffset || screenPos.y > Screen.height + edgeOffset || screenPos.y < - edgeOffset && wasOnScreen)
         {
-            if (GeobodyManager.Instance.snappedGeobodies.Contains(this)) GeobodyManager.Instance.snappedGeobodies.Remove(this);
-            if (GeobodyManager.Instance.looseGeobodies.Contains(this)) GeobodyManager.Instance.looseGeobodies.Remove(this);
-            Destroy(gameObject);
+            if (GeobodyManager.Instance.looseGeobodies.Contains(this))
+            {
+                GeobodyManager.Instance.looseGeobodies.Remove(this);
+                Destroy(gameObject);
+            }
         }
     }
 }
