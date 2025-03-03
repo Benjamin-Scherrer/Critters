@@ -1,4 +1,5 @@
 using extOSC;
+using FMOD;
 using UnityEngine;
 
 public class Grabber : MonoBehaviour
@@ -70,7 +71,8 @@ public class Grabber : MonoBehaviour
         RaycastHit geobodyHit;
         RaycastHit cursorHit;
         Vector3 rayOrigin = mainCam.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCam.nearClipPlane));
-        Vector3 rayDirection = mainCam.ScreenToWorldPoint(new Vector3(0f, 0f, mainCam.farClipPlane - mainCam.nearClipPlane));
+        Vector3 rayDestination = mainCam.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCam.farClipPlane));
+        Vector3 rayDirection = rayDestination - rayOrigin;
         Physics.Raycast(rayOrigin, rayDirection, out cursorHit, Mathf.Infinity, backgroundLayer);
         Physics.SphereCast(rayOrigin, grabRadius, rayDirection, out geobodyHit, Mathf.Infinity, geobodyLayer);
         worldPosition = cursorHit.point;
