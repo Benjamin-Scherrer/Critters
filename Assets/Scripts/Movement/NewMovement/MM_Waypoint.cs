@@ -21,7 +21,7 @@ public struct MM_Waypoint : IMovementModule
         {
             if (waypoint == null)
             {
-                waypoint = WayPointManager.Instance.GetWayPoint(GetWaypoint);
+                waypoint = WayPointManager.Instance.GetWayPoint(waypoint);
             }
             return waypoint;
         }

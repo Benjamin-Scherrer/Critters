@@ -22,8 +22,9 @@ public class WayPointManager : MonoBehaviour
         for (int i = randomIndex, steps = 0; steps < wayPoints.Count; i++, steps++)
         {
             i = i % wayPoints.Count;
-            if (previousWayPoint != null && Vector3.Distance(wayPoints[i].position, previousWayPoint.position) < distanceTreshhold) continue;
-            if (previousWayPoint != null && wayPoints[i] == previousWayPoint) continue;
+            if(previousWayPoint == null) return wayPoints[i]; 
+            if (Vector3.Distance(wayPoints[i].position, previousWayPoint.position) < distanceTreshhold) continue;
+            if (wayPoints[i] == previousWayPoint) continue;
             return wayPoints[i];
         }
         return wayPoints[(randomIndex + 1) % wayPoints.Count];
