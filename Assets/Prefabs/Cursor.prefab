@@ -52,10 +52,9 @@ MonoBehaviour:
   grabSlowMotion: 0.8
   grabLift: 0
   floatHeight: 1
-  posSpring: 400
-  posDamp: 100
-  rotSpring: 100
-  rotDamp: 50
+  grabRadius: 1
+  jointPrefab: {fileID: 3698164021789695243, guid: ef0ed7f6920807541bf293ab78d62fe4,
+    type: 3}
 --- !u!54 &5682263189666655237
 Rigidbody:
   m_ObjectHideFlags: 0

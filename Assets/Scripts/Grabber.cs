@@ -15,11 +15,9 @@ public class Grabber : MonoBehaviour
     [SerializeField] private float floatHeight = 0.25f;
     [SerializeField] private float grabRadius = 1f;
 
+
     [Header("Joint Settings")]
-    [SerializeField] private float posSpring = 40f;
-    [SerializeField] private float posDamp = 10f;
-    [SerializeField] private float rotSpring = 20f;
-    [SerializeField] private float rotDamp = 5f;
+    [SerializeField] private ConfigurableJoint jointPrefab;
 
     private Vector3 oscPosition = Vector3.zero;
     private bool oscDown = false;
@@ -91,18 +89,10 @@ public class Grabber : MonoBehaviour
                 if (geobodyHit.collider == null) return;
 
                 snappedGeobody = geobodyHit.collider.gameObject;
-                joint = snappedGeobody.AddComponent<ConfigurableJoint>();
-                joint.autoConfigureConnectedAnchor = false;
+                joint = SetJointPrefabSettings(snappedGeobody.AddComponent<ConfigurableJoint>());
                 joint.connectedBody = rb;
                 joint.anchor = Vector3.zero;
                 joint.connectedAnchor = snappedGeobody.transform.localPosition - transform.localPosition;
-                joint.rotationDriveMode = RotationDriveMode.Slerp;
-                var posDrive = new JointDrive { positionSpring = posSpring, positionDamper = posDamp, maximumForce = Mathf.Infinity };
-                var rotDrive = new JointDrive { positionSpring = rotSpring, positionDamper = rotDamp, maximumForce = Mathf.Infinity };
-                joint.xDrive = posDrive;
-                joint.yDrive = posDrive;
-                joint.zDrive = posDrive;
-                joint.slerpDrive = rotDrive;
             }
             else
             {
@@ -121,6 +111,98 @@ public class Grabber : MonoBehaviour
             Cursor.visible = true;
             Time.timeScale = 1f;
         }
+    }
+
+    private ConfigurableJoint SetJointPrefabSettings(ConfigurableJoint joint)
+    {
+        ////Useless assignement bc its overwriten later,
+        //joint.connectedBody = jointPrefab.connectedBody;
+        //joint.connectedArticulationBody = jointPrefab.connectedArticulationBody;
+
+        ////Useless assignement bc its overwriten later,
+        //joint.anchor = jointPrefab.anchor;
+
+        //Special settings for that
+        //joint.axis = jointPrefab.axis;
+
+        //yes but needs to be always set to false, condiering to hardcode this.
+        joint.autoConfigureConnectedAnchor = jointPrefab.autoConfigureConnectedAnchor;
+        //joint.autoConfigureConnectedAnchor = false;
+
+        ////Useless assignement bc its overwriten later,
+        //joint.connectedAnchor = jointPrefab.connectedAnchor;
+
+        //special settings for that
+        //joint.secondaryAxis = jointPrefab.secondaryAxis;
+
+        //probably set to limited
+        joint.xMotion = jointPrefab.xMotion;
+        joint.yMotion = jointPrefab.yMotion;
+        joint.zMotion = jointPrefab.zMotion;
+
+        //probably set to free
+        joint.angularXMotion = jointPrefab.angularXMotion;
+        joint.angularYMotion = jointPrefab.angularYMotion;
+        joint.angularZMotion = jointPrefab.angularZMotion;
+
+        //here go settings
+        joint.linearLimitSpring = jointPrefab.linearLimitSpring;
+        joint.linearLimit = jointPrefab.linearLimit;
+
+        ////nothing bc of free //not free now
+        joint.angularXLimitSpring = jointPrefab.angularXLimitSpring;
+        joint.lowAngularXLimit = jointPrefab.lowAngularXLimit;
+        joint.highAngularXLimit = jointPrefab.highAngularXLimit;
+        joint.angularYZLimitSpring = jointPrefab.angularYZLimitSpring;
+        joint.angularYLimit = jointPrefab.angularYLimit;
+        joint.angularZLimit = jointPrefab.angularZLimit;
+
+        ////will be vector3.zero to get to stable position -> So no assignement needed
+        //joint.targetPosition = jointPrefab.targetPosition;
+        //joint.targetVelocity = jointPrefab.targetVelocity;
+
+        joint.xDrive = jointPrefab.xDrive;
+        joint.yDrive = jointPrefab.yDrive;
+        joint.zDrive = jointPrefab.zDrive;
+
+        ////will be vector3.zero to get to stable position -> So no assignement needed
+        //joint.targetRotation = jointPrefab.targetRotation;
+        //joint.targetAngularVelocity = jointPrefab.targetAngularVelocity;
+
+        //probably slerp drive
+        joint.rotationDriveMode = jointPrefab.rotationDriveMode;
+
+        ////nothing bc of slerp drive
+        //joint.angularXDrive = jointPrefab.angularXDrive;
+        //joint.angularYZDrive = jointPrefab.angularYZDrive;
+
+        //filled with slerp drive data
+        joint.slerpDrive = jointPrefab.slerpDrive;
+
+        ////probably nothing bc of none
+        //joint.projectionMode = jointPrefab.projectionMode;
+        //joint.projectionDistance = jointPrefab.projectionDistance;
+        //joint.projectionAngle = jointPrefab.projectionAngle;
+
+        //probably none bc we need the anchors relative to the geobodies    
+        joint.configuredInWorldSpace = jointPrefab.configuredInWorldSpace;
+
+        //suss mogus maybe swap every update lololol
+        joint.swapBodies = jointPrefab.swapBodies;
+
+        //RN none but eventually maybe to make the geobodies break apart
+        joint.breakForce = jointPrefab.breakForce;
+        joint.breakTorque = jointPrefab.breakTorque;
+
+        //probably yes
+        joint.enableCollision = jointPrefab.enableCollision;
+        joint.enablePreprocessing = jointPrefab.enablePreprocessing;
+
+        //idk what this does.
+        joint.massScale = jointPrefab.massScale;
+        joint.connectedMassScale = jointPrefab.connectedMassScale;
+
+        return joint;
     }
 
     private void OnDrawGizmos()
