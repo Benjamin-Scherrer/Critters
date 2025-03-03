@@ -39,9 +39,12 @@ public class Geobody : MonoBehaviour
     public bool wasOnScreen = false;
 
     //EVENTS
-    //public delegate void GeobodyEventHandler(Geobody geobody);
-    //public event GeobodyEventHandler JointSnapped;
 
+    //EXPLOE
+    public void Explode(Vector3 explosionOrigin, float explosionForce)
+    {
+        movementModuleManager.Exlpode(explosionOrigin, explosionForce);
+    }
 
     public Geobody[] GetSnappedGeobodies()
     {
