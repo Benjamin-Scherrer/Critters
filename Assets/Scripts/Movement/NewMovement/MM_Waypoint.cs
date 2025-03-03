@@ -21,7 +21,7 @@ public struct MM_Waypoint : IMovementModule
         {
             if (waypoint == null)
             {
-                waypoint = GameObject.Find("Waypoint").transform;
+                waypoint = WayPointManager.Instance.GetWayPoint(GetWaypoint);
             }
             return waypoint;
         }
