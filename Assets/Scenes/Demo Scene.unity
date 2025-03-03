@@ -472,8 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d97e15796a6794cb5766a9bee700ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 20
-  direction: {x: 0, y: 0.5, z: 1}
+  force: 15
+  direction: {x: 0, y: 1, z: 1}
   useLocalSpace: 0
   forceVariance: 0
   forceRateOfChange: 1
@@ -1520,8 +1520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d97e15796a6794cb5766a9bee700ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 20
-  direction: {x: 1, y: 0.5, z: 0}
+  force: 15
+  direction: {x: 1, y: 1, z: 0}
   useLocalSpace: 0
   forceVariance: 0
   forceRateOfChange: 1
@@ -1593,8 +1593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d97e15796a6794cb5766a9bee700ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 20
-  direction: {x: 0, y: 0.5, z: -1}
+  force: 15
+  direction: {x: 0, y: 1, z: -1}
   useLocalSpace: 0
   forceVariance: 0
   forceRateOfChange: 1
@@ -2220,8 +2220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d97e15796a6794cb5766a9bee700ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 20
-  direction: {x: -1, y: 0.5, z: 0}
+  force: 15
+  direction: {x: -1, y: 1, z: 0}
   useLocalSpace: 0
   forceVariance: 0
   forceRateOfChange: 1
