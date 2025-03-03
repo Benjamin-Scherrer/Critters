@@ -60,8 +60,8 @@ public class GeobodyManager : MonoBehaviour
         Vector3 screenPosition = Vector3.zero;
 
         float offset = edgeToSpawnDistance * Screen.height/(2*Camera.main.orthographicSize);
-        float width = Random.Range(-offset, Screen.width + offset);
-        float height = Random.Range(-offset, Screen.height + offset);
+        float width = Random.Range(0f, Screen.width);
+        float height = Random.Range(0f, Screen.height);
         int edge = Random.Range(0, 4);
         switch (edge)
         {

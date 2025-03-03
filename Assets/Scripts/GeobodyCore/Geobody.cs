@@ -38,6 +38,8 @@ public class Geobody : MonoBehaviour
 
     public bool wasOnScreen = false;
 
+    public bool leftForceField = false;
+
     //EVENTS
 
     //EXPLOE

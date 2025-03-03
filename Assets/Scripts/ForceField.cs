@@ -48,16 +48,22 @@ public class ForceField : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Geobody>(out Geobody geobody))
+        {
+            geobody.leftForceField = true;
+        }
+    }
+
     void OnTriggerStay(Collider other)
     {
 
-
-        if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        if (other.TryGetComponent<Rigidbody>(out Rigidbody rb) && other.TryGetComponent<Geobody>(out Geobody geobody))
         {
-            if(!other.gameObject.CompareTag("Geobody")) return;
-            if (other.gameObject.GetComponent<Geobody>().wasOnScreen) return;
-
             Vector3 appliedForceDirection = direction.normalized;
+
+            if (geobody.wasOnScreen && geobody.leftForceField) appliedForceDirection = -direction.normalized;
 
             // Account for local space
             if (useLocalSpace)
