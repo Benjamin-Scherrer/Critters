@@ -16,6 +16,12 @@ public class MovementModuleManager : MonoBehaviour
     private float timeElapsed = 0f;
 
     //PUBLIC
+    public void Exlpode(Vector3 explosionOrigin, float explosionForce)
+    {
+        Vector3 explosionDirection = ( - explosionOrigin).normalized;
+        rb.AddForceAtPosition(explosionDirection * explosionForce, forceTarget.position, ForceMode.Impulse);
+    }
+
     public void ResetStartupTime()
     {
         timeElapsed = 0f;

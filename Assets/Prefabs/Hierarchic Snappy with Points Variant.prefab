@@ -627,6 +627,7 @@ MonoBehaviour:
   sideHeadMaterial: {fileID: 2100000, guid: c0688ddde5ff11b4e9f1bec9e7c8ebe7, type: 2}
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
   useDebugMaterials: 0
+  wasOnScreen: 0
 --- !u!114 &7386213441478182648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceTarget: {fileID: 8914959906404572461}
+  hardStartupTime: 1
+  softStartupTime: 4
 --- !u!114 &488273853230739240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +659,7 @@ MonoBehaviour:
     type: 2}
   liveTime: 30
   liveGainedFromSnap: 2
+  deathExplosionForce: 4
 --- !u!1001 &4427370776831575620
 PrefabInstance:
   m_ObjectHideFlags: 0
