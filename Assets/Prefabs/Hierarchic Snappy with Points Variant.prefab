@@ -659,7 +659,7 @@ MonoBehaviour:
     type: 2}
   liveTime: 30
   liveGainedFromSnap: 2
-  deathExplosionForce: 4
+  deathExplosionForce: 3
 --- !u!1001 &4427370776831575620
 PrefabInstance:
   m_ObjectHideFlags: 0

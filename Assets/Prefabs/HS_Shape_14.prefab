@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
@@ -435,7 +435,7 @@ PrefabInstance:
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
@@ -581,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
@@ -595,8 +595,28 @@ PrefabInstance:
       objectReference: {fileID: 3767802972605728917}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
+      propertyPath: mainSnapPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1728538865946675524}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 2483384254596877794}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 3431784287173281385}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
+      propertyPath: mainSnapPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 5859772165891053707}
+    - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
+        type: 3}
       propertyPath: secondarySnapPoints.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
@@ -745,7 +765,7 @@ PrefabInstance:
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3718906933457972466, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minConglomerateSize: 4
   maxConglomerateSize: 64
-  conglomerateBranchingCoef: 0
+  conglomerateBranchingCoef: 0.6
   ForceAllocated:
     serializedVersion: 2
     m_Curve:

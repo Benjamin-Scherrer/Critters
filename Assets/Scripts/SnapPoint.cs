@@ -5,6 +5,8 @@ public class SnapPoint : MonoBehaviour
 {
     private Collider coll;
     private ConfigurableJoint configurableJointReference;
+    [SerializeField] private GameObject connectedSnappointsDisplay;
+    [SerializeField] private GameObject openSnappointsDisplay;
 
     public bool HasJoint { get { return configurableJointReference != null; } }
     //PUBLIC
@@ -15,6 +17,7 @@ public class SnapPoint : MonoBehaviour
         Geobody connectedGeobody = configurableJointReference.connectedBody.GetComponent<Geobody>();
 
         return originGeobody == geobody || connectedGeobody == geobody;
+
     }
 
     public void SaveRemoveConnection()
@@ -29,6 +32,7 @@ public class SnapPoint : MonoBehaviour
 
         Destroy(configurableJointReference);
         configurableJointReference = null;
+        connectedSnappointsDisplay.SetActive(false);
     }
 
     public void RiskyRemoveConnection()
@@ -43,12 +47,14 @@ public class SnapPoint : MonoBehaviour
 
         Destroy(configurableJointReference);
         configurableJointReference = null;
+        connectedSnappointsDisplay.SetActive(false);
     }
 
     public void SetConfigurableJointReference(ConfigurableJoint joint)
     {
         if (configurableJointReference != null) throw new Exception("configurableJointReference already set: " + configurableJointReference);
         configurableJointReference = joint;
+        connectedSnappointsDisplay.SetActive(true);
     }
 
     public bool EnableCollider()
@@ -74,8 +80,16 @@ public class SnapPoint : MonoBehaviour
         if (otherSnapPointCollider.CompareTag("SnapPoint"))
         {
             if (!coll.enabled) return;
-            if(configurableJointReference != null) return;
+            if (configurableJointReference != null) return;
             transform.parent.GetComponent<JointPointSnap>().Snap(otherSnapPointCollider.gameObject, this);
+        }
+    }
+
+    private void Update()
+    {
+        if (openSnappointsDisplay != null && connectedSnappointsDisplay != null)
+        {
+            openSnappointsDisplay.SetActive(!connectedSnappointsDisplay.activeSelf && !Cursor.visible);
         }
     }
 

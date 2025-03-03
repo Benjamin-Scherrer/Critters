@@ -149,6 +149,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapointNX_Top
       objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -248,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: secondarySnapPoints.Array.size
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
@@ -460,6 +465,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapointNX_Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -632,6 +642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapointPZ_Top
       objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -717,6 +732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SnapointPX_Bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -804,6 +824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapointPX_Top
       objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -889,6 +914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SnapointNZ_Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -976,6 +1006,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapointPZ_Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1061,6 +1096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SnapointNZ_Bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
