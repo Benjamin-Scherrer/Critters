@@ -55,7 +55,7 @@ public class ForceField : MonoBehaviour
         if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             if(!other.gameObject.CompareTag("Geobody")) return;
-            //if (other.gameObject.GetComponent<Geobody>().wasOnScreen) return;
+            if (other.gameObject.GetComponent<Geobody>().wasOnScreen) return;
 
             Vector3 appliedForceDirection = direction.normalized;
 
