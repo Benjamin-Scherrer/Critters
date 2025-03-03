@@ -10,7 +10,17 @@ public class MovementModuleManager : MonoBehaviour
     private float forceAllocated;
     private float timeOffset;
 
+    [Header("StartupTime")]
+    [SerializeField] private float hardStartupTime = 1f;
+    [SerializeField] private float softStartupTime = 4f;
+    private float timeElapsed = 0f;
+
     //PUBLIC
+    public void ResetStartupTime()
+    {
+        timeElapsed = 0f;
+    }
+
     public void SetMovementModules(List<IMovementModule> movementModules, float forceAllocated, float timeOffset)
     {
         this.movementModules.Clear();
@@ -18,7 +28,6 @@ public class MovementModuleManager : MonoBehaviour
         this.forceAllocated = forceAllocated;
         this.timeOffset = timeOffset;
     }
-
 
     //PRIVATE
     private void Awake()
@@ -28,16 +37,26 @@ public class MovementModuleManager : MonoBehaviour
         movementModules = new List<IMovementModule>(4);
     }
 
-
     // Update is called once per frame
     private void FixedUpdate()
     {
         if(movementModules.Count == 0) return;
-        //Debug.Log("MovementModuleManagerCount: " + movementModules.Count);
+        //Debug.Log("TimeElapsed:" + timeElapsed);
+
+        if (timeElapsed < hardStartupTime)
+        {
+            timeElapsed += Time.deltaTime;
+            return;
+        }
+        if (timeElapsed < hardStartupTime + softStartupTime)
+        {
+            timeElapsed = Mathf.Min(timeElapsed + Time.fixedDeltaTime, hardStartupTime + softStartupTime);
+        }
+
+        float startUpBasedForce = ((timeElapsed - hardStartupTime) / softStartupTime);
         foreach (IMovementModule movementModule in movementModules)
         {
-            //Debug.Log("MovementModule: " + movementModule.GetType().ToString());
-            movementModule.Run(rb, forceTarget, forceAllocated, timeOffset);
+            movementModule.Run(rb, forceTarget, forceAllocated * startUpBasedForce, timeOffset);
         }
     }
 }

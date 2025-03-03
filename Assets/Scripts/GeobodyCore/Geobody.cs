@@ -88,6 +88,7 @@ public class Geobody : MonoBehaviour
 
         geobodyType = GeobodyType.Separate;
         movementModuleManager.SetMovementModules(separateMovementModules, forceAllocated, 0);
+        movementModuleManager.ResetStartupTime();
 
         if (separateMaterial != null && useDebugMaterials) myRenderer.material = separateMaterial;
         conglomerateHead = null;
@@ -106,6 +107,7 @@ public class Geobody : MonoBehaviour
     {
         geobodyType = GeobodyType.MainHead;
         movementModuleManager.SetMovementModules(movementModules, forceAllocated, 0);
+        movementModuleManager.ResetStartupTime();
 
         if (mainHeadMaterial != null && useDebugMaterials) myRenderer.material = mainHeadMaterial;
         conglomerateHead = newConglomerateHead;
@@ -126,6 +128,7 @@ public class Geobody : MonoBehaviour
     {
         geobodyType = GeobodyType.SideHead;
         movementModuleManager.SetMovementModules(movementModules, forceAllocated, timeOffset);
+        movementModuleManager.ResetStartupTime();
 
         if (sideHeadMaterial != null && useDebugMaterials) myRenderer.material = sideHeadMaterial;
         conglomerateHead = newConglomerateHead;
@@ -146,6 +149,7 @@ public class Geobody : MonoBehaviour
     {
         geobodyType = GeobodyType.Limb;
         movementModuleManager.SetMovementModules(null, 0, 0);
+        movementModuleManager.ResetStartupTime();
 
         if (limbMaterial != null && useDebugMaterials) myRenderer.material = limbMaterial;
         conglomerateHead = newConglomerateHead;

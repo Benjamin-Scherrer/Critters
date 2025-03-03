@@ -38,15 +38,15 @@ public class JointPointSnap : MonoBehaviour
 
 
     //timestamp float
-    private float timeOfSplit = 0;
+    private float timeOfSplitOrSnap = 0;
     [Header("Snapping Cooldown after Splitting")] 
-    [SerializeField] private float timePastSplitNeeded = 4;
+    [SerializeField] private float timePastSplitOrSnapNeeded = 3;
 
-    public bool IsPastTImeOfSplit
+    public bool IsPastTImeOfSplitOrSnap
     {
-    get
+        get
         {
-            return Time.time - timeOfSplit > timePastSplitNeeded;
+            return Time.time - timeOfSplitOrSnap > timePastSplitOrSnapNeeded;
         }
     }
 
@@ -86,7 +86,7 @@ public class JointPointSnap : MonoBehaviour
     {
         Collider collider = jointPointSnap.GetComponent<Collider>();
         snappedColliders.Remove(collider);
-        timeOfSplit = Time.time;
+        timeOfSplitOrSnap = Time.time;
         //update snap points
         UpdateSnapPointStatus();
         //Update Geobody. -> Allows safety as geobody hierarchy is checked. 
@@ -97,7 +97,7 @@ public class JointPointSnap : MonoBehaviour
     {
         Collider collider = jointPointSnap.GetComponent<Collider>();
         snappedColliders.Remove(collider);
-        timeOfSplit = Time.time;
+        timeOfSplitOrSnap = Time.time;
         //update snap points.
         UpdateSnapPointStatus();
         ////Update Geobody //no need for savety 
@@ -136,7 +136,7 @@ public class JointPointSnap : MonoBehaviour
         if(!otherSnapPointCollider.transform.parent.TryGetComponent(out JointPointSnap otherParentJointPointSnap)) throw new Exception("JointPointSnap not found");
 
         //prevent snapping to the same geobody it just split off from.
-        if (!IsPastTImeOfSplit || !otherParentJointPointSnap.IsPastTImeOfSplit) return;
+        if (!IsPastTImeOfSplitOrSnap || !otherParentJointPointSnap.IsPastTImeOfSplitOrSnap) return;
 
         //General check if it is already snapped to the same thing, possible by weird edge cases, just abort.
         if (snappedColliders.Contains(otherParentCollider)) return; // throw new Exception("Collider already snapped");
@@ -147,6 +147,9 @@ public class JointPointSnap : MonoBehaviour
 
         //Hierarchy check - if of the same hierarchy, do not snap
         if (CheckIfSnappedToSameHirarchy(geobody, otherParentGeobody)) return;
+
+        //Set timeOFSplitOrSnap 
+        timeOfSplitOrSnap = Time.time;
 
         //create joint
         var joint = gameObject.AddComponent<ConfigurableJoint>();
