@@ -628,6 +628,9 @@ MonoBehaviour:
   limbMaterial: {fileID: 2100000, guid: b0d68865c2592f046a571509dcd26036, type: 2}
   useDebugMaterials: 0
   wasOnScreen: 0
+  isOnScreen: 0
+  isInKillZone: 0
+  leftForceField: 0
 --- !u!114 &7386213441478182648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +662,7 @@ MonoBehaviour:
     type: 2}
   liveTime: 30
   liveGainedFromSnap: 2
+  outsideScreenDecayMultiplier: 1
   deathExplosionForce: 3
 --- !u!1001 &4427370776831575620
 PrefabInstance:

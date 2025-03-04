@@ -11,21 +11,45 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
 
         //code to move find innermost geobodies by steping inside from the outermost geobodies 
         //assign inntermost geobody with multiple connections as main head
+
         Geobody mainHead = FindInnermostGeobody(outermostGeobodies, conglomerateGeobodies);
 
+        ////TEST IF LAYERS ARE ALREADY FUCKED HERE
+        //int conglomerateSize = conglomerateGeobodies.Count;
+        ////DEBUG
+        //int amountGeobodies = 0;
+        //Debug.Log("Counting Geobodies: ");
+        //for (int i = 0; i < geobodyLayers.Count; i++)
+        //{
+        //    List<Geobody> layer = geobodyLayers[i];
+        //    if (layer == null) break; //is something with layers probably, incorrect cleanup????
+        //    amountGeobodies += layer.Count;
+        //    Debug.Log("Layer[" + i + "]: " + layer.Count);
+        //}
+        //Debug.Log("Amount of geobodies in layers: " + amountGeobodies);
+        //Debug.Log("Amount of geobodies in conglomerate: " + conglomerateSize);
+        //if (amountGeobodies != conglomerateSize) throw new System.Exception("Amount of geobodies in layers is not equal to the amount of geobodies in the conglomerate (HIGHLEVEL)");
+        ////DEBUG END
+        ////The jellyfish thinks its only one Gbody large... wtf
+
         //Set geobody layers from there on
-        GoThroughConglomerateHierarchyStart(mainHead, geobodyLayers);
+        GoThroughConglomerateHierarchyStart(mainHead, geobodyLayers); //THIS HERE IS FUCKED
 
 
-        //Dedbug code
-        int amountGeobodies = 0;
-        foreach (List<Geobody> layer in geobodyLayers)
-        {
-            if (layer == null) break; //is something with layers probably, incorrect cleanup????
-            foreach (Geobody geobody in layer) { amountGeobodies++; }
-        }
-        Debug.Log("Amount of geobodies in layers: " + amountGeobodies);
-        //The jellyfish thinks its only one Gbody large... wtf
+        ////TEST IF LAYERS ARE ALREADY FUCKED HERE
+        ////DEBUG
+        //amountGeobodies = 0;
+        //Debug.Log("Counting Geobodies: ");
+        //for (int i = 0; i < geobodyLayers.Count; i++)
+        //{
+        //    List<Geobody> layer = geobodyLayers[i];
+        //    if (layer == null) break; //is something with layers probably, incorrect cleanup????
+        //    amountGeobodies += layer.Count;
+        //    Debug.Log("Layer[" + i + "]: " + layer.Count);
+        //}
+        //Debug.Log("Amount of geobodies in layers: " + amountGeobodies);
+        //Debug.Log("Amount of geobodies in conglomerate: " + conglomerateSize);
+        //if (amountGeobodies != conglomerateSize) throw new System.Exception("Amount of geobodies in layers is not equal to the amount of geobodies in the conglomerate (LOWLEVEL)");
 
         //COPY PASTED FROM CAS_Basic.cs
         AssignConglomerateRoles(conglomerateManager, conglomerateMovementData, conglomerateGeobodies.Count, geobodyLayers);
@@ -108,10 +132,10 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
             geobodyLayerTemp.Clear();
         }
 
-        geobodiesAlreadyReachedTemp.Add(mainHead);
+        //geobodiesAlreadyReachedTemp.Add(mainHead); //NO NEED FOR THAT
 
-        if (geobodyLayersTemp.Count == 0) geobodyLayersTemp.Add(new List<Geobody>());
-        geobodyLayersTemp[0].Add(mainHead);
+        //if (geobodyLayersTemp.Count == 0) geobodyLayersTemp.Add(new List<Geobody>()); //FUCK THIS TOO
+        //geobodyLayersTemp[0].Add(mainHead);
 
         GoThroughConglomerateHierarchy(0, mainHead, geobodiesAlreadyReachedTemp, geobodyLayersTemp);
 
@@ -122,15 +146,16 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
     {
         if (chainDepth < 0) throw new System.Exception("Depth out of bounds");
         if (originGeobody == null) throw new System.Exception("Geobody is null");
-        if (geobodiesAlreadyReached.IndexOf(originGeobody) != -1) return;
+        if (geobodiesAlreadyReached.IndexOf(originGeobody) != -1) return; //FUCK ME THAT WAS IT LMAO
         geobodiesAlreadyReached.Add(originGeobody);
-
-        chainDepth++;
 
         if (geobodyLayers.Count <= chainDepth) geobodyLayers.Add(new List<Geobody>());
         geobodyLayers[chainDepth].Add(originGeobody);
 
         Geobody[] tempGeobodies = originGeobody.GetSnappedGeobodies();
+
+        //start branching
+        chainDepth++;
         foreach (Geobody geobody in tempGeobodies)
         {
             if (geobody == null) throw new System.Exception("Geobody is null");
