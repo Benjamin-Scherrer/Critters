@@ -49,13 +49,13 @@ public class Grabber : MonoBehaviour
 
     private void Update()
     {
-        if (oscDown)
+        if (Input.GetMouseButton(0))
         {
-            Drag(oscPosition, oscDown);
+            Drag(Input.mousePosition, Input.GetMouseButton(0));
         }
         else
         {
-            Drag(Input.mousePosition, Input.GetMouseButton(0));
+            Drag(oscPosition, oscDown);
         }
     }
 
@@ -77,7 +77,7 @@ public class Grabber : MonoBehaviour
         Physics.Raycast(rayOrigin, rayDirection, out cursorHit, Mathf.Infinity, backgroundLayer);
         Physics.SphereCast(rayOrigin, grabRadius, rayDirection, out geobodyHit, Mathf.Infinity, geobodyLayer);
         worldPosition = cursorHit.point;
-        rb.position = worldPosition - rayDirection.normalized * floatHeight;
+        transform.position = worldPosition - rayDirection.normalized * floatHeight;
 
         if (down)
         {
@@ -99,7 +99,7 @@ public class Grabber : MonoBehaviour
             }
             else
             {
-                rb.position = worldPosition - rayDirection.normalized * (floatHeight + grabLift);
+                transform.position = worldPosition - rayDirection.normalized * (floatHeight + grabLift);
             }
         }
         else

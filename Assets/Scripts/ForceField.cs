@@ -63,7 +63,7 @@ public class ForceField : MonoBehaviour
         {
             Vector3 appliedForceDirection = direction.normalized;
 
-            if (geobody.wasOnScreen && geobody.leftForceField) appliedForceDirection = -direction.normalized;
+            if (geobody.wasOnScreen && geobody.leftForceField) appliedForceDirection = new Vector3(-direction.x, direction.y, -direction.z).normalized;
 
             // Account for local space
             if (useLocalSpace)
