@@ -45,6 +45,7 @@ public class Grabber : MonoBehaviour
     {
         mainCam = Camera.main;
         Receiver.Bind(Address, MapValues);
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -86,7 +87,7 @@ public class Grabber : MonoBehaviour
                 if (cursorHit.collider == null) return;
 
                 meshRenderer.enabled = true;
-                Cursor.visible = false;
+                //Cursor.visible = false;
                 Time.timeScale = grabSlowMotion;
 
                 if (geobodyHit.collider == null) return;
@@ -111,7 +112,7 @@ public class Grabber : MonoBehaviour
             }
 
             meshRenderer.enabled = false;
-            Cursor.visible = true;
+            //Cursor.visible = true;
             Time.timeScale = 1f;
         }
     }
