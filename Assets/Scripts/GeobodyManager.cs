@@ -46,7 +46,7 @@ public class GeobodyManager : MonoBehaviour
 
     void Update()
     {
-        if (looseGeobodies.Count < looseCount && looseGeobodies.Count+snappedGeobodies.Count < maxCount && timer == spawnInterval)
+        if (looseGeobodies.Count < looseCount && looseGeobodies.Count + snappedGeobodies.Count < maxCount && timer == spawnInterval)
         {
             InstantiateGeobody(GetScreenEdgePosition());
         }
@@ -59,17 +59,18 @@ public class GeobodyManager : MonoBehaviour
     {
         Vector3 screenPosition = Vector3.zero;
 
-        float offset = edgeToSpawnDistance * Screen.height/(2*Camera.main.orthographicSize);
+        float offset = edgeToSpawnDistance * Screen.height / (2 * Camera.main.orthographicSize);
         float width = Random.Range(0f, Screen.width);
         float height = Random.Range(0f, Screen.height);
-        int edge = Random.Range(0, 4);
+        int edge = GetWeightedEdge();
+        Debug.Log("Edge: " + edge);
         switch (edge)
         {
             case 0: // Top
                 screenPosition = new Vector3(width, Screen.height + offset, Camera.main.nearClipPlane);
                 break;
             case 1: // Bottom
-                screenPosition = new Vector3(width, - offset, Camera.main.nearClipPlane);
+                screenPosition = new Vector3(width, -offset, Camera.main.nearClipPlane);
                 break;
             case 2: // Left
                 screenPosition = new Vector3(-offset, height, Camera.main.nearClipPlane);
@@ -80,9 +81,37 @@ public class GeobodyManager : MonoBehaviour
         }
 
         RaycastHit spawnHit;
-        Vector3 rayDirection = Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, Camera.main.farClipPlane - Camera.main.nearClipPlane));
+        Vector3 rayDirection = Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, Camera.main.farClipPlane)) - Camera.main.ScreenToWorldPoint(screenPosition);
         Physics.Raycast(Camera.main.ScreenToWorldPoint(screenPosition), rayDirection, out spawnHit, Mathf.Infinity, backgroundLayer);
-        return spawnHit.point;
+        return (spawnHit.point - rayDirection.normalized * 1f);
+    }
+
+    int GetWeightedEdge()
+    {
+        float totalWeight = 0f;
+        float sideWeight = Screen.height / Screen.width;
+        float[] weights = { 1f, 1f, sideWeight, sideWeight };
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            totalWeight += weights[i];
+        }
+
+        float randomValue = Random.Range(0f, totalWeight);
+        float weightSum = 0f;
+        int selectedEdge = 0;
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            weightSum += weights[i];
+            if (randomValue <= weightSum)
+            {
+                selectedEdge = i;
+                break;
+            }
+        }
+
+        return selectedEdge;
     }
 
     public Material PickMaterial()
