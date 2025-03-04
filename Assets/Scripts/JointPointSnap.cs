@@ -107,18 +107,19 @@ public class JointPointSnap : MonoBehaviour
 
     public Geobody[] GetSnappedGeobodies()
     {
-        foreach (var snappedCollider in snappedColliders)
+        for (int i = 0, steps = snappedColliders.Count; i < snappedColliders.Count && steps > 0; i++, steps--)
         {
-            if (snappedCollider == null)
-            {
-                snappedColliders.Remove(snappedCollider);
-            }
+            Collider snappedCollider = snappedColliders[i];
+            if (snappedCollider != null) continue;
+            snappedColliders.Remove(snappedCollider);
+            i--;
+
         }
         Geobody[] geobodies = new Geobody[snappedColliders.Count];
 
         for (int i = 0; i < snappedColliders.Count; i++)
         {
-            if (snappedColliders[i].TryGetComponent(out Geobody g))
+            if (snappedColliders[i].TryGetComponent(out Geobody g) && g != null) //try get component probably also gets components from deelted objects...
             {
                 geobodies[i] = g;
                 continue;

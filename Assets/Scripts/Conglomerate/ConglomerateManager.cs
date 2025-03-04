@@ -89,14 +89,25 @@ public class ConglomerateManager : MonoBehaviour
         currentLiveTime -= Time.deltaTime;
         if (currentLiveTime > 0) return;
         //KIll CODE
-        List<Geobody> geobodiesCopy = new List<Geobody>(geobodies);
-        geobodiesCopy.AddRange(geobodies);
+        List<Geobody> geobodiesCopy = new(geobodies);
+        foreach(Geobody geobody in geobodies)
+        {
+            if(geobody == null) continue;
+            geobodiesCopy.Add(geobody);
+        }
 
         Vector3 explosionOrigin = Vector3.zero;
 
         foreach (Geobody geobody in geobodiesCopy)
         {
-            explosionOrigin += geobody.transform.position;
+            try
+            {
+                explosionOrigin += geobody.transform.position;
+            }
+            catch (System.Exception)
+            {
+                continue;
+            }
         }
         explosionOrigin /= geobodiesCopy.Count;
         explosionOrigin.y = 0;

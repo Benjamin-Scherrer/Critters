@@ -18,7 +18,7 @@ public class MovementModuleManager : MonoBehaviour
     //PUBLIC
     public void Exlpode(Vector3 explosionOrigin, float explosionForce)
     {
-        Vector3 explosionDirection = ( - explosionOrigin).normalized;
+        Vector3 explosionDirection = (forceTarget.position - explosionOrigin).normalized;
         rb.AddForceAtPosition(explosionDirection * explosionForce, forceTarget.position, ForceMode.Impulse);
     }
 
