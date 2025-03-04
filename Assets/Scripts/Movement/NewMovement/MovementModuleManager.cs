@@ -18,6 +18,7 @@ public class MovementModuleManager : MonoBehaviour
     //PUBLIC
     public void Exlpode(Vector3 explosionOrigin, float explosionForce)
     {
+        if (this == null) return; //this is a fix for a bug that i can't find the source of. (NullReferenceException: Object reference not set to an instance of an object)
         Vector3 explosionDirection = (forceTarget.position - explosionOrigin).normalized;
         rb.AddForceAtPosition(explosionDirection * explosionForce, forceTarget.position, ForceMode.Impulse);
     }
