@@ -63,7 +63,6 @@ public class GeobodyManager : MonoBehaviour
         float width = Random.Range(0f, Screen.width);
         float height = Random.Range(0f, Screen.height);
         int edge = GetWeightedEdge();
-        Debug.Log("Edge: " + edge);
         switch (edge)
         {
             case 0: // Top
