@@ -81,6 +81,12 @@ public class ConglomerateManager : MonoBehaviour
         }
 
         conglomerateMovementData.RunConglomerateAllotmentScript(this, geobodies, geobodyLayers);
+
+
+        foreach(Geobody geobody in geobodies)
+        {
+            if(geobody.GetGeobodyType == GeobodyType.Separate) throw new System.Exception("Geobody is separate while part of conglomerate");
+        }
     }
 
     private void Update()

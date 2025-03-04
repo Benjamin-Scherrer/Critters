@@ -41,6 +41,8 @@ public class Geobody : MonoBehaviour
     public bool leftForceField = false;
 
     //EVENTS
+    public GeobodyType GetGeobodyType { get { return geobodyType; } }
+
 
     //EXPLOE
     public void Explode(Vector3 explosionOrigin, float explosionForce)
@@ -343,8 +345,10 @@ public class Geobody : MonoBehaviour
 
         if (screenPos.x > Screen.width + edgeOffset || screenPos.x < - edgeOffset || screenPos.y > Screen.height + edgeOffset || screenPos.y < - edgeOffset && wasOnScreen)
         {
-            if (GeobodyManager.Instance.looseGeobodies.Contains(this))
+            if (GeobodyManager.Instance.looseGeobodies.Contains(this) && geobodyType == GeobodyType.Separate && conglomerateHead == null)
             {
+                if(GetSnappedGeobodies().Length > 0) throw new Exception("Loose geobody has snapped geobodies");
+
                 GeobodyManager.Instance.looseGeobodies.Remove(this);
                 Destroy(gameObject);
             }
