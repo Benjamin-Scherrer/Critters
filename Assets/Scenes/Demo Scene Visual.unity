@@ -504,6 +504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OSC Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3508929434771004630, guid: b1b4670eaabf57143b247358423fcf4e,
+        type: 3}
+      propertyPath: _remotePort
+      value: 9001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

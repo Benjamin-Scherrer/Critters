@@ -89,7 +89,7 @@ public class SnapPoint : MonoBehaviour
     {
         if (openSnappointsDisplay != null && connectedSnappointsDisplay != null)
         {
-            openSnappointsDisplay.SetActive(!connectedSnappointsDisplay.activeSelf && !Cursor.visible);
+            openSnappointsDisplay.SetActive(!connectedSnappointsDisplay.activeSelf && Grabber.Instance.isGrabbing);
         }
     }
 

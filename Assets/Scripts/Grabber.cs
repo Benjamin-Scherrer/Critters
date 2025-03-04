@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour
 {
+    public static Grabber Instance;
+
+    public bool isGrabbing = false;
 
     [Header("OSC Settings")]
     [SerializeField] private OSCReceiver Receiver;
@@ -34,6 +37,15 @@ public class Grabber : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false;
@@ -69,6 +81,8 @@ public class Grabber : MonoBehaviour
 
     private void Drag(Vector3 inputPosition, bool down)
     {
+        isGrabbing = down;
+
         inputPosition = new Vector3(Mathf.Clamp(inputPosition.x, 0f, Screen.width), Mathf.Clamp(inputPosition.y, 0f, Screen.height), 0f);
         RaycastHit geobodyHit;
         RaycastHit cursorHit;

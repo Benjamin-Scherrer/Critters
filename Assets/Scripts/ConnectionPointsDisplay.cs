@@ -10,7 +10,7 @@ public class ConnectionPointsDisplay : MonoBehaviour
     {
         if (targetObject != null)
         {
-            targetObject.SetActive(!Cursor.visible);
+            targetObject.SetActive(Grabber.Instance.isGrabbing);
         }
     }
 }
