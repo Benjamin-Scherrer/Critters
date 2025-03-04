@@ -420,6 +420,8 @@ public class JointPointSnap : MonoBehaviour
     //PRIVATE SNAP POINT CODE
     private void UpdateSnapPointStatus()
     {
+        if (this == null) return; //lmao this code
+
         if (snappedColliders.Count >= maxSnaps)
         {
             DisableMainSnapPoints();
