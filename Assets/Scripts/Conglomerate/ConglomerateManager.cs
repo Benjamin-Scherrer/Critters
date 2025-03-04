@@ -72,6 +72,8 @@ public class ConglomerateManager : MonoBehaviour
     //PRIVATE
     private void UpdateConglomerate()
     {
+        if (this == null) return; //this is a fix for a bug that i can't find the source of. (NullReferenceException: Object reference not set to an instance of an object)
+
         ConglomerateAnalyser.Instance.AnalyseConglomerate(geobodies, out conglomerateMovementData, out List<List<Geobody>> geobodyLayers);
 
         if(geobodies.Count == 0) throw new System.Exception("No geobodies in conglomerate");

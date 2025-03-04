@@ -89,9 +89,11 @@ public class Geobody : MonoBehaviour
     }
 
     public void SetToSeparate() 
+    {
+        if(this == null) return; //this is a fix for a bug that i can't find the source of. (NullReferenceException: Object reference not set to an instance of an object)
+
         //consider some way of reseting the modular curve containers when separating,
         //rn its fine to keep it like that because it looks fun if the parts keep moving with their old movement sceme.
-    {
         //prepare force data
         List<IMovementModule> separateMovementModules = separateMovementData.GetMovementModules;
         float forceAllocated = separateMovementData.GetForceAllocated;
