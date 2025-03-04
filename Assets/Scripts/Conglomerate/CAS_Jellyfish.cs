@@ -16,6 +16,17 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
         //Set geobody layers from there on
         GoThroughConglomerateHierarchyStart(mainHead, geobodyLayers);
 
+
+        //Dedbug code
+        int amountGeobodies = 0;
+        foreach (List<Geobody> layer in geobodyLayers)
+        {
+            if (layer == null) break; //is something with layers probably, incorrect cleanup????
+            foreach (Geobody geobody in layer) { amountGeobodies++; }
+        }
+        Debug.Log("Amount of geobodies in layers: " + amountGeobodies);
+        //The jellyfish thinks its only one Gbody large... wtf
+
         //COPY PASTED FROM CAS_Basic.cs
         AssignConglomerateRoles(conglomerateManager, conglomerateMovementData, conglomerateGeobodies.Count, geobodyLayers);
     }
@@ -145,6 +156,7 @@ public class CAS_Jellyfish : CongomerateAllotmentScript
         bool hasSideHeads = sideHeadCount > 0;
 
         MainHeadSetup(conglomerateManager, conglomerateMovementData, conglomerateGeobodiesCount, mainHead, forceAllocated, hasSideHeads, out float mainHeadMovementMult);
+
 
         SideHeadAndLimbSetup(conglomerateManager, conglomerateMovementData, geobodyLayers, sideHeadCount, forceAllocated, mainHeadMovementMult);
     }
