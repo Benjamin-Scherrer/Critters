@@ -14,6 +14,7 @@ public class ConglomerateManager : MonoBehaviour
     [Header("Death Timer")]
     [SerializeField] private float liveTime = 60;
     [SerializeField] private float liveGainedFromSnap = 5;
+    [SerializeField] private float outsideScreenDecayMultiplier = 4;
     [SerializeField] private float deathExplosionForce = 10;
 
     private float currentLiveTime = 0;
@@ -92,13 +93,21 @@ public class ConglomerateManager : MonoBehaviour
     private void Update()
     {
         if(geobodies.Count == 0) return;
-        currentLiveTime -= Time.deltaTime;
+
+        if (geobodies[0].isInKillZone) currentLiveTime -= outsideScreenDecayMultiplier * Time.deltaTime;
+        else currentLiveTime -= Time.deltaTime;
+
         if (currentLiveTime > 0) return;
         //KIll CODE
+        KillConglomerate();
+    }
+
+    private void KillConglomerate()
+    {
         List<Geobody> geobodiesCopy = new(geobodies);
-        foreach(Geobody geobody in geobodies)
+        foreach (Geobody geobody in geobodies)
         {
-            if(geobody == null) continue;
+            if (geobody == null) continue;
             geobodiesCopy.Add(geobody);
         }
 

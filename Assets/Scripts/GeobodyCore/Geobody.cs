@@ -37,6 +37,8 @@ public class Geobody : MonoBehaviour
     public static int colorCount = 0;
 
     public bool wasOnScreen = false;
+    public bool isOnScreen = false;
+    public bool isInKillZone = false;
 
     public bool leftForceField = false;
 
@@ -212,7 +214,8 @@ public class Geobody : MonoBehaviour
 
     private void Update()
     {
-        CheckScreen();
+        OnScreenCheck();
+        OutsideDeletion();
 
         if (!useDebugMaterials && baseMaterialCheck)
         {
@@ -333,7 +336,7 @@ public class Geobody : MonoBehaviour
         conglomerateHead.OnJointSnapped(otherGeobody);
     }
 
-    private void CheckScreen()
+    private void OnScreenCheck()
     {
         float edgeOffset = 4f * Screen.height / (2 * Camera.main.orthographicSize);
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
@@ -341,17 +344,37 @@ public class Geobody : MonoBehaviour
         if (screenPos.x < Screen.width && screenPos.x > 0f && screenPos.y < Screen.height && screenPos.y > 0f)
         {
             wasOnScreen = true;
+            isOnScreen = true;
+        }
+        else
+        {
+            isOnScreen = false;
         }
 
-        if (screenPos.x > Screen.width + edgeOffset || screenPos.x < - edgeOffset || screenPos.y > Screen.height + edgeOffset || screenPos.y < - edgeOffset && wasOnScreen)
+        if (screenPos.x > Screen.width + edgeOffset || screenPos.x < -edgeOffset || screenPos.y > Screen.height + edgeOffset || screenPos.y < -edgeOffset && wasOnScreen)
         {
-            if (GeobodyManager.Instance.looseGeobodies.Contains(this) && geobodyType == GeobodyType.Separate && conglomerateHead == null)
-            {
-                if(GetSnappedGeobodies().Length > 0) throw new Exception("Loose geobody has snapped geobodies");
+            isInKillZone = true;
+        }
+        else
+        {
+            isInKillZone = false;
+        }
+    }
 
-                GeobodyManager.Instance.looseGeobodies.Remove(this);
-                Destroy(gameObject);
+    private void OutsideDeletion()
+    {
+        if (!isInKillZone) return;
+
+        if (GeobodyManager.Instance.looseGeobodies.Contains(this)) // && geobodyType == GeobodyType.Separate && conglomerateHead == null)
+        {
+            if (GetSnappedGeobodies().Length > 0)
+            {
+                //Debug.Log("Trying to delete a snapped geobody");
+                //return;
+                throw new Exception("Loose geobody has snapped geobodies");
             }
+            GeobodyManager.Instance.looseGeobodies.Remove(this);
+            Destroy(gameObject);
         }
     }
 }
