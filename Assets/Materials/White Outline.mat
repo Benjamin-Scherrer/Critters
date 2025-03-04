@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Outline
+  m_Name: White Outline
   m_Shader: {fileID: -6465566751694194690, guid: 5ba6d4a5a23df934181262b4158f3f10,
     type: 3}
   m_Parent: {fileID: 0}
@@ -105,7 +105,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 17.37
+    - _Size: 5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
