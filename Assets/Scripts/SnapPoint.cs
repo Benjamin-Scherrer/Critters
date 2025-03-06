@@ -8,6 +8,7 @@ public class SnapPoint : MonoBehaviour
     [SerializeField] private GameObject connectedSnappointsDisplay;
     [SerializeField] private GameObject openSnappointsDisplay;
     [SerializeField] private ParticleSystem snapEffect;
+    [SerializeField] private SnapPull snapPull;
 
     public bool HasJoint { get { return configurableJointReference != null; } }
     //PUBLIC
@@ -34,6 +35,7 @@ public class SnapPoint : MonoBehaviour
         Destroy(configurableJointReference);
         configurableJointReference = null;
         connectedSnappointsDisplay.SetActive(false);
+        snapPull.enabled = true;
     }
 
     public void RiskyRemoveConnection()
@@ -49,6 +51,7 @@ public class SnapPoint : MonoBehaviour
         Destroy(configurableJointReference);
         configurableJointReference = null;
         connectedSnappointsDisplay.SetActive(false);
+        snapPull.enabled = true;
     }
 
     public void SetConfigurableJointReference(ConfigurableJoint joint)
@@ -56,6 +59,7 @@ public class SnapPoint : MonoBehaviour
         if (configurableJointReference != null) throw new Exception("configurableJointReference already set: " + configurableJointReference);
         configurableJointReference = joint;
         connectedSnappointsDisplay.SetActive(true);
+        snapPull.enabled = false;
         snapEffect.Play();
     }
 

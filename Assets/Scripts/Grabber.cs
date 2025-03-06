@@ -16,6 +16,8 @@ public class Grabber : MonoBehaviour
     [Header("Grabber Settings")]
     [Range(0.2f, 1f)]
     [SerializeField] private float grabSlowMotion = 0.8f;
+    [Range(1f, 4f)]
+    [SerializeField] private float letGoSlowDown = 2f;
     [SerializeField] private float grabLift = 2f;
     [SerializeField] private float floatHeight = 0.25f;
     [SerializeField] private float grabRadius = 1f;
@@ -147,6 +149,10 @@ public class Grabber : MonoBehaviour
                 ConglomerateManager conglomerateManager = geobody.GetConglomerateHead;
                 if (conglomerateManager == null) geobody.SetUngrabbed();
                 else conglomerateManager.SetUngrabbed();
+
+                Rigidbody geobodyRb = snappedGeobody.GetComponent<Rigidbody>();
+                geobodyRb.velocity /= letGoSlowDown;
+                geobodyRb.angularVelocity /= letGoSlowDown;
 
                 Destroy(joint);
                 snappedGeobody = null;
