@@ -14,13 +14,27 @@ public class ConglomerateManager : MonoBehaviour
     [Header("Death Timer")]
     [SerializeField] private float minLifeTime = 30;
     [SerializeField] private float maxLifeTime = 90;
-    [SerializeField] private float liveGainedFromSnap = 5;
+    [SerializeField] private float lifeGainedFromSnap = 5;
+    [SerializeField] private float lifeBufferFromClick = 2;
     [SerializeField] private float outsideScreenDecayMultiplier = 4;
     [SerializeField] private float deathExplosionForce = 10;
 
     private float currentLiveTime = 0;
 
+    private float lifeBuffer = 0;
+
     private  List<Geobody> geobodies = new();
+
+    private bool isGrabbed = false;
+    public bool IsGrabbed
+    {
+        get => isGrabbed;
+        set
+        {
+            isGrabbed = value;
+            lifeBuffer = lifeBufferFromClick;
+        }
+    }
 
     //PUBLIC
     public void CreateConglomerate(Geobody geobody)
@@ -42,7 +56,7 @@ public class ConglomerateManager : MonoBehaviour
         geobodies.AddRange(absorbedConglomerateManager.geobodies);
         //absorbedConglomerateManager.geobodies.Clear(); idk remove bc i dont care anymore
 
-        currentLiveTime += liveGainedFromSnap;
+        currentLiveTime += lifeGainedFromSnap;
 
         UpdateConglomerate();
     }
@@ -65,7 +79,7 @@ public class ConglomerateManager : MonoBehaviour
         if(geobodies.IndexOf(geobody) != -1) return;
         geobodies.Add(geobody);
 
-        currentLiveTime += liveGainedFromSnap;
+        currentLiveTime += lifeGainedFromSnap;
         //Debug.Log("On joint snappped");
         UpdateConglomerate();
     }
@@ -74,6 +88,7 @@ public class ConglomerateManager : MonoBehaviour
     //GRABBING
     public void SetGrabbed()
     {
+        isGrabbed = true;
         foreach (Geobody geobody in geobodies)
         {
             geobody.SetGrabbed();
@@ -82,6 +97,7 @@ public class ConglomerateManager : MonoBehaviour
 
     public void SetUngrabbed()
     {
+        isGrabbed = false;
         foreach (Geobody geobody in geobodies)
         {
             geobody.SetUngrabbed();
@@ -115,6 +131,13 @@ public class ConglomerateManager : MonoBehaviour
     private void Update()
     {
         if(geobodies.Count == 0) return;
+        if(isGrabbed) return;
+
+        if (lifeBuffer > 0)
+        {
+            lifeBuffer -= Time.deltaTime;
+            return;
+        }
 
         if (geobodies[0].isInKillZone) currentLiveTime -= outsideScreenDecayMultiplier * Time.deltaTime;
         else currentLiveTime -= Time.deltaTime;
