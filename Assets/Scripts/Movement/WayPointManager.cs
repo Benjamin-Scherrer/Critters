@@ -6,7 +6,7 @@ public class WayPointManager : MonoBehaviour
 {
     public static WayPointManager Instance;
 
-    [SerializeField] private float IgnoreCloserPercentageCoef = 0.5f;
+    [SerializeField][Range(0f,1f)] private float IgnoreCloserPercentageCoef = 0.5f;
 
     [SerializeField] private List<Transform> wayPoints;
 

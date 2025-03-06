@@ -22,24 +22,15 @@ MonoBehaviour:
       time: 0
       value: 0.1
       inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 103
+      outSlope: 0.184375
+      tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 4
-      value: 1
-      inSlope: 0.03298504
-      outSlope: 0.25
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 64
-      value: 16
-      inSlope: 0.25
+      time: 32
+      value: 6
+      inSlope: 0.184375
       outSlope: 1
       tangentMode: 69
       weightedMode: 0
@@ -76,11 +67,11 @@ MonoBehaviour:
   - movementModuleType: 0
     modularCurveContainer: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b,
       type: 2}
-    Weight: 2
+    Weight: 3
   - movementModuleType: 0
     modularCurveContainer: {fileID: 11400000, guid: e9c6a735b869b0a4fb7edead8f0d772d,
       type: 2}
-    Weight: 2
+    Weight: 5
   - movementModuleType: 2
     modularCurveContainer: {fileID: 11400000, guid: 547a5c1a87d0b1947b27c399e330ad7b,
       type: 2}

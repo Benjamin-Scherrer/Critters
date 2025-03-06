@@ -58,9 +58,9 @@ public class ForceField : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-
         if (other.TryGetComponent<Rigidbody>(out Rigidbody rb) && other.TryGetComponent<Geobody>(out Geobody geobody))
         {
+            if(geobody.GetGeobodyType != GeobodyType.Separate) return;
             Vector3 appliedForceDirection = direction.normalized;
 
             if (geobody.wasOnScreen && geobody.leftForceField) appliedForceDirection = new Vector3(-direction.x, direction.y, -direction.z).normalized;
