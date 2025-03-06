@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &616577849
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_Name
+      value: DustStorm
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.610344
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd22d0cab37aa384c8f31797c3c3aae7, type: 3}
 --- !u!114 &632065287 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4801345895525448080, guid: b1b4670eaabf57143b247358423fcf4e,
@@ -145,13 +202,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 453534541867257892, guid: c6359feca1564ab48a565359c982b915,
         type: 3}
-      propertyPath: sceneName
-      value: Test Scene 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 453534541867257892, guid: c6359feca1564ab48a565359c982b915,
-        type: 3}
       propertyPath: sceneTimer
-      value: 600
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 453534541867257892, guid: c6359feca1564ab48a565359c982b915,
         type: 3}
@@ -381,6 +433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VisualPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598707084734834778, guid: 387ba45d716309145ae8b8cab0e1f985,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1209,3 +1266,4 @@ SceneRoots:
   - {fileID: 8040771220648469074}
   - {fileID: 1687822922006370081}
   - {fileID: 1352905413}
+  - {fileID: 616577849}
