@@ -786,17 +786,17 @@ PrefabInstance:
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
-      value: 1
+      value: 0.8666667
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.g
-      value: 1
+      value: 0.9098039
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.r
-      value: 1
+      value: 0.93333334
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
@@ -806,17 +806,17 @@ PrefabInstance:
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.b
-      value: 1
+      value: 0.8666667
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.g
-      value: 1
+      value: 0.9098039
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.r
-      value: 1
+      value: 0.93333334
       objectReference: {fileID: 0}
     - target: {fileID: 968649987244291799, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
@@ -847,6 +847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169173222196376920, guid: 10a1ae4bb8f8241499ae770c335264bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5743216711076937392, guid: 10a1ae4bb8f8241499ae770c335264bb,
         type: 3}
@@ -918,6 +923,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7212741385963715921, guid: 10a1ae4bb8f8241499ae770c335264bb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7de6bd7c5bace3645bea17112b521199, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
