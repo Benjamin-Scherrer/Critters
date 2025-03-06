@@ -91,6 +91,11 @@ public class Geobody : MonoBehaviour
         }
     }
 
+    public void SplitOffgeobody(Geobody geobody)
+    {
+        jointPointSnap.SplitOffGeobody(geobody);
+    }
+
     public void SetToSeparate() 
     {
         if(this == null) return; //this is a fix for a bug that i can't find the source of. (NullReferenceException: Object reference not set to an instance of an object)

@@ -18,6 +18,8 @@ public class ConglomerateManager : MonoBehaviour
     [SerializeField] private float lifeBufferFromClick = 2;
     [SerializeField] private float outsideScreenDecayMultiplier = 4;
     [SerializeField] private float deathExplosionForce = 10;
+    [Header("Variables")]
+    [SerializeField] private float maximumGeobodies = 12;
 
     private float currentLiveTime = 0;
 
@@ -126,6 +128,21 @@ public class ConglomerateManager : MonoBehaviour
         {
             if(geobody.GetGeobodyType == GeobodyType.Separate) throw new System.Exception("Geobody is separate while part of conglomerate");
         }
+
+
+        //Split if too big
+        if(geobodies.Count < maximumGeobodies) return;
+
+        //make geobides jump apart
+        Vector3 explosionOrigin = CalculateConglomerateCenter(geobodies);
+        Explode(geobodies, explosionOrigin);
+
+        int randomInt1 = UnityEngine.Random.Range(0, geobodies.Count);
+        Geobody geobody1 = geobodies[randomInt1];
+        Geobody[] connectedGeobodies =  geobody1.GetSnappedGeobodies();
+        int randomInt2 = UnityEngine.Random.Range(0, connectedGeobodies.Length);
+        Geobody geobody2 = connectedGeobodies[randomInt2];
+        geobody1.SplitOffgeobody(geobody2);
     }
 
     private void Update()
@@ -156,9 +173,25 @@ public class ConglomerateManager : MonoBehaviour
             geobodiesCopy.Add(geobody);
         }
 
+        Vector3 explosionOrigin = CalculateConglomerateCenter(geobodiesCopy);
+
+        SetAlltoSeparate(geobodiesCopy);
+        Explode(geobodiesCopy, explosionOrigin);
+    }
+
+    private void SetAlltoSeparate(List<Geobody> geobodiesCopy)
+    {
+        foreach (Geobody geobody in geobodiesCopy)
+        {
+            geobody.SetToSeparate();
+        }
+    }
+
+    private Vector3 CalculateConglomerateCenter(List<Geobody> geobodies)
+    {
         Vector3 explosionOrigin = Vector3.zero;
 
-        foreach (Geobody geobody in geobodiesCopy)
+        foreach (Geobody geobody in geobodies)
         {
             try
             {
@@ -169,12 +202,15 @@ public class ConglomerateManager : MonoBehaviour
                 continue;
             }
         }
-        explosionOrigin /= geobodiesCopy.Count;
+        explosionOrigin /= geobodies.Count;
         explosionOrigin.y = 0;
+        return explosionOrigin;
+    }
 
-        foreach (Geobody geobody in geobodiesCopy)
+    private void Explode(List<Geobody> geobodies, Vector3 explosionOrigin)
+    {
+        foreach (Geobody geobody in geobodies)
         {
-            geobody.SetToSeparate();
             geobody.Explode(explosionOrigin, deathExplosionForce);
         }
     }
