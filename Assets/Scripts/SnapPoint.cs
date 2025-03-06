@@ -7,6 +7,7 @@ public class SnapPoint : MonoBehaviour
     private ConfigurableJoint configurableJointReference;
     [SerializeField] private GameObject connectedSnappointsDisplay;
     [SerializeField] private GameObject openSnappointsDisplay;
+    [SerializeField] private ParticleSystem snapEffect;
 
     public bool HasJoint { get { return configurableJointReference != null; } }
     //PUBLIC
@@ -55,6 +56,7 @@ public class SnapPoint : MonoBehaviour
         if (configurableJointReference != null) throw new Exception("configurableJointReference already set: " + configurableJointReference);
         configurableJointReference = joint;
         connectedSnappointsDisplay.SetActive(true);
+        snapEffect.Play();
     }
 
     public bool EnableCollider()
@@ -89,7 +91,7 @@ public class SnapPoint : MonoBehaviour
     {
         if (openSnappointsDisplay != null && connectedSnappointsDisplay != null)
         {
-            openSnappointsDisplay.SetActive(!connectedSnappointsDisplay.activeSelf && !Cursor.visible);
+            openSnappointsDisplay.SetActive(!connectedSnappointsDisplay.activeSelf && Grabber.Instance.isGrabbing);
         }
     }
 
