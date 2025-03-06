@@ -24,13 +24,15 @@ public class MovementModuleManager : MonoBehaviour
             timeElapsed = 0f;
         }
     }
+    public Vector3 GetForceTargetPosition => forceTarget.position;
 
     //PUBLIC
+
     public void Exlpode(Vector3 explosionOrigin, float explosionForce)
     {
         if (this == null) return; //this is a fix for a bug that i can't find the source of. (NullReferenceException: Object reference not set to an instance of an object)
-        Vector3 explosionDirection = (forceTarget.position - explosionOrigin).normalized;
-        rb.AddForceAtPosition(explosionDirection * explosionForce, forceTarget.position, ForceMode.Impulse);
+        Vector3 explosionDirection = (GetForceTargetPosition - explosionOrigin).normalized;
+        rb.AddForceAtPosition(explosionDirection * explosionForce, GetForceTargetPosition, ForceMode.Impulse);
     }
 
     public void ResetStartupTime()
@@ -76,7 +78,7 @@ public class MovementModuleManager : MonoBehaviour
         float startUpBasedForce = ((timeElapsed - hardStartupTime) / softStartupTime);
         foreach (IMovementModule movementModule in movementModules)
         {
-            movementModule.Run(rb, forceTarget, forceAllocated * startUpBasedForce, timeOffset);
+            movementModule.Run(rb, GetForceTargetPosition, forceAllocated * startUpBasedForce, timeOffset);
         }
     }
 }

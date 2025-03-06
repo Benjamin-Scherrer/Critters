@@ -28,15 +28,15 @@ public struct MM_Snake : IMovementModule
     }
 
 
-    public void Run(Rigidbody rigidbody, Transform forceTarget, float forceAllocated, float timeOffset)
+    public void Run(Rigidbody rigidbody, Vector3 GetForceTargetPosition, float forceAllocated, float timeOffset)
     {
         float fluxuationOverTime = forceCurveContainer.Evaluate(Time.time + timeOffset);
 
-        Vector3 forceWorldDirection = isMainHead ? (forceTarget.position - neighbourReference.position) : (neighbourReference.position - forceTarget.position);
+        Vector3 forceWorldDirection = isMainHead ? (GetForceTargetPosition - neighbourReference.position) : (neighbourReference.position - GetForceTargetPosition);
         forceWorldDirection.y = Mathf.Max(forceWorldDirection.y, 0.1f);
         forceWorldDirection.Normalize();
 
         //Debug.Log("Force Final: " + fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection);
-        rigidbody.AddForceAtPosition(fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection, forceTarget.position, ForceMode.Impulse);
+        rigidbody.AddForceAtPosition(fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection, GetForceTargetPosition, ForceMode.Impulse);
     }
 }

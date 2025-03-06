@@ -27,23 +27,23 @@ public struct MM_Waypoint : IMovementModule
         }
     }
 
-    public void Run(Rigidbody rigidbody, Transform forceTarget, float forceAllocated, float timeOffset)
+    public void Run(Rigidbody rigidbody, Vector3 GetForceTargetPosition, float forceAllocated, float timeOffset)
     {
         float fluxuationOverTime = forceCurveContainer.Evaluate(Time.time + timeOffset);
 
-        Vector3 forceWorldDirection = (GetWaypoint.position - forceTarget.position);
+        Vector3 forceWorldDirection = (GetWaypoint.position - GetForceTargetPosition);
         forceWorldDirection.y = Mathf.Max(forceWorldDirection.y, 0.1f);
         forceWorldDirection.Normalize();
 
         //Debug.Log("Force Final: " + fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection);
-        rigidbody.AddForceAtPosition(fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection, forceTarget.position, ForceMode.Impulse);
+        rigidbody.AddForceAtPosition(fluxuationOverTime * forceAllocated * GetForceMultiplier * forceWorldDirection, GetForceTargetPosition, ForceMode.Impulse);
 
 
-        Debug.DrawLine(forceTarget.position, GetWaypoint.position, Color.red);  
-        Debug.DrawLine(forceTarget.position, forceTarget.position + forceWorldDirection * 2f, Color.green);
+        Debug.DrawLine(GetForceTargetPosition, GetWaypoint.position, Color.red);  
+        Debug.DrawLine(GetForceTargetPosition, GetForceTargetPosition + forceWorldDirection * 2f, Color.green);
 
         
-        if (Vector3.Distance(forceTarget.position, GetWaypoint.position) < 2f) //fixed variable bc fuck it.
+        if (Vector3.Distance(GetForceTargetPosition, GetWaypoint.position) < 2f) //fixed variable bc fuck it.
         {
             //Debug.Log("Change Waypoint!");
             waypoint = WayPointManager.Instance.GetWayPoint(GetWaypoint);

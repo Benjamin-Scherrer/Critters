@@ -44,6 +44,7 @@ public class Geobody : MonoBehaviour
 
     public GeobodyType GetGeobodyType { get { return geobodyType; } }
 
+    public Vector3 GetForceTargetPosition => movementModuleManager.GetForceTargetPosition;
 
     //PUBLIC
     //EXPLODE

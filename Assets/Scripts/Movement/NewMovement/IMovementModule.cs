@@ -8,5 +8,5 @@ public interface IMovementModule
     public ModularCurveContainer GetForceCurveContainer { get; set; }
     public float GetForceMultiplier { get; set; }
 
-    public abstract void Run(Rigidbody rigidbody, Transform forceTarget, float forceAllocated, float timeOffset);
+    public abstract void Run(Rigidbody rigidbody, Vector3 GetForceTargetPosition, float forceAllocated, float timeOffset);
 }
