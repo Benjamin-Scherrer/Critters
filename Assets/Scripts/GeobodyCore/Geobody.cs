@@ -42,11 +42,14 @@ public class Geobody : MonoBehaviour
 
     public bool leftForceField = false;
 
-    //EVENTS
     public GeobodyType GetGeobodyType { get { return geobodyType; } }
 
 
-    //EXPLOE
+    //PUBLIC
+    //EXPLODE
+    public void SetGrabbed() { movementModuleManager.IsGrabbed = true; }
+    public void SetUngrabbed() { movementModuleManager.IsGrabbed = false; }
+
     public void Explode(Vector3 explosionOrigin, float explosionForce)
     {
         movementModuleManager.Exlpode(explosionOrigin, explosionForce);
@@ -57,7 +60,6 @@ public class Geobody : MonoBehaviour
         return jointPointSnap.GetSnappedGeobodies();
     }
 
-    //PUBLIC
     public void OnJointSplit()
     {
         //important: This is called on its own conglomerate manager not caring whether it already has a head or not.

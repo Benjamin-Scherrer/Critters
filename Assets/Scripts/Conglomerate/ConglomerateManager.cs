@@ -70,6 +70,25 @@ public class ConglomerateManager : MonoBehaviour
         UpdateConglomerate();
     }
 
+
+    //GRABBING
+    public void SetGrabbed()
+    {
+        foreach (Geobody geobody in geobodies)
+        {
+            geobody.SetGrabbed();
+        }
+    }
+
+    public void SetUngrabbed()
+    {
+        foreach (Geobody geobody in geobodies)
+        {
+            geobody.SetUngrabbed();
+        }
+    }
+
+
     //PRIVATE
     private void UpdateConglomerate()
     {

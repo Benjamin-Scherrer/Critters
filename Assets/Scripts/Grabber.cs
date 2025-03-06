@@ -123,16 +123,31 @@ public class Grabber : MonoBehaviour
                 joint.connectedBody = rb;
                 joint.anchor = Vector3.zero;
                 joint.connectedAnchor = snappedGeobody.transform.localPosition - transform.localPosition;
+
+                //ON GRAB
+                Geobody geobody = snappedGeobody.GetComponent<Geobody>();
+                ConglomerateManager conglomerateManager = geobody.GetConglomerateHead;
+                if (conglomerateManager == null) geobody.SetGrabbed();
+                else conglomerateManager.SetGrabbed();
+
             }
             else
             {
                 transform.position = worldPosition - rayDirection.normalized * (floatHeight + grabLift);
+
+
             }
         }
         else
         {
             if (snappedGeobody != null)
             {
+                //ON RELEASE
+                Geobody geobody = snappedGeobody.GetComponent<Geobody>();
+                ConglomerateManager conglomerateManager = geobody.GetConglomerateHead;
+                if (conglomerateManager == null) geobody.SetUngrabbed();
+                else conglomerateManager.SetUngrabbed();
+
                 Destroy(joint);
                 snappedGeobody = null;
             }

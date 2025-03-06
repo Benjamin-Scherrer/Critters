@@ -14,6 +14,16 @@ public class MovementModuleManager : MonoBehaviour
     [SerializeField] private float hardStartupTime = 1f;
     [SerializeField] private float softStartupTime = 4f;
     private float timeElapsed = 0f;
+    private bool isGrabbed = false;
+    public bool IsGrabbed
+    {
+        get => isGrabbed;
+        set
+        {
+            isGrabbed = value;
+            timeElapsed = 0f;
+        }
+    }
 
     //PUBLIC
     public void Exlpode(Vector3 explosionOrigin, float explosionForce)
@@ -27,6 +37,8 @@ public class MovementModuleManager : MonoBehaviour
     {
         timeElapsed = 0f;
     }
+
+
 
     public void SetMovementModules(List<IMovementModule> movementModules, float forceAllocated, float timeOffset)
     {
@@ -47,6 +59,7 @@ public class MovementModuleManager : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (isGrabbed) return;
         if(movementModules.Count == 0) return;
         //Debug.Log("TimeElapsed:" + timeElapsed);
 
