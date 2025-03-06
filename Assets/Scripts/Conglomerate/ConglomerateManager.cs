@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.Loading;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ConglomerateManager : MonoBehaviour
@@ -12,7 +12,8 @@ public class ConglomerateManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private ConglomerateMovementData conglomerateMovementData;
     [Header("Death Timer")]
-    [SerializeField] private float liveTime = 60;
+    [SerializeField] private float minLifeTime = 30;
+    [SerializeField] private float maxLifeTime = 90;
     [SerializeField] private float liveGainedFromSnap = 5;
     [SerializeField] private float outsideScreenDecayMultiplier = 4;
     [SerializeField] private float deathExplosionForce = 10;
@@ -29,7 +30,7 @@ public class ConglomerateManager : MonoBehaviour
         geobodies.Add(geobody);
 
         //Set currentLiveTIme
-        currentLiveTime = liveTime;
+        currentLiveTime = UnityEngine.Random.Range(minLifeTime, maxLifeTime);
 
         //Run once to set the first geobody to main head. //DONT RUN BECAUSE THE AMOUNT OF GEOBOIES IN THE LIST IS STILL FUCKED; CAN ONLY RUN AFTER THEOTHER GEOBODY IS ADDED
         //UpdateConglomerate();
