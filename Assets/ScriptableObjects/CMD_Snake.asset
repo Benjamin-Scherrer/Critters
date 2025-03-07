@@ -22,15 +22,15 @@ MonoBehaviour:
       time: 0
       value: 0.1
       inSlope: Infinity
-      outSlope: 0.215625
+      outSlope: 0.246875
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 32
-      value: 7
-      inSlope: 0.215625
+      value: 8
+      inSlope: 0.246875
       outSlope: 1
       tangentMode: 69
       weightedMode: 0
