@@ -93,7 +93,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4751114838318326122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdb0897be8e426944bbf9260a56a7875, type: 3}
   m_Name: 
@@ -408,7 +408,7 @@ PrefabInstance:
     - target: {fileID: 8541439503595317507, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -421,18 +421,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2108568620615882810}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3767802972605728917 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2957403886321340591, guid: c8a589b3544486a479bbe7cdcfa0c7ba,
-    type: 3}
-  m_PrefabInstance: {fileID: 2108568620615882810}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08563ddfdc302c04b8320a7461ebb4ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3692547267661875991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,17 +432,17 @@ PrefabInstance:
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
@@ -464,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.615
+      value: 1.464
       objectReference: {fileID: 0}
     - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
@@ -505,6 +493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 347990476518369309, guid: 1d442b459b8c2fe45929137797d6c0dc,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3429321940847324045, guid: 1d442b459b8c2fe45929137797d6c0dc,
         type: 3}
@@ -810,7 +803,7 @@ PrefabInstance:
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
@@ -821,22 +814,22 @@ PrefabInstance:
         type: 3}
       propertyPath: mainSnapPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 3767802972605728917}
+      objectReference: {fileID: 2483384254596877794}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[2]
       value: 
-      objectReference: {fileID: 1728538865946675524}
+      objectReference: {fileID: 3431784287173281385}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[3]
       value: 
-      objectReference: {fileID: 2483384254596877794}
+      objectReference: {fileID: 5859772165891053707}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[4]
       value: 
-      objectReference: {fileID: 3431784287173281385}
+      objectReference: {fileID: 1728538865946675524}
     - target: {fileID: 2618438789905576229, guid: 2a0a5af6ecbd9bf4c8667bf624ba8c6d,
         type: 3}
       propertyPath: mainSnapPoints.Array.data[5]
