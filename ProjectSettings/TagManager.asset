@@ -5,11 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Geobody
-  - Dragable
-  - Magnet S
-  - Magnet N
-  - Magnet NS
   - SnapPoint
+  - Magnet
+  - CrossFade
   layers:
   - Default
   - TransparentFX
