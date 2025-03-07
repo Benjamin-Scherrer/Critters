@@ -56,24 +56,32 @@ MonoBehaviour:
   maxCount: 40
   edgeToSpawnDistance: 2
   spawnInterval: 0.5
-  geobodies:
-  - {fileID: 2100023758627800783, guid: 6d57b64e35e8bb044aed58dba1d037da, type: 3}
-  - {fileID: 1224952393688860678, guid: 0192b412ed8b36c499ab3eb04d41376a, type: 3}
-  - {fileID: 2702925788362182650, guid: 03758ed8915d82442b94e3d4517e1619, type: 3}
-  - {fileID: 7676204379187422226, guid: 631a93bce3d958d4bb1062f1e9045bed, type: 3}
-  - {fileID: 8403392115781136880, guid: 91115ef522b59bc49a5f91837fbfd823, type: 3}
-  - {fileID: 6508565848963589489, guid: 87b3039f3db585f45a281a66e731e45f, type: 3}
-  - {fileID: 815137150220020677, guid: 5aaa2ef9286376e4492fbd23cc691eb5, type: 3}
-  - {fileID: 2403378995272793919, guid: 0c6221c6be5dc6f4ea1826f773db98b6, type: 3}
-  - {fileID: 2403378995272793919, guid: 69da6cba131044b4aa9f48ce09e6b9c5, type: 3}
+  geobodiesBlueYellow:
   - {fileID: 2100023758627800783, guid: 8b987bb74705f41199c823e0e465d7cf, type: 3}
-  - {fileID: 2100023758627800783, guid: 12b6026c4df61439d9e66c86202a2921, type: 3}
+  - {fileID: 2403378995272793919, guid: 0c6221c6be5dc6f4ea1826f773db98b6, type: 3}
+  - {fileID: 815137150220020677, guid: 5aaa2ef9286376e4492fbd23cc691eb5, type: 3}
+  geobodiesPinkRed:
   - {fileID: 2100023758627800783, guid: c84ad3b50ef6f45b2b112bdb30a5733c, type: 3}
-  stippledMaterials:
-  - {fileID: 2100000, guid: 30c28bcfb82f6994c840fb3ff13da0d8, type: 2}
-  - {fileID: 2100000, guid: 6a8c3475aa43d5644989358e8edf538a, type: 2}
-  - {fileID: 2100000, guid: 4b621c718a8800b43bad032bc2112490, type: 2}
+  - {fileID: 2403378995272793919, guid: 69da6cba131044b4aa9f48ce09e6b9c5, type: 3}
+  - {fileID: 6508565848963589489, guid: 87b3039f3db585f45a281a66e731e45f, type: 3}
+  geobodiesBlueRed:
+  - {fileID: 1224952393688860678, guid: 0192b412ed8b36c499ab3eb04d41376a, type: 3}
+  - {fileID: 8403392115781136880, guid: 91115ef522b59bc49a5f91837fbfd823, type: 3}
+  geobodiesPinkYellow:
+  - {fileID: 2100023758627800783, guid: 6d57b64e35e8bb044aed58dba1d037da, type: 3}
+  - {fileID: 2702925788362182650, guid: 03758ed8915d82442b94e3d4517e1619, type: 3}
+  stippledMaterialsBlueYellow:
   - {fileID: 2100000, guid: 8bd4870446e83c8409f6cb171b9ec06e, type: 2}
+  - {fileID: 2100000, guid: 30c28bcfb82f6994c840fb3ff13da0d8, type: 2}
+  stippledMaterialsPinkRed:
+  - {fileID: 2100000, guid: 4b621c718a8800b43bad032bc2112490, type: 2}
+  - {fileID: 2100000, guid: 6a8c3475aa43d5644989358e8edf538a, type: 2}
+  stippledMaterialsBlueRed:
+  - {fileID: 2100000, guid: 30c28bcfb82f6994c840fb3ff13da0d8, type: 2}
+  - {fileID: 2100000, guid: 4b621c718a8800b43bad032bc2112490, type: 2}
+  stippledMaterialsPinkYellow:
+  - {fileID: 2100000, guid: 8bd4870446e83c8409f6cb171b9ec06e, type: 2}
+  - {fileID: 2100000, guid: 6a8c3475aa43d5644989358e8edf538a, type: 2}
   looseGeobodies: []
   snappedGeobodies: []
 --- !u!1 &2255582108413078826

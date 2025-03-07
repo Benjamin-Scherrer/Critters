@@ -213,8 +213,7 @@ public class Geobody : MonoBehaviour
         //Set Geobody Type
         SetToSeparate();
 
-        baseMaterial = GeobodyManager.Instance.PickMaterial();
-        myRenderer.material = baseMaterial;
+        baseMaterial = myRenderer.material;
     }
 
     private void Update()

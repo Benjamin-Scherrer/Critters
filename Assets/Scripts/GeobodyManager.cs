@@ -14,8 +14,14 @@ public class GeobodyManager : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f;
 
     [Header("Asset Reference")]
-    [SerializeField] private List<GameObject> geobodies = new List<GameObject>();
-    [SerializeField] private List<Material> stippledMaterials = new List<Material>();
+    [SerializeField] private List<GameObject> geobodiesBlueYellow = new List<GameObject>();
+    [SerializeField] private List<GameObject> geobodiesPinkRed = new List<GameObject>();
+    [SerializeField] private List<GameObject> geobodiesBlueRed = new List<GameObject>();
+    [SerializeField] private List<GameObject> geobodiesPinkYellow = new List<GameObject>();
+    [SerializeField] private List<Material> stippledMaterialsBlueYellow = new List<Material>();
+    [SerializeField] private List<Material> stippledMaterialsPinkRed = new List<Material>();
+    [SerializeField] private List<Material> stippledMaterialsBlueRed = new List<Material>();
+    [SerializeField] private List<Material> stippledMaterialsPinkYellow = new List<Material>();
 
     [Header("Geobody Tracking")]
     public List<Geobody> looseGeobodies = new List<Geobody>();
@@ -24,7 +30,10 @@ public class GeobodyManager : MonoBehaviour
     private float timer;
 
     private List<GameObject> geobodyPool = new List<GameObject>();
-    private List<Material> materialPool = new List<Material>();
+    private List<Material> materialPoolBY = new List<Material>();
+    private List<Material> materialPoolPR = new List<Material>();
+    private List<Material> materialPoolBR = new List<Material>();
+    private List<Material> materialPoolPY = new List<Material>();
 
     private LayerMask backgroundLayer;
 
@@ -39,8 +48,14 @@ public class GeobodyManager : MonoBehaviour
             Instance = this;
         }
 
-        geobodyPool.AddRange(geobodies);
-        materialPool.AddRange(stippledMaterials);
+        geobodyPool.AddRange(geobodiesBlueYellow);
+        geobodyPool.AddRange(geobodiesPinkRed);
+        geobodyPool.AddRange(geobodiesBlueRed);
+        geobodyPool.AddRange(geobodiesPinkYellow);
+        materialPoolBY.AddRange(stippledMaterialsBlueYellow);
+        materialPoolPR.AddRange(stippledMaterialsPinkRed);
+        materialPoolBR.AddRange(stippledMaterialsBlueRed);
+        materialPoolPY.AddRange(stippledMaterialsPinkYellow);
         backgroundLayer = LayerMask.GetMask("Background");
     }
 
@@ -113,13 +128,13 @@ public class GeobodyManager : MonoBehaviour
         return selectedEdge;
     }
 
-    public Material PickMaterial()
+    public Material PickMaterial(List<Material> materialPool, List<Material> materialList)
     {
         int selectedElement = Random.Range(0, materialPool.Count);
         var selectedMaterial = materialPool[selectedElement];
         materialPool.Remove(selectedMaterial);
 
-        if (materialPool.Count == 0) materialPool.AddRange(stippledMaterials);
+        if (materialPool.Count == 0) materialPool.AddRange(materialList);
 
         return selectedMaterial;
     }
@@ -127,8 +142,27 @@ public class GeobodyManager : MonoBehaviour
     private void InstantiateGeobody(Vector3 position)
     {
         int selectedElement = Random.Range(0, geobodyPool.Count);
-        Instantiate(geobodyPool[selectedElement], position, Quaternion.LookRotation(transform.up, transform.forward));
+        GameObject instantiatedGeobody = Instantiate(geobodyPool[selectedElement], position, Quaternion.LookRotation(transform.up, transform.forward));
+
+        if (instantiatedGeobody.TryGetComponent<Renderer>(out Renderer instantiatedRenderer))
+        {
+            if (geobodiesBlueYellow.Contains(geobodyPool[selectedElement])) instantiatedRenderer.material = PickMaterial(materialPoolBY, stippledMaterialsBlueYellow);
+
+            if (geobodiesPinkRed.Contains(geobodyPool[selectedElement])) instantiatedRenderer.material = PickMaterial(materialPoolPR, stippledMaterialsPinkRed);
+
+            if (geobodiesBlueRed.Contains(geobodyPool[selectedElement])) instantiatedRenderer.material = PickMaterial(materialPoolBR, stippledMaterialsBlueRed);
+
+            if (geobodiesPinkYellow.Contains(geobodyPool[selectedElement])) instantiatedRenderer.material = PickMaterial(materialPoolPY, stippledMaterialsPinkYellow);
+        }
+
         geobodyPool.RemoveAt(selectedElement);
-        if (geobodyPool.Count == 0) geobodyPool.AddRange(geobodies);
+
+        if (geobodyPool.Count == 0)
+        {
+            geobodyPool.AddRange(geobodiesBlueYellow);
+            geobodyPool.AddRange(geobodiesPinkRed);
+            geobodyPool.AddRange(geobodiesBlueRed);
+            geobodyPool.AddRange(geobodiesPinkYellow);
+        }
     }
 }
