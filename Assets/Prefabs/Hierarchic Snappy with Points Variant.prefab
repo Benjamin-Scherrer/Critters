@@ -644,8 +644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceTarget: {fileID: 8914959906404572461}
-  hardStartupTime: 1
-  softStartupTime: 4
+  hardStartupTime: 0.25
+  softStartupTime: 0.25
 --- !u!114 &488273853230739240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   minLifeTime: 30
   maxLifeTime: 90
   lifeGainedFromSnap: 5
-  lifeBufferFromClick: 2
+  lifeBufferFromClick: 0.5
   outsideScreenDecayMultiplier: 1
   deathExplosionForce: 3
   maximumGeobodies: 11

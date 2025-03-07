@@ -430,7 +430,7 @@ public class JointPointSnap : MonoBehaviour
             DisableSecondarySnapPointsColliders();
 
             //toss away extra geobodies, starting with those on the secondary snap points.
-            //StartRemovingSnappedGeobodies();
+            StartRemovingSnappedGeobodies();
         }
 
         if (allowMainSnapPoints) EnableMainSnapPoints();
@@ -440,29 +440,28 @@ public class JointPointSnap : MonoBehaviour
         else DisableSecondarySnapPointsColliders();
     }
 
-    //Extremely Redundant in current state.
-    ////Split Off Code
-    //private void StartRemovingSnappedGeobodies()
-    //{
-    //    for (int i = 0; i < snappedColliders.Count; i++)
-    //    {
-    //        if (snappedColliders.Count <= maxSnaps) break;
-    //        if (GoThroughSnapPointsAndRemoveConnectedGeobody(secondarySnapPoints)) continue;
-    //        if (GoThroughSnapPointsAndRemoveConnectedGeobody(mainSnapPoints)) continue;
-    //        break;
-    //    }
-    //    //No need to update snap point status, as the relevant geobodies will do that themselves.
-    //}
+    //Needs to be removed when other systems are in place
+    //Split Off Code
+    private void StartRemovingSnappedGeobodies()
+    {
+        for (int i = 0; i < snappedColliders.Count; i++)
+        {
+            if (snappedColliders.Count <= maxSnaps) break;
+            if (GoThroughSnapPointsAndRemoveConnectedGeobody(secondarySnapPoints)) continue;
+            if (GoThroughSnapPointsAndRemoveConnectedGeobody(mainSnapPoints)) continue;
+            break;
+        }
+        //No need to update snap point status, as the relevant geobodies will do that themselves.
+    }
 
-    //private bool GoThroughSnapPointsAndRemoveConnectedGeobody(List<SnapPoint> snapPoints)
-    //{
-    //    foreach(SnapPoint snapPoint in snapPoints)
-    //    {
-    //        if (!snapPoint.HasJoint) continue;
-    //        snapPoint.SaveRemoveConnection();
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
+    private bool GoThroughSnapPointsAndRemoveConnectedGeobody(List<SnapPoint> snapPoints)
+    {
+        foreach (SnapPoint snapPoint in snapPoints)
+        {
+            if (!snapPoint.HasJoint) continue;
+            snapPoint.SaveRemoveConnection();
+            return true;
+        }
+        return false;
+    }
 }

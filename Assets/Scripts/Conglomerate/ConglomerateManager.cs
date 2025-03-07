@@ -133,16 +133,20 @@ public class ConglomerateManager : MonoBehaviour
         //Split if too big
         if(geobodies.Count < maximumGeobodies) return;
 
-        //make geobides jump apart
-        Vector3 explosionOrigin = CalculateConglomerateCenter(geobodies);
-        Explode(geobodies, explosionOrigin);
+        //Just kill conglomerate instead.
+        KillConglomerate();
 
-        int randomInt1 = UnityEngine.Random.Range(0, geobodies.Count);
-        Geobody geobody1 = geobodies[randomInt1];
-        Geobody[] connectedGeobodies =  geobody1.GetSnappedGeobodies();
-        int randomInt2 = UnityEngine.Random.Range(0, connectedGeobodies.Length);
-        Geobody geobody2 = connectedGeobodies[randomInt2];
-        geobody1.SplitOffgeobody(geobody2);
+        //make geobides jump apart
+        //Vector3 explosionOrigin = CalculateConglomerateCenter(geobodies);
+        //Explode(geobodies, explosionOrigin);
+
+
+        //int randomInt1 = UnityEngine.Random.Range(0, geobodies.Count);
+        //Geobody geobody1 = geobodies[randomInt1];
+        //Geobody[] connectedGeobodies =  geobody1.GetSnappedGeobodies();
+        //int randomInt2 = UnityEngine.Random.Range(0, connectedGeobodies.Length);
+        //Geobody geobody2 = connectedGeobodies[randomInt2];
+        //geobody1.SplitOffgeobody(geobody2);
     }
 
     private void Update()
