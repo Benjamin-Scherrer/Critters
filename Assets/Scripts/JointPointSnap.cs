@@ -222,7 +222,7 @@ public class JointPointSnap : MonoBehaviour
         geobody = GetComponent<Geobody>();
     }
 
-    private bool CheckIfSnappedToSameHirarchy(Geobody geobody, Geobody otherGeobody)
+    public bool CheckIfSnappedToSameHirarchy(Geobody geobody, Geobody otherGeobody)
     {
         ConglomerateManager cMOne = geobody.GetConglomerateHead;
         if (cMOne == null) return false;
