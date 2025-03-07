@@ -660,10 +660,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conglomerateMovementData: {fileID: 11400000, guid: c80af9049d782324ebe4a4d8b86a34ba,
     type: 2}
-  liveTime: 30
-  liveGainedFromSnap: 2
+  minLifeTime: 30
+  maxLifeTime: 90
+  lifeGainedFromSnap: 5
+  lifeBufferFromClick: 2
   outsideScreenDecayMultiplier: 1
   deathExplosionForce: 3
+  maximumGeobodies: 8
 --- !u!1001 &4427370776831575620
 PrefabInstance:
   m_ObjectHideFlags: 0
