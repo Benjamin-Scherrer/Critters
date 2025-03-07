@@ -65,14 +65,14 @@ public class ConglomerateAnalyser : MonoBehaviour
         if (geobodiesAlreadyReachedTemp.Count < conglomerateGeobodies.Count)
         {
             //throw new System.Exception("More geobodies were reached than there exist in the conglomerate... ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
-            Debug.Log("Conglomerate Reduced. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
+            //Debug.Log("Conglomerate Reduced. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: "  + geobodiesAlreadyReachedTemp.Count);
             conglomerateGeobodies.Clear();
             conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
         }
         else if (geobodiesAlreadyReachedTemp.Count > conglomerateGeobodies.Count)
         {
             //throw new System.Exception("Not all geobodies were reached... "); 
-            Debug.Log("Conglomerate Expanded. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: " + geobodiesAlreadyReachedTemp.Count);
+            //Debug.Log("Conglomerate Expanded. ConglomerateGeobodies.Count: " + conglomerateGeobodies.Count + " geobodiesAlreadyReachedTemp.Count: " + geobodiesAlreadyReachedTemp.Count);
             conglomerateGeobodies.Clear();
             conglomerateGeobodies.AddRange(geobodiesAlreadyReachedTemp);
         }
