@@ -536,6 +536,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4082316068018816576, guid: 53f5ece6fe7424c4fbea47b853084b0f,
+        type: 3}
+      propertyPath: maxCount
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082316068018816576, guid: 53f5ece6fe7424c4fbea47b853084b0f,
+        type: 3}
+      propertyPath: looseCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6446393741046040697, guid: 53f5ece6fe7424c4fbea47b853084b0f,
         type: 3}
       propertyPath: m_LocalPosition.x
