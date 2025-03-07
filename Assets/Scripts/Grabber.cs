@@ -120,17 +120,20 @@ public class Grabber : MonoBehaviour
 
                 if (geobodyHit.collider == null) return;
 
-                snappedGeobody = geobodyHit.collider.gameObject;
-                joint = SetJointPrefabSettings(snappedGeobody.AddComponent<ConfigurableJoint>());
-                joint.connectedBody = rb;
-                joint.anchor = Vector3.zero;
-                joint.connectedAnchor = snappedGeobody.transform.localPosition - transform.localPosition;
-
                 //ON GRAB
+                snappedGeobody = geobodyHit.collider.gameObject;
                 Geobody geobody = snappedGeobody.GetComponent<Geobody>();
                 ConglomerateManager conglomerateManager = geobody.GetConglomerateHead;
                 if (conglomerateManager == null) geobody.SetGrabbed();
                 else conglomerateManager.SetGrabbed();
+
+                joint = SetJointPrefabSettings(snappedGeobody.AddComponent<ConfigurableJoint>());
+                joint.connectedBody = rb;
+                //joint.anchor = Vector3.zero;
+                joint.anchor = snappedGeobody.transform.InverseTransformPoint(geobody.GetForceTargetPosition);
+                joint.connectedAnchor = snappedGeobody.transform.localPosition - transform.localPosition;
+
+                
 
             }
             else
