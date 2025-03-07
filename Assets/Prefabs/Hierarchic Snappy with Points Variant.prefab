@@ -665,7 +665,7 @@ MonoBehaviour:
   lifeGainedFromSnap: 5
   lifeBufferFromClick: 0.5
   outsideScreenDecayMultiplier: 1
-  deathExplosionForce: 3
+  deathExplosionForce: 5
   maximumGeobodies: 11
 --- !u!1001 &4427370776831575620
 PrefabInstance:
