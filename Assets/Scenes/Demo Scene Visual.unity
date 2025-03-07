@@ -146,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 453534541867257892, guid: c6359feca1564ab48a565359c982b915,
         type: 3}
       propertyPath: sceneName
-      value: Test Scene 2
+      value: Demo Scene Visual
       objectReference: {fileID: 0}
     - target: {fileID: 453534541867257892, guid: c6359feca1564ab48a565359c982b915,
         type: 3}
