@@ -142,7 +142,7 @@ public class GeobodyManager : MonoBehaviour
     private void InstantiateGeobody(Vector3 position)
     {
         int selectedElement = Random.Range(0, geobodyPool.Count);
-        GameObject instantiatedGeobody = Instantiate(geobodyPool[selectedElement], position, Quaternion.LookRotation(transform.up, transform.forward));
+        GameObject instantiatedGeobody = Instantiate(geobodyPool[selectedElement], position, Quaternion.LookRotation(transform.up, transform.forward), transform);
 
         if (instantiatedGeobody.TryGetComponent<Renderer>(out Renderer instantiatedRenderer))
         {
