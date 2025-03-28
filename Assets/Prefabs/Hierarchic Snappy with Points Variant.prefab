@@ -666,7 +666,7 @@ MonoBehaviour:
   lifeBufferFromClick: 0.5
   outsideScreenDecayMultiplier: 1
   deathExplosionForce: 5
-  maximumGeobodies: 11
+  maximumGeobodies: 21
 --- !u!1001 &4427370776831575620
 PrefabInstance:
   m_ObjectHideFlags: 0

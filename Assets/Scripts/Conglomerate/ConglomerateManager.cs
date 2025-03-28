@@ -131,7 +131,7 @@ public class ConglomerateManager : MonoBehaviour
 
 
         //Split if too big
-        if(geobodies.Count < maximumGeobodies) return;
+        if (geobodies.Count < maximumGeobodies) return;
 
         //Just kill conglomerate instead.
         KillConglomerate();

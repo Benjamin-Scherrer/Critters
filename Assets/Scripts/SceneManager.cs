@@ -45,6 +45,8 @@ public class TransitionManager : MonoBehaviour
             SwitchScene();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space)) SwitchScene();
+
     }
 
     void SwitchScene()
