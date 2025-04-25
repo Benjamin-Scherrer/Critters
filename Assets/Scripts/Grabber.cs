@@ -9,10 +9,6 @@ public class Grabber : MonoBehaviour
     public bool isGrabbing = false;
     private bool playedEffect = false;
 
-    [Header("OSC Settings")]
-    [SerializeField] private OSCReceiver Receiver;
-    [SerializeField] private string Address = "/ipad";
-
     [Header("Grabber Settings")]
     [Range(0.2f, 1f)]
     [SerializeField] private float grabSlowMotion = 0.8f;
@@ -27,8 +23,6 @@ public class Grabber : MonoBehaviour
     [Header("Joint Settings")]
     [SerializeField] private ConfigurableJoint jointPrefab;
 
-    private Vector3 oscPosition = Vector3.zero;
-    private bool oscDown = false;
     private Vector3 worldPosition;
     private Rigidbody rb;
     private MeshRenderer meshRenderer;
@@ -60,7 +54,6 @@ public class Grabber : MonoBehaviour
     private void Start()
     {
         mainCam = Camera.main;
-        Receiver.Bind(Address, MapValues);
         Cursor.visible = false;
     }
 
@@ -72,15 +65,8 @@ public class Grabber : MonoBehaviour
         }
         else
         {
-            Drag(oscPosition, oscDown);
+            Drag(InputAdapter.Instance.oscPosition, InputAdapter.Instance.oscDown);
         }
-    }
-
-    private void MapValues(OSCMessage message)
-    {
-        var values = message.FindValues(OSCValueType.Float, OSCValueType.True, OSCValueType.False);
-        oscPosition = new Vector3((float)values[0].FloatValue * Screen.width, (float)values[1].FloatValue * Screen.height, 0);
-        oscDown = values[2].BoolValue;
     }
 
     private void Drag(Vector3 inputPosition, bool down)

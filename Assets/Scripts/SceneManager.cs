@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using extOSC;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private float sceneSwitchDelay = 0.1f;
     [SerializeField] private bool isSceneReloadDebug;
 
-    [SerializeField] private float sceneTimer = 300;
+    [SerializeField] private float sceneTimer = 3600;
     [SerializeField] private float currentSceneTimer;
 
     private void Start()
@@ -35,18 +36,17 @@ public class TransitionManager : MonoBehaviour
 
     private void TimerCountdown()
     {
-        if (currentSceneTimer >= 0)
+
+        if (currentSceneTimer > 0)
         {
             currentSceneTimer -= Time.deltaTime;
-            
         }
         else
         {
-            SwitchScene();
+            if (InputAdapter.Instance.idle) SwitchScene();
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) SwitchScene();
-
     }
 
     void SwitchScene()

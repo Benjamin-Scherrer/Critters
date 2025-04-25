@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f106d229d82af340aa33170e3e14cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IgnoreCloserPercentageCoef: 0.5
+  IgnoreCloserPercentageCoef: 0.7
   wayPoints:
   - {fileID: 5076256240384048414}
   - {fileID: 451114491533577683}

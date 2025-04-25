@@ -1,0 +1,13 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "",
+        "zipCreationMethod": 1,
+        "zipCompressionLevel": 2,
+        "originalBuildOption": 0,
+        "wslProcessTimeout": 60,
+        "verboseLogging": false
+    }
+}

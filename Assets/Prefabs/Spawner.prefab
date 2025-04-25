@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba92a4dfc1cefd46a30ab14c5719762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseCount: 20
-  maxCount: 40
+  looseCount: 25
+  maxCount: 50
   edgeToSpawnDistance: 2
   spawnInterval: 0.5
   geobodiesBlueYellow:

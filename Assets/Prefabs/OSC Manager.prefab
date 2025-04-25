@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2183546407519845759}
   - component: {fileID: 4801345895525448080}
   - component: {fileID: 3508929434771004630}
+  - component: {fileID: 3951841911569057900}
   m_Layer: 0
   m_Name: OSC Manager
   m_TagString: Untagged
@@ -76,3 +77,22 @@ MonoBehaviour:
   _remoteHost: 127.0.0.1
   _remotePort: 9000
   _useBundle: 1
+--- !u!114 &3951841911569057900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395140240599446639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e460bfc774d0bb6419e7c723b193566c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Receiver: {fileID: 4801345895525448080}
+  Address: /ipad
+  inputTimeout: 15
+  currentInputTimer: 0
+  idle: 0
+  oscPosition: {x: 0, y: 0, z: 0}
+  oscDown: 0

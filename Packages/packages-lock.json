@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "b372b61c8748dad844f79afdfa2998b1b3e4169b"
     },
+    "com.github.u-plus-one.unityosxbuild": {
+      "version": "https://github.com/u-plus-one/unityosxbuild.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "caa6cf9f5d024d23a5f4b831cf97f55d8662c5b7"
+    },
     "com.unity.burst": {
       "version": "1.8.18",
       "depth": 1,
