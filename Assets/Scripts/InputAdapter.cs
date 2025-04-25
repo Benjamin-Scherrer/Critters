@@ -41,7 +41,7 @@ public class InputAdapter : MonoBehaviour
 
     void Update()
     {
-        if (oscDown)
+        if (oscDown || Input.anyKey)
         {
             currentInputTimer = inputTimeout;
             idle = false;
