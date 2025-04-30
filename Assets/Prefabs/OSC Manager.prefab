@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Receiver: {fileID: 4801345895525448080}
   Address: /ipad
-  inputTimeout: 15
+  inputTimeout: 30
   currentInputTimer: 0
   idle: 0
   oscPosition: {x: 0, y: 0, z: 0}

@@ -19,9 +19,13 @@ public class ConglomerateManager : MonoBehaviour
     [SerializeField] private float outsideScreenDecayMultiplier = 4;
     [SerializeField] private float deathExplosionForce = 10;
     [Header("Variables")]
-    [SerializeField] private float maximumGeobodies = 12;
+    [SerializeField] private float idleGeobodyCount = 10;
+    [SerializeField] private float maxGeobodyCount = 18;
 
-    private float currentLiveTime = 0;
+    [Header("Debug")]
+    [SerializeField] private float geobodyCount;
+
+    private float currentLiveTime;
 
     private float lifeBuffer = 0;
 
@@ -131,7 +135,7 @@ public class ConglomerateManager : MonoBehaviour
 
 
         //Split if too big
-        if (geobodies.Count < maximumGeobodies) return;
+        if (geobodies.Count < geobodyCount) return;
 
         //Just kill conglomerate instead.
         KillConglomerate();
@@ -149,9 +153,25 @@ public class ConglomerateManager : MonoBehaviour
         //geobody1.SplitOffgeobody(geobody2);
     }
 
+    private void Awake()
+    {
+        geobodyCount = idleGeobodyCount;
+    }
+
     private void Update()
     {
-        if(geobodies.Count == 0) return;
+        if (InputAdapter.Instance.idle)
+        {
+            if (geobodyCount == idleGeobodyCount) return;
+            geobodyCount = idleGeobodyCount;
+        }
+        else
+        {
+            if (geobodyCount == maxGeobodyCount) return;
+            geobodyCount = maxGeobodyCount;
+        }
+
+        if (geobodies.Count == 0) return;
         if(isGrabbed) return;
 
         if (lifeBuffer > 0)
