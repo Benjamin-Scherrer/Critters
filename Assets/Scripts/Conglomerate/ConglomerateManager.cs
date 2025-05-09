@@ -88,6 +88,8 @@ public class ConglomerateManager : MonoBehaviour
         currentLiveTime += lifeGainedFromSnap;
         //Debug.Log("On joint snappped");
         UpdateConglomerate();
+
+        AudioManager.Instance.PlayRandomeeAwakeSound();
     }
 
 

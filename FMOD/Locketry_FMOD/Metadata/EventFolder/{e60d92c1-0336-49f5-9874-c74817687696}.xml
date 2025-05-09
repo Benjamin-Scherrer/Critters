@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="EventFolder" id="{e60d92c1-0336-49f5-9874-c74817687696}">
 		<property name="name">
 			<value>02_Ambient</value>

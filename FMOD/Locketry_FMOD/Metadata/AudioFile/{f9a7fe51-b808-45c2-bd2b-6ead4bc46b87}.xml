@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{f9a7fe51-b808-45c2-bd2b-6ead4bc46b87}">
 		<property name="assetPath">
 			<value>Winning_Jingle_Rat-Lab.mp3</value>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{bc20bc6c-ad2b-410e-80f4-0c87ecbac2b1}">
 		<property name="assetPath">
 			<value>Locketry Assets/Plop_8.wav</value>

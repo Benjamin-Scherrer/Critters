@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="ParameterPreset" id="{a09df15a-d8d2-4fb1-9de9-6bbbf2d1ced7}">
 		<property name="name">
 			<value>RatsNumber</value>

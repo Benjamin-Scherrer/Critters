@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{42c06894-e7a3-4d03-806e-970e84066463}">
 		<property name="color">
 			<value>Purple</value>
@@ -63,8 +63,8 @@
 	<object class="MarkerTrack" id="{7d80b23f-86fb-4d00-96b7-4e9ed69f43fa}" />
 	<object class="GroupTrack" id="{f3a65b2e-c576-4090-8d77-2680be1585e7}">
 		<relationship name="modules">
-			<destination>{1f450e92-3093-4ee6-8f42-bf091bddd1db}</destination>
 			<destination>{b15f78a2-3bc1-402a-afc3-b25566b9d8a5}</destination>
+			<destination>{1f450e92-3093-4ee6-8f42-bf091bddd1db}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{17be8ae6-57e0-4224-8d39-db650299c7d5}</destination>
@@ -72,8 +72,8 @@
 	</object>
 	<object class="Timeline" id="{23c6452d-3238-481c-bce8-62fac0621819}">
 		<relationship name="modules">
-			<destination>{1f450e92-3093-4ee6-8f42-bf091bddd1db}</destination>
 			<destination>{b15f78a2-3bc1-402a-afc3-b25566b9d8a5}</destination>
+			<destination>{1f450e92-3093-4ee6-8f42-bf091bddd1db}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{fac9ba56-a53a-4c61-90be-9771b87d9ab5}</destination>
@@ -96,17 +96,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9c671616-2b47-4803-9908-13597b7092c5}" />
-	<object class="SingleSound" id="{1f450e92-3093-4ee6-8f42-bf091bddd1db}">
-		<property name="length">
-			<value>163</value>
-		</property>
-		<relationship name="fadeInCurve">
-			<destination>{5a41acda-ff9b-4370-87cf-3389d9a49967}</destination>
-		</relationship>
-		<relationship name="audioFile">
-			<destination>{1abdddba-5970-4ff4-93df-cfd710796496}</destination>
-		</relationship>
-	</object>
 	<object class="SingleSound" id="{b15f78a2-3bc1-402a-afc3-b25566b9d8a5}">
 		<property name="start">
 			<value>163</value>
@@ -114,6 +103,17 @@
 		<property name="length">
 			<value>163</value>
 		</property>
+		<relationship name="audioFile">
+			<destination>{1abdddba-5970-4ff4-93df-cfd710796496}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{1f450e92-3093-4ee6-8f42-bf091bddd1db}">
+		<property name="length">
+			<value>163</value>
+		</property>
+		<relationship name="fadeInCurve">
+			<destination>{5a41acda-ff9b-4370-87cf-3389d9a49967}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{1abdddba-5970-4ff4-93df-cfd710796496}</destination>
 		</relationship>

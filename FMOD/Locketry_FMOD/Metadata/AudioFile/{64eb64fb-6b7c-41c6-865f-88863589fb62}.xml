@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{64eb64fb-6b7c-41c6-865f-88863589fb62}">
 		<property name="assetPath">
 			<value>MUSCInst_DripTime White Noise Rain_PSE_AMO_009.wav</value>

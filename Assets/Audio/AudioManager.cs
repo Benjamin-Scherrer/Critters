@@ -120,7 +120,7 @@ public class AudioManager : MonoBehaviour
         ambienceEventInstance.start();
     }
 
-    public void PlayRandomeAwakeSound()
+    public void PlayRandomeeAwakeSound()
     {
         int randomIndex = Random.Range(0, 12); // Generates a number from 0 to 11
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{69e447f5-bef0-4730-a334-8dfd56ece779}">
 		<property name="color">
 			<value>Yellow</value>
@@ -120,7 +120,11 @@
 	</object>
 	<object class="MixerBusFader" id="{3b7b0853-9bd7-4610-a21b-0cea60263035}" />
 	<object class="MixerBusFader" id="{eb0a21e6-1a75-44e1-ab03-a8602e550987}" />
-	<object class="SpatialiserEffect" id="{83222355-74fb-4311-9808-cfbf0b9adc34}" />
+	<object class="SpatialiserEffect" id="{83222355-74fb-4311-9808-cfbf0b9adc34}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{5f4a31d5-0bb6-46d0-a19d-f1c1d1d47355}">
 		<relationship name="audioFile">
 			<destination>{56d5880a-4cce-4bab-85a8-89d2fb96bbbd}</destination>
