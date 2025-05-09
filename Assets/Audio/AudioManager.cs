@@ -169,6 +169,7 @@ public class AudioManager : MonoBehaviour
     {
         // Play a random destruction sound
         Debug.Log("PlayDestructionSound");
+        AudioManager.Instance.PlayOneShot(FMODEvents.instance.Break, this.transform.position);
     }
 
 

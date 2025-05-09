@@ -47,6 +47,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference Aufwachen10 { get; private set; }
     [field: SerializeField] public EventReference Aufwachen11 { get; private set; }
     [field: SerializeField] public EventReference Aufwachen12 { get; private set; }
+    [field: SerializeField] public EventReference Break { get; private set; }
 
     public static FMODEvents instance { get; private set; }
 
