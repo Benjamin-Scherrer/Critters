@@ -51,7 +51,7 @@ MonoBehaviour:
   SFXVolume: 1
   parameterName: wind_intensity
   parameterValue: 0
-  isSong1Playing: 0
+  isSong1Playing: 1
   isSong2Playing: 0
   isSong3Playing: 0
   isSong4Playing: 0
@@ -136,13 +136,6 @@ MonoBehaviour:
       Data3: -1128658553
       Data4: 197456768
     Path: event:/02_Ambient/Ambience
-  <Item_Pickup>k__BackingField:
-    Guid:
-      Data1: -1241106972
-      Data2: 1081835042
-      Data3: 144713601
-      Data4: 457451176
-    Path: event:/03_Mechanics/Item_Pickup
   <Collisions>k__BackingField:
     Guid:
       Data1: 1826440220
@@ -220,10 +213,101 @@ MonoBehaviour:
       Data3: -1771873139
       Data4: 511903257
     Path: event:/04_Music/Music_6
+  <Music7>k__BackingField:
+    Guid:
+      Data1: -462012559
+      Data2: 1118433267
+      Data3: 1880759191
+      Data4: -1621016256
+    Path: event:/04_Music/Music_7
   <Music_Shutoff>k__BackingField:
     Guid:
-      Data1: -787256676
-      Data2: 1083138403
-      Data3: -1983902564
-      Data4: -340636202
+      Data1: -2072400686
+      Data2: 1142277154
+      Data3: 300104603
+      Data4: -1660056215
     Path: event:/04_Music/Music_Shutoff
+  <Aufwachen1>k__BackingField:
+    Guid:
+      Data1: -1643274727
+      Data2: 1230910126
+      Data3: -2072221037
+      Data4: 1564175323
+    Path: event:/05_Wakeup/Aufwachen1
+  <Aufwachen2>k__BackingField:
+    Guid:
+      Data1: -772125687
+      Data2: 1245661618
+      Data3: 839282830
+      Data4: 1386444523
+    Path: event:/05_Wakeup/Aufwachen2
+  <Aufwachen3>k__BackingField:
+    Guid:
+      Data1: 1497003490
+      Data2: 1130788281
+      Data3: -109823560
+      Data4: -752247206
+    Path: event:/05_Wakeup/Aufwachen3
+  <Aufwachen4>k__BackingField:
+    Guid:
+      Data1: 651252803
+      Data2: 1155345135
+      Data3: 354752699
+      Data4: -410164105
+    Path: event:/05_Wakeup/Aufwachen4
+  <Aufwachen5>k__BackingField:
+    Guid:
+      Data1: -119969278
+      Data2: 1196006085
+      Data3: 1247501490
+      Data4: 1257283437
+    Path: event:/05_Wakeup/Aufwachen5
+  <Aufwachen6>k__BackingField:
+    Guid:
+      Data1: 1817992531
+      Data2: 1269840873
+      Data3: 1792728994
+      Data4: -1141002139
+    Path: event:/05_Wakeup/Aufwachen6
+  <Aufwachen7>k__BackingField:
+    Guid:
+      Data1: 1742034246
+      Data2: 1213086919
+      Data3: -1662166394
+      Data4: -389841263
+    Path: event:/05_Wakeup/Aufwachen7
+  <Aufwachen8>k__BackingField:
+    Guid:
+      Data1: -816535851
+      Data2: 1152862678
+      Data3: -523933507
+      Data4: 221668460
+    Path: event:/05_Wakeup/Aufwachen8
+  <Aufwachen9>k__BackingField:
+    Guid:
+      Data1: -1199825398
+      Data2: 1097346862
+      Data3: 685278362
+      Data4: 1503020875
+    Path: event:/05_Wakeup/Aufwachen9
+  <Aufwachen10>k__BackingField:
+    Guid:
+      Data1: -321113359
+      Data2: 1335394284
+      Data3: 1659219886
+      Data4: 229083074
+    Path: event:/05_Wakeup/Aufwachen10
+  <Aufwachen11>k__BackingField:
+    Guid:
+      Data1: 1776568309
+      Data2: 1194376944
+      Data3: -41077597
+      Data4: 2045242454
+    Path: event:/05_Wakeup/Aufwachen11
+  <Aufwachen12>k__BackingField:
+    Guid:
+      Data1: 1832794575
+      Data2: 1230316656
+      Data3: -746230141
+      Data4: -2064198436
+    Path: event:/05_Wakeup/Aufwachen12

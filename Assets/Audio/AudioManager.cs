@@ -4,6 +4,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 
+
 public class AudioManager : MonoBehaviour
 {
     //USE THIS LINE FOR ONE SHOT EVENTS
@@ -45,7 +46,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private EventInstance musicEventInstance4;
     [SerializeField] private EventInstance musicEventInstance5;
     [SerializeField] private EventInstance musicEventInstance6;
-
 
     private static AudioManager _instance;
     public static AudioManager Instance
@@ -89,8 +89,8 @@ public class AudioManager : MonoBehaviour
     {
         InitializeAmbience(FMODEvents.instance.Ambience);
         AudioManager.Instance.SetAmbienceParameter(parameterName, parameterValue);
-        
-        
+
+
         //SetSongStatus(true, false, false, false, false, false);
         //StopSongs();
         //PlaySongs();
@@ -118,6 +118,51 @@ public class AudioManager : MonoBehaviour
     {
         ambienceEventInstance = CreateInstance(ambienceEventReference);
         ambienceEventInstance.start();
+    }
+
+    public void PlayRandomeAwakeSound()
+    {
+        int randomIndex = Random.Range(0, 12); // Generates a number from 0 to 11
+
+        switch (randomIndex)
+        {
+            case 0:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen1, this.transform.position);
+                break;
+            case 1:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen2, this.transform.position);
+                break;
+            case 2:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen3, this.transform.position);
+                break;
+            case 3:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen4, this.transform.position);
+                break;
+            case 4:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen5, this.transform.position);
+                break;
+            case 5:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen6, this.transform.position);
+                break;
+            case 6:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen7, this.transform.position);
+                break;
+            case 7:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen8, this.transform.position);
+                break;
+            case 8:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen9, this.transform.position);
+                break;
+            case 9:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen10, this.transform.position);
+                break;
+            case 10:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen11, this.transform.position);
+                break;
+            case 11:
+                AudioManager.Instance.PlayOneShot(FMODEvents.instance.Aufwachen12, this.transform.position);
+                break;
+        }
     }
 
 
