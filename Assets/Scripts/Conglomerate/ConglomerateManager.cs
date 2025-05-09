@@ -203,6 +203,9 @@ public class ConglomerateManager : MonoBehaviour
 
         SetAlltoSeparate(geobodiesCopy);
         Explode(geobodiesCopy, explosionOrigin);
+
+        //
+        AudioManager.Instance.PlayDestructionSound();
     }
 
     private void SetAlltoSeparate(List<Geobody> geobodiesCopy)

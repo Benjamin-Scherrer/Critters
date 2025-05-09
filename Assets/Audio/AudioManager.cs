@@ -165,6 +165,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayDestructionSound()
+    {
+        // Play a random destruction sound
+        Debug.Log("PlayDestructionSound");
+    }
+
 
     public void SetAmbienceParameter(string parameterName, float parameterValue)
     {
