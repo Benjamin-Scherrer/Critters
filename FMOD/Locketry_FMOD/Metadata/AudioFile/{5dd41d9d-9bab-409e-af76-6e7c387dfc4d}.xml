@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{5dd41d9d-9bab-409e-af76-6e7c387dfc4d}">
 		<property name="assetPath">
-			<value>Critters_v2_all.flac</value>
+			<value>new Atmo/Critters_v2_all.flac</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
