@@ -213,6 +213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4992784092105073120, guid: 6c5d1e1ad1a500140a3e2f03b6851036,
         type: 3}
+      propertyPath: musicVolume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992784092105073120, guid: 6c5d1e1ad1a500140a3e2f03b6851036,
+        type: 3}
       propertyPath: isSong1Playing
       value: 0
       objectReference: {fileID: 0}
