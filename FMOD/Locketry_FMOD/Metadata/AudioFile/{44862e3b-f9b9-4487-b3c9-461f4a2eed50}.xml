@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{44862e3b-f9b9-4487-b3c9-461f4a2eed50}">
+		<property name="assetPath">
+			<value>New Stuff/Freeze 5-3-Audio 3 (eingefroren) [2025-05-13 185415].wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.0496875000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c7e01be6-1452-4a8e-bcba-fbf0c4d4b330}</destination>
+		</relationship>
+	</object>
+</objects>
