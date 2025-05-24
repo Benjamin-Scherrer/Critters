@@ -214,7 +214,12 @@ PrefabInstance:
     - target: {fileID: 4992784092105073120, guid: 6c5d1e1ad1a500140a3e2f03b6851036,
         type: 3}
       propertyPath: musicVolume
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992784092105073120, guid: 6c5d1e1ad1a500140a3e2f03b6851036,
+        type: 3}
+      propertyPath: ambienceVolume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4992784092105073120, guid: 6c5d1e1ad1a500140a3e2f03b6851036,
         type: 3}
@@ -994,7 +999,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3301236668936157995}
   - component: {fileID: 1664825117605726528}
-  - component: {fileID: 8304209544221823316}
   - component: {fileID: 2105092190560088688}
   - component: {fileID: 6356053058044613128}
   - component: {fileID: 9151560038391519846}
@@ -1073,14 +1077,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a1ae4bb8f8241499ae770c335264bb, type: 3}
---- !u!81 &8304209544221823316
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115079244166095600}
-  m_Enabled: 1
 --- !u!108 &8469030421960670070
 Light:
   m_ObjectHideFlags: 0

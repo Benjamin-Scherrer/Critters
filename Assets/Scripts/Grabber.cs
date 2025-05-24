@@ -83,6 +83,8 @@ public class Grabber : MonoBehaviour
             playedEffect = false;
         }
 
+        if (!down) inputPosition = new Vector2(Screen.width/2, Screen.height/2);
+
         inputPosition = new Vector3(Mathf.Clamp(inputPosition.x, 0f, Screen.width), Mathf.Clamp(inputPosition.y, 0f, Screen.height), 0f);
         RaycastHit geobodyHit;
         RaycastHit cursorHit;
