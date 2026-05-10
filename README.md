@@ -8,7 +8,7 @@ which inspire through their clear shape language and flexible combinability.
 Gierer Damian, Häfliger Nadja, Scherrer Benjamin, Staub Michael
 
 ## Project
-Project Locketry, exhibition title Critters, is a digital exhibition piece made at ZHdK as part of the Minor Digital Play.
+Critters, previously calld Locketry, is a digital exhibition piece made at ZHdK as part of the Minor Digital Play.
 Critters was developped in cooperation with the Museum of Design Zurich for the exhibition 'Museum of the Future'.
 
 https://www.zhdk.ch/en/zurich-university-of-the-arts-1
